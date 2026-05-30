@@ -21,10 +21,14 @@
     "totalWithdrawnFromNFTContractMON": "288045",
     "withdrawnToDeployerWalletWei": "273642750000000000000000",
     "withdrawnToDeployerWalletMON": "273642.75",
-    "withdrawnToOtherWalletWei": "14402250000000000000000",
-    "withdrawnToOtherWalletMON": "14402.25",
     "nftContractNativeBalanceWei": "0",
-    "nftContractNativeBalanceMON": "0"
+    "nftContractNativeBalanceMON": "0",
+    "withdrawnToMintInfrastructurePayoutContractWei": "14402250000000000000000",
+    "withdrawnToMintInfrastructurePayoutContractMON": "14402.25",
+    "mintInfrastructurePayoutContract": {
+      "label": "ArchetypePayouts / mint infrastructure payout contract",
+      "address": "0xaAfdfA4a935d8511bF285af11A0544ce7e4a1199"
+    }
   },
   "supportingData": {
     "uniqueMintSenders": 542,

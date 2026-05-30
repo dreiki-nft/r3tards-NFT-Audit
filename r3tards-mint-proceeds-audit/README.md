@@ -21,7 +21,7 @@ Mint proceeds collected are calculated as `865 × 333 MON = 288,045 MON`.
 |---|---:|
 | Total withdrawn from NFT contract | 288,045 MON |
 | Withdrawn to deployer wallet | 273,642.75 MON |
-| Withdrawn to 0xaafd...1199 | 14,402.25 MON |
+| Withdrawn to ArchetypePayouts / mint infrastructure payout contract | 14,402.25 MON |
 | NFT contract native balance at snapshot | 0 MON |
 
 ## What the script does

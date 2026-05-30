@@ -392,8 +392,8 @@ function summarize({ mintEvents, groupedMints, txDetails, internalTxs, contractB
       totalWithdrawnFromNFTContractMON: weiToDecimalString(internalOutTotal),
       withdrawnToDeployerWalletWei: internalOutToDeployer.toString(),
       withdrawnToDeployerWalletMON: weiToDecimalString(internalOutToDeployer),
-      withdrawnToOtherWalletWei: (internalOutTotal - internalOutToDeployer).toString(),
-      withdrawnToOtherWalletMON: weiToDecimalString(internalOutTotal - internalOutToDeployer),
+      withdrawnToMintInfrastructurePayoutContractWei: (internalOutTotal - internalOutToDeployer).toString(),
+      withdrawnToMintInfrastructurePayoutContractMON: weiToDecimalString(internalOutTotal - internalOutToDeployer),
       nftContractNativeBalanceWei: contractBalanceWei === null ? '0' : contractBalanceWei.toString(),
       nftContractNativeBalanceMON: contractBalanceWei === null ? '0' : weiToDecimalString(contractBalanceWei)
     },
