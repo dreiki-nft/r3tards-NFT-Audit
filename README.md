@@ -19,6 +19,9 @@ A full community-friendly report is available in multiple formats:
 | Start Block | 67,220,770 |
 | Snapshot Block | 77,822,541 |
 | Mint Proceeds Collected | 288,045 MON |
+| Mint Price | 333 MON |
+| Free-Minted NFTs | 168 |
+| Non-Free Minted NFTs | 865 |
 | Royalties Actually Received | 78,483.61 MON-equivalent |
 | Matched Royalty Transactions | 241 |
 | Validator | forthenads |
@@ -29,13 +32,13 @@ A full community-friendly report is available in multiple formats:
 
 ## Introduction
 
-This audit was created to give the r3tards NFT community a clear, reproducible, and public view of the collection's on-chain transparency data.
+This audit gives the r3tards NFT community a clear, reproducible, and public view of the collection's on-chain transparency data.
 
 The goal is simple: show what was collected, what was actually received, what was committed back into the ecosystem, and what the community can independently verify.
 
 This repository separates the most important categories instead of mixing everything into one vague number:
 
-- **Mint proceeds** — native MON attached to primary mint transactions.
+- **Mint proceeds** — 865 non-free NFTs minted at 333 MON each.
 - **Royalties actually received** — MON / WMON that actually reached the royalty wallet and matched r3tards secondary NFT activity.
 - **Validator stake** — MON committed to the `forthenads` validator, reported separately because stake is not revenue.
 - **Supply, wallets, locked allocation, and burns** — project context that helps the community verify what exists, what is locked, and what has been burned.
@@ -52,15 +55,18 @@ This audit exists to separate assumptions from actual on-chain receipts.
 
 ### Mint Proceeds
 
+Mint proceeds collected are calculated as `865 × 333 MON = 288,045 MON`.
+
 | Metric | Value |
 |---|---:|
+| Total supply | 1,033 NFTs |
+| Current supply at snapshot | 1,031 NFTs |
 | Mint events from zero address | 1,033 NFTs |
 | Unique mint transactions | 673 |
+| Free-minted NFTs | 168 |
+| Non-free minted NFTs | 865 |
+| Mint price | 333 MON |
 | Mint proceeds collected | 288,045 MON |
-| Price per NFT | 333 MON |
-| Non-free minted NFTs | 865 tokens |
-| Non-free minted tokens | 865 tokens |
-| Mint price | Removed pending corrected classification |
 | Unique mint senders | 542 |
 | Unique mint recipients | 642 |
 
@@ -73,16 +79,7 @@ The audit also tracked native MON moved out of the NFT contract:
 | Withdrawn to 0xaafd...1199 | 14,402.25 MON |
 | NFT contract native balance at snapshot | 0 MON |
 
-
-
-
-
-
-Mint proceeds collected are calculated as `865 non-free NFTs × 333 MON = 288,045 MON`.
-
-This is the public-facing mint proceeds number. It matches the total MON withdrawn from the NFT contract in the audit outputs. Mint proceeds are gross value, not profit.
-
-Mint proceeds are gross value, not profit. They do not subtract gas, refunds, free mints, infrastructure, art, marketing, or any other cost.
+Mint proceeds are gross value, not profit. They do not subtract gas, refunds, infrastructure, art, marketing, or any other project costs.
 
 ### Royalties Actually Received
 
@@ -176,19 +173,5 @@ This report separates each category so the community can understand the numbers 
 - Indexed APIs can have indexing delays.
 - The snapshot is accurate only up to block `77,822,541`.
 - Unpaid royalties that never reached the wallet cannot appear in the royalty total.
-- Mint proceeds count native MON only.
 - Native and internal transfer detection depends on available indexed/internal transaction data.
 - This is not legal, financial, accounting, or tax advice.
-
-## Mint Proceeds
-
-Mint proceeds collected are calculated as `865 × 333 MON = 288,045 MON`.
-
-| Metric | Value |
-|---|---:|
-| Total supply | 1,033 NFTs |
-| Current supply at snapshot | 1,031 NFTs |
-| Free-minted NFTs | 168 |
-| Non-free minted NFTs | 865 |
-| Mint price | 333 MON |
-| Mint proceeds collected | 288,045 MON |

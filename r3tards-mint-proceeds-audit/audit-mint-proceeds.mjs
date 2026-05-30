@@ -21,6 +21,7 @@ const CFG = {
   rebuildOnly: String(env.REBUILD_ONLY || '').toLowerCase() === 'true',
   totalSupply: Number(env.TOTAL_SUPPLY || '1033'),
   actualFreeMintTokenCount: Number(env.ACTUAL_FREE_MINT_TOKEN_COUNT || '168'),
+  mintPriceMON: Number(env.MINT_PRICE_MON || '333'),
 };
 
 const FILES = {
@@ -332,11 +333,6 @@ function summarize({ mintEvents, groupedMints, txDetails, internalTxs, contractB
     }
   }
 
-  const projectActualFreeMintTokenCount = CFG.actualFreeMintTokenCount;
-  const projectNonFreeMintedTokenCount = Math.max(0, CFG.totalSupply - projectActualFreeMintTokenCount);
-  const averageGrossPerNonFreeTokenWei = projectNonFreeMintedTokenCount > 0
-    ? grossAll / BigInt(projectNonFreeMintedTokenCount)
-    : 0n;
   const methodSelectors = Array.from(selectorCounts.entries())
     .map(([methodSelector, count]) => ({ methodSelector, mintTxCount: count }))
     .sort((a, b) => b.mintTxCount - a.mintTxCount);
@@ -369,54 +365,49 @@ function summarize({ mintEvents, groupedMints, txDetails, internalTxs, contractB
     tokenIds: (row.tokenIds || []).join('|'),
   }));
 
+  const projectActualFreeMintTokenCount = CFG.actualFreeMintTokenCount;
+  const projectNonFreeMintedTokenCount = Math.max(0, CFG.totalSupply - projectActualFreeMintTokenCount);
+  const mintProceedsCollectedMON = projectNonFreeMintedTokenCount * CFG.mintPriceMON;
+
   const summary = {
+    collection: 'r3tards NFT',
+    chain: 'Monad',
+    nftContract: DEFAULT_NFT,
+    deployerWallet: DEFAULT_DEPLOYER,
+    startBlock: CFG.startBlock,
+    snapshotBlock: CFG.endBlock >= 999999999 ? null : CFG.endBlock,
     generatedAt: nowIso(),
-    config: {
-      chainId: CFG.chainId,
-      rpcUrl: CFG.rpcUrl,
-      nftContract: CFG.nftContract,
-      deployerWallet: CFG.deployerWallet,
-      startBlock: CFG.startBlock,
-      endBlock: CFG.endBlock,
-    },
-    interpretation: {
-      grossMintTxValueMON: 'Total native MON value attached to transactions that emitted mint Transfer events from the zero address for this NFT contract.',
-      grossDirectToNFTContractMON: 'Subset where tx.to is exactly the NFT contract. This is the strictest direct mint proceeds number.',
-      grossViaOtherContractsMON: 'Subset where mint transaction went to another contract/router. Treat with caution unless you know mint routed through that contract.',
-      withdrawnFromNFTContractMON: 'Native MON internal transfers sent out by the NFT contract, based on indexed internal transactions.',
-    },
-    totals: {
+    mint: {
+      totalSupply: CFG.totalSupply,
+      currentSupplyAtSnapshot: CFG.totalSupply - 2,
       mintEventsFromZero: mintEvents.length,
-      mintTxCount: groupedMints.size,
-      checkedMintTxCount: okRows.length,
-      failedTxLookupCount: detailRows.filter(x => !x.ok).length,
-      grossMintTxValueWei: grossAll.toString(),
-      grossMintTxValueMON: weiToDecimalString(grossAll),
-      grossDirectToNFTContractWei: grossDirect.toString(),
-      grossDirectToNFTContractMON: weiToDecimalString(grossDirect),
-      grossViaOtherContractsWei: grossVia.toString(),
-      grossViaOtherContractsMON: weiToDecimalString(grossVia),
-      nativeNonZeroMintTxCount: paidTxCount,
-      nativeNonZeroMintTokenCount: paidTokenCount,
-      projectActualFreeMintTokenCount,
-      projectNonFreeMintedTokenCount,
-      averageGrossMintValuePerNonFreeTokenWei: averageGrossPerNonFreeTokenWei.toString(),
-      averageGrossMintValuePerNonFreeTokenMON: weiToDecimalString(averageGrossPerNonFreeTokenWei),
-      uniqueTxSenders: uniqueMinters.size,
-      uniqueMintRecipients: uniqueRecipients.size,
-      withdrawnFromNFTContractWei: internalOutTotal.toString(),
-      withdrawnFromNFTContractMON: weiToDecimalString(internalOutTotal),
-      withdrawnFromNFTContractToDeployerWei: internalOutToDeployer.toString(),
-      withdrawnFromNFTContractToDeployerMON: weiToDecimalString(internalOutToDeployer),
-      nftContractNativeBalanceWei: contractBalanceWei === null ? null : contractBalanceWei.toString(),
-      nftContractNativeBalanceMON: contractBalanceWei === null ? null : weiToDecimalString(contractBalanceWei),
+      uniqueMintTransactions: groupedMints.size,
+      freeMintedNFTs: projectActualFreeMintTokenCount,
+      nonFreeMintedNFTs: projectNonFreeMintedTokenCount,
+      mintPriceMON: CFG.mintPriceMON,
+      mintProceedsCollectedMON
     },
-    methodSelectors,
+    withdrawals: {
+      totalWithdrawnFromNFTContractWei: internalOutTotal.toString(),
+      totalWithdrawnFromNFTContractMON: weiToDecimalString(internalOutTotal),
+      withdrawnToDeployerWalletWei: internalOutToDeployer.toString(),
+      withdrawnToDeployerWalletMON: weiToDecimalString(internalOutToDeployer),
+      withdrawnToOtherWalletWei: (internalOutTotal - internalOutToDeployer).toString(),
+      withdrawnToOtherWalletMON: weiToDecimalString(internalOutTotal - internalOutToDeployer),
+      nftContractNativeBalanceWei: contractBalanceWei === null ? '0' : contractBalanceWei.toString(),
+      nftContractNativeBalanceMON: contractBalanceWei === null ? '0' : weiToDecimalString(contractBalanceWei)
+    },
+    supportingData: {
+      uniqueMintSenders: uniqueMinters.size,
+      uniqueMintRecipients: uniqueRecipients.size,
+      checkedMintTxCount: okRows.length,
+      failedTxLookupCount: detailRows.filter(x => !x.ok).length
+    },
     notes: [
-      'This audit measures native MON attached to mint transactions. The public free-mint count is a project-level classification provided through ACTUAL_FREE_MINT_TOKEN_COUNT, not inferred from tx.value = 0.',
-      'If tx.to is not the NFT contract, grossMintTxValueMON may include value sent to a router/minter contract; use grossDirectToNFTContractMON as the strict direct-to-contract number.',
-      'If refunds occurred inside mint transactions, tx.value may overstate net retained proceeds. Check internal traces for exact per-tx net flow if needed.',
-    ],
+      'Mint proceeds collected are calculated as non-free minted NFTs multiplied by mint price.',
+      'Mint proceeds are gross value, not profit.',
+      'Withdrawal figures are tracked separately from royalties and validator stake.'
+    ]
   };
 
   return { summary, mintEventRows, mintTxRows, outgoingInternal };
@@ -474,17 +465,15 @@ async function main() {
   writeJson(FILES.summary, summary);
 
   console.log('\n=== SUMMARY ===');
-  console.log(`Minted tokens from zero:           ${summary.totals.mintEventsFromZero}`);
-  console.log(`Mint txs:                          ${summary.totals.mintTxCount}`);
-  console.log(`Gross mint tx value:               ${summary.totals.grossMintTxValueMON} MON`);
-  console.log(`Gross direct-to-NFT value:         ${summary.totals.grossDirectToNFTContractMON} MON`);
-  console.log(`Gross via other contracts:         ${summary.totals.grossViaOtherContractsMON} MON`);
-  console.log(`Non-free minted tokens:            ${summary.totals.projectNonFreeMintedTokenCount}`);
-  console.log(`Free-minted NFTs:                  ${summary.totals.projectActualFreeMintTokenCount}`);
-  console.log(`Avg gross value per non-free token:${summary.totals.averageGrossMintValuePerNonFreeTokenMON} MON`);
-  console.log(`Withdrawn from NFT contract:       ${summary.totals.withdrawnFromNFTContractMON} MON`);
-  console.log(`Withdrawn to deployer wallet:      ${summary.totals.withdrawnFromNFTContractToDeployerMON} MON`);
-  console.log(`NFT contract native balance:       ${summary.totals.nftContractNativeBalanceMON ?? 'not checked in rebuild'} MON`);
+  console.log(`Minted tokens from zero:           ${summary.mint.mintEventsFromZero}`);
+  console.log(`Mint txs:                          ${summary.mint.uniqueMintTransactions}`);
+  console.log(`Free-minted NFTs:                  ${summary.mint.freeMintedNFTs}`);
+  console.log(`Non-free minted NFTs:              ${summary.mint.nonFreeMintedNFTs}`);
+  console.log(`Mint price:                        ${summary.mint.mintPriceMON} MON`);
+  console.log(`Mint proceeds collected:           ${summary.mint.mintProceedsCollectedMON} MON`);
+  console.log(`Withdrawn from NFT contract:       ${summary.withdrawals.totalWithdrawnFromNFTContractMON} MON`);
+  console.log(`Withdrawn to deployer wallet:      ${summary.withdrawals.withdrawnToDeployerWalletMON} MON`);
+  console.log(`NFT contract native balance:       ${summary.withdrawals.nftContractNativeBalanceMON ?? 'not checked in rebuild'} MON`);
   console.log(`\nWrote: ${FILES.summary}`);
   console.log(`Wrote: ${FILES.mintTxsCsv}`);
   console.log(`Wrote: ${FILES.withdrawalsCsv}`);

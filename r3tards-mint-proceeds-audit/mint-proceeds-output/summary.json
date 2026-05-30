@@ -5,18 +5,36 @@
   "deployerWallet": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
   "startBlock": 67220770,
   "snapshotBlock": 77822541,
+  "generatedAt": "2026-05-30T07:25:56.463Z",
   "mint": {
     "totalSupply": 1033,
     "currentSupplyAtSnapshot": 1031,
+    "mintEventsFromZero": 1033,
+    "uniqueMintTransactions": 673,
     "freeMintedNFTs": 168,
     "nonFreeMintedNFTs": 865,
     "mintPriceMON": 333,
     "mintProceedsCollectedMON": 288045
   },
   "withdrawals": {
-    "totalWithdrawnFromNFTContractMON": 288045,
-    "withdrawnToDeployerWalletMON": 273642.75,
-    "withdrawnToOtherWalletMON": 14402.25,
-    "nftContractNativeBalanceAtSnapshotMON": 0
-  }
+    "totalWithdrawnFromNFTContractWei": "288045000000000000000000",
+    "totalWithdrawnFromNFTContractMON": "288045",
+    "withdrawnToDeployerWalletWei": "273642750000000000000000",
+    "withdrawnToDeployerWalletMON": "273642.75",
+    "withdrawnToOtherWalletWei": "14402250000000000000000",
+    "withdrawnToOtherWalletMON": "14402.25",
+    "nftContractNativeBalanceWei": "0",
+    "nftContractNativeBalanceMON": "0"
+  },
+  "supportingData": {
+    "uniqueMintSenders": 542,
+    "uniqueMintRecipients": 642,
+    "checkedMintTxCount": 673,
+    "failedTxLookupCount": 0
+  },
+  "notes": [
+    "Mint proceeds collected are calculated as non-free minted NFTs multiplied by mint price.",
+    "Mint proceeds are gross value, not profit.",
+    "Withdrawal figures are tracked separately from royalties and validator stake."
+  ]
 }

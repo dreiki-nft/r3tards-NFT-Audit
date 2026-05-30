@@ -1,31 +1,45 @@
-# Monad Mint Proceeds Audit v5.1
+# r3tards Mint Proceeds Audit
 
-Fast indexed audit for estimating how much native MON was collected from the r3tards NFT mint.
+Fast indexed audit for documenting r3tards NFT mint proceeds on Monad.
 
-This script does **not** crawl millions of blocks. It uses the Etherscan API V2 indexed ERC721 transfer endpoint on Monad (`chainid=143`) to find all NFT mint events, then checks each mint transaction's native `value` via RPC.
+## Public headline numbers
 
-## What it calculates
+Mint proceeds collected are calculated as `865 × 333 MON = 288,045 MON`.
 
-- Total tokens minted from the zero address.
-- Total mint transactions.
-- Gross native MON sent in mint transactions.
-- Direct-to-NFT mint proceeds, where the transaction `to` is the NFT contract.
-- Mint value routed through other contracts, if any.
-- Free mint token count.
-- Paid mint token count.
-- Average MON per paid token.
-- Native MON withdrawals from the NFT contract, from indexed internal transactions.
-- Native MON withdrawn from the NFT contract to the deployer/proceeds wallet.
-- Current native MON balance of the NFT contract at the end/latest block.
+| Metric | Value |
+|---|---:|
+| Total supply | 1,033 NFTs |
+| Current supply at snapshot | 1,031 NFTs |
+| Free-minted NFTs | 168 |
+| Non-free minted NFTs | 865 |
+| Mint price | 333 MON |
+| Mint proceeds collected | 288,045 MON |
+
+## Withdrawals from the NFT contract
+
+| Withdrawal Metric | Value |
+|---|---:|
+| Total withdrawn from NFT contract | 288,045 MON |
+| Withdrawn to deployer wallet | 273,642.75 MON |
+| Withdrawn to 0xaafd...1199 | 14,402.25 MON |
+| NFT contract native balance at snapshot | 0 MON |
+
+## What the script does
+
+The script gathers public mint activity and writes reproducible output files:
+
+- `mint-proceeds-output/summary.json`
+- `mint-proceeds-output/mint_events_from_zero.csv`
+- `mint-proceeds-output/mint_txs_with_native_value.csv`
+- `mint-proceeds-output/withdrawals_from_nft_contract.csv`
+
+The public-facing proceeds figure is based on the project mint classification: 865 non-free NFTs at 333 MON each.
 
 ## Install
 
 ```bash
-cd ~/Desktop/monad-mint-proceeds-audit-v5.1
 npm install --ignore-scripts
 ```
-
-There are no package dependencies, so install should be very quick.
 
 ## Run to current/latest indexed block
 
@@ -39,18 +53,6 @@ ETHERSCAN_API_KEY="YOUR_KEY_HERE" RPC_URL="https://rpc.monad.xyz" START_BLOCK=67
 ETHERSCAN_API_KEY="YOUR_KEY_HERE" RPC_URL="https://rpc.monad.xyz" START_BLOCK=67220770 END_BLOCK=77822541 API_DELAY_MS=500 npm run mint
 ```
 
-## Crash-safe behavior
-
-The script writes transaction lookup progress to:
-
-```txt
-mint-proceeds-output/mint_tx_details.jsonl
-```
-
-If it crashes or you stop it, rerun the same command. It will reuse saved API files and skip already checked mint txs.
-
-Do **not** delete `mint-proceeds-output` unless you want to restart from zero.
-
 ## Rebuild CSVs/summary from saved data
 
 ```bash
@@ -59,34 +61,4 @@ REBUILD_ONLY=true npm run rebuild
 
 ## Important interpretation
 
-The cleanest headline number is usually:
-
-```txt
-summary.json -> totals -> grossMintTxValueMON
-```
-
-For strict proceeds that went directly into the NFT contract, use:
-
-```txt
-summary.json -> totals -> grossDirectToNFTContractMON
-```
-
-If the collection minted directly through the NFT contract, these should be the same. If any mint went through another contract/router, the script separates those values.
-
-
-Mint proceeds collected are calculated as `865 non-free NFTs × 333 MON = 288,045 MON`.
-
-This is the public-facing mint proceeds number. It matches the total MON withdrawn from the NFT contract in the audit outputs. Mint proceeds are gross value, not profit.
-
-## Mint Proceeds
-
-Mint proceeds collected are calculated as `865 × 333 MON = 288,045 MON`.
-
-| Metric | Value |
-|---|---:|
-| Total supply | 1,033 NFTs |
-| Current supply at snapshot | 1,031 NFTs |
-| Free-minted NFTs | 168 |
-| Non-free minted NFTs | 865 |
-| Mint price | 333 MON |
-| Mint proceeds collected | 288,045 MON |
+Mint proceeds are gross value, not profit. They do not subtract gas, refunds, infrastructure, art, marketing, or any other project costs.
