@@ -4,7 +4,7 @@
 
 A full community-friendly report is available in multiple formats:
 
-- [Read the report online on Google Docs](https://docs.google.com/document/d/1vTypr9qca1XIcvzcB9uADj8otd3eipGYZKT4_eVKJJ8/edit?usp=sharing)
+- [Read the report online on Google Docs](https://docs.google.com/document/d/1HzrB5AHCRScR9vykAjGCIRnr5OLBu9H_MDQBsbDgKYg/edit?usp=sharing)
 - [Download the r3tards transparency report as DOCX](./r3tards-transparency.docx)
 - [Download the r3tards transparency report as PDF](./r3tards-transparency.pdf)
 
@@ -76,7 +76,7 @@ The audit also tracked native MON moved out of the NFT contract:
 |---|---:|
 | Total withdrawn from NFT contract | 288,045 MON |
 | Withdrawn to deployer wallet | 273,642.75 MON |
-| Withdrawn to 0xaafd...1199 | 14,402.25 MON |
+| Withdrawn to ArchetypePayouts / mint infrastructure payout contract | 14,402.25 MON |
 | NFT contract native balance at snapshot | 0 MON |
 
 Mint proceeds are gross value, not profit. They do not subtract gas, refunds, infrastructure, art, marketing, or any other project costs.
