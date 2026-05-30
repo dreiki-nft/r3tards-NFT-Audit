@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T23:20:03.607Z",
+  "generatedAt": "2026-05-30T23:37:53.933Z",
   "script": "verify-locked-supply.mjs",
   "chain": "Monad",
   "chainId": 143,
@@ -45,9 +45,29 @@
     270
   ],
   "unlockDateClaim": "April 2029",
+  "unlockDurationVerifiedFromProvidedSource": true,
+  "unlockDurationSecondsFromProvidedSource": 94694400,
+  "unlockDurationDaysFromProvidedSource": 1096,
   "unlockDateVerifiedFromContractState": false,
-  "withdrawalRulesVerifiedFromSourceOrAbi": false,
-  "uncertainty": "This repo verifies token ownership by the lock contract from ERC721 Transfer history. It does not include decoded lock contract ABI/source/read outputs proving the unlock timestamp or withdrawal rules. The April 2029 date should be described as a documented project claim until contract-state proof is added.",
+  "withdrawalRulesVerifiedFromProvidedSource": true,
+  "withdrawalRulesVerifiedFromDeployedBytecode": false,
+  "ownersFromProvidedSource": [
+    "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+    "0x18D5346216315667C51D69F346E3C768136F8018",
+    "0xf10eD040f182511ef2179AdeA749920881A4eef9"
+  ],
+  "foundryTestsPassedAgainstProvidedSource": true,
+  "foundryTestsPassedCount": 31,
+  "foundryTestsFailedCount": 0,
+  "proofBoundary": "Token custody is verified from ERC721 transfer history. Lock duration and withdrawal guards are verified from the provided source and deterministic tests. Exact deployed unlockTime and bytecode/source match are not committed as on-chain proof unless verify-lock-contract-state.mjs is run and its output is added.",
+  "sourceAndTests": {
+    "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
+    "testFile": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
+    "testOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt",
+    "sourceAnalysisJson": "r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json",
+    "gist": "https://gist.github.com/dreiki-nft/20fb15e674c2439e26f0f302a70edaa6"
+  },
   "burnProofs": {
     "burnAddress": "0x000000000000000000000000000000000000dEaD",
     "burnCountVerified": 2,
@@ -58,10 +78,14 @@
     "mechanism": "ERC721 Transfer to 0x000000000000000000000000000000000000dEaD"
   },
   "inputFiles": {
-    "rawErc721Transfers": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json"
+    "rawErc721Transfers": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json",
+    "lockContractSource": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
+    "lockContractTests": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
+    "foundryTestOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt"
   },
   "outputFiles": {
     "lockedTokensCsv": "r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv",
-    "burnProofsCsv": "r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv"
+    "burnProofsCsv": "r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv",
+    "sourceAnalysisJson": "r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json"
   }
 }

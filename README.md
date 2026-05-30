@@ -50,7 +50,7 @@ Canonical config is stored in [`config.json`](./config.json).
 | Matched likely royalties | 78,483.61 MON-equivalent | Heuristic match; see royalty limitations |
 | Deployer-specific validator stake | 281,946.1742440292 MON | Recalculated from delegate/undelegate events and current state |
 | Locked contract current holdings | 35 NFTs | Verified from ERC-721 ownership derivation |
-| Lock date/rules | April 2029 claim | Not proven from decoded contract state in current repo |
+| Lock source/tests | 3 years + 1 day duration; owner-gated withdrawals; 31/31 Foundry tests passed | Verified from provided source and deterministic tests; exact deployed unlockTime requires optional RPC read |
 
 ## Reproduce the audit
 
@@ -84,6 +84,14 @@ Subfolder rebuilds:
 cd r3tards-mint-proceeds-audit && npm run rebuild
 cd r3tards-royalty-audit && npm run rebuild
 cd r3tards-locked-supply-audit && npm run rebuild
+```
+
+Optional on-chain lock-state read. This requires installing the lock audit dependency first:
+
+```bash
+cd r3tards-locked-supply-audit
+npm install --ignore-scripts
+RPC_URL="https://rpc.monad.xyz" SNAPSHOT_BLOCK=77822541 npm run fetch:state
 ```
 
 Network fetches, when needed, require read-only environment variables. See `.env.example` files.
@@ -134,7 +142,12 @@ Network fetches, when needed, require read-only environment variables. See `.env
 | File | Meaning |
 |---|---|
 | `r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv` | Token IDs currently owned by the lock contract at snapshot. |
-| `r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json` | Locked supply proof summary and uncertainty. |
+| `r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json` | Locked supply proof summary, source/test evidence, and proof boundaries. |
+| `r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json` | Static analysis of the provided NFTTimeLock source and Foundry test-result summary. |
+| `r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json` | Optional RPC read output for deployed unlockTime/getOwners/nftContract when generated locally. Not required for offline rebuild. |
+| `r3tards-locked-supply-audit/contracts/NFTTimeLock.sol` | Provided lock contract source. |
+| `r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol` | Provided deterministic Foundry tests. |
+| `r3tards-locked-supply-audit/test-results/foundry-test-output.txt` | Recorded local `forge test -v` output: 31 passed, 0 failed. |
 | `r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv` | Burn/dead-address token transfer proof. |
 | `collection-info/official_wallets.csv` | Wallet labels, attribution, evidence source, and confidence. |
 | `collection-info/burn_proofs.csv` | Community-facing burn proof file with txs and links. |
@@ -213,18 +226,15 @@ The repo avoids implying custody/ownership beyond the documented attribution.
 
 ## Locked/team supply
 
-The current repo verifies that the lock contract owns 35 NFTs at the snapshot block from ERC-721 transfer history.
+The repo now includes three layers of lock evidence:
 
-The repo does **not** currently include decoded lock contract state or verified source proving:
+1. **On-chain custody proof from ERC-721 transfers:** 35 NFTs are verified as owned by the lock contract at the snapshot block.
+2. **Provided source/test proof:** `NFTTimeLock.sol` defines four allowed owner addresses, stores the NFT contract in the constructor, sets `unlockTime = block.timestamp + (3 * 365 days + 1 days)`, and restricts `withdrawNFT` / `withdrawMultipleNFTs` with `onlyOwner` and `onlyAfterUnlock`. The included Foundry output records 31 tests passed and 0 failed.
+3. **Optional deployed-state read:** `verify-lock-contract-state.mjs` can read `unlockTime`, `nftContract`, `getOwners`, and `isOwner` from the deployed Monad contract with read-only RPC calls.
 
-- the exact unlock timestamp,
-- beneficiary,
-- admin/owner,
-- withdrawal rules.
+Use this wording:
 
-Therefore, use this wording:
-
-> 35 NFTs are verified as currently held by the locked team supply contract at snapshot. The April 2029 unlock date is documented by the project, but the current repo does not include decoded contract-state proof of the unlock timestamp or withdrawal rules.
+> 35 NFTs are verified as currently held by the locked team supply contract at snapshot. The provided `NFTTimeLock.sol` source and deterministic Foundry tests show a 3-year-plus-1-day timelock, four owner addresses, and owner-only withdrawals after unlock. Exact deployed `unlockTime` and source/bytecode equivalence should be treated as separately verifiable by running the included read-only lock-state script.
 
 ## Burn proofs
 
@@ -248,6 +258,8 @@ The mechanism documented here is transfer to `0x00000000000000000000000000000000
 - 241 matched likely royalty transactions totaling 78,483.61 MON-equivalent.
 - 2 dead-address burn transfers.
 - 35 NFTs currently held by the lock contract.
+- Source-level lock behavior from provided `NFTTimeLock.sol`: 3-year-plus-1-day duration, four owner addresses, and `onlyOwner` + `onlyAfterUnlock` withdrawal guards.
+- Deterministic Foundry test run: 31 passed, 0 failed.
 - Deployer-specific validator net delegated amount from event math.
 
 ### Inferred or heuristic
@@ -258,7 +270,7 @@ The mechanism documented here is transfer to `0x00000000000000000000000000000000
 
 ### Not proven by current repo
 
-- Exact lock unlock timestamp and withdrawal rules from decoded lock contract state/source.
+- Exact deployed lock unlock timestamp and deployed bytecode/source equivalence, unless the optional lock-state read and bytecode/source verification are added to a future snapshot.
 - Complete marketplace attribution for every royalty payment.
 - A per-delegator sum for the full `forthenads` validator.
 

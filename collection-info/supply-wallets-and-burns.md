@@ -14,9 +14,15 @@ The current supply is lower than total supply because 2 NFTs have been burned by
 |---|---|---|
 | Team / Deployer | `0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA` | Deployer and royalty wallet |
 | Activations | `0x18d5346216315667c51d69f346e3c768136f8018` | Activation wallet |
-| Locked Team Supply Smart Contract | `0xec823eaffa4584f482a0d9c3e634840d14066242` | Locked until April 2029 |
+| Locked Team Supply Smart Contract | `0xec823eaffa4584f482a0d9c3e634840d14066242` | 35 NFTs held at snapshot; provided source defines 3-year-plus-1-day timelock and owner-only withdrawals |
 | Future Collabs & Partners | `0xf10ed040f182511ef2179adea749920881a4eef9` | Future partnerships / collaborations |
 | Community Treasury | `0xdfc19dd5f80048df12d7a71cb01226f8ce24a954` | Community initiatives / treasury |
+
+## Locked Team Supply Evidence
+
+The lock contract source and deterministic Foundry tests are included in `r3tards-locked-supply-audit/`. The provided source defines `unlockTime = block.timestamp + (3 * 365 days + 1 days)`, four allowed owner addresses, and owner-only withdrawals after unlock. The recorded Foundry test output shows 31 tests passed and 0 failed.
+
+The token custody proof is separate: `locked_tokens.csv` verifies that 35 NFTs are owned by the lock contract at the audit snapshot.
 
 ## Community Burns
 

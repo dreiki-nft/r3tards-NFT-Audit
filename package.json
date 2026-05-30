@@ -11,7 +11,8 @@
     "mint:rebuild": "cd r3tards-mint-proceeds-audit && npm run rebuild",
     "mint:fetch": "cd r3tards-mint-proceeds-audit && npm run fetch",
     "royalty:rebuild": "cd r3tards-royalty-audit && npm run rebuild",
-    "lock:rebuild": "cd r3tards-locked-supply-audit && npm run rebuild"
+    "lock:rebuild": "cd r3tards-locked-supply-audit && npm run rebuild",
+    "lock:fetch-state": "cd r3tards-locked-supply-audit && npm run fetch:state"
   },
   "engines": {
     "node": ">=18"

@@ -119,3 +119,17 @@ cd r3tards-locked-supply-audit && npm run rebuild
 ```
 
 Fetch commands require read-only API/RPC environment variables. Rebuild commands use committed raw snapshots.
+
+## Lock contract source/tests added
+
+Added the provided `NFTTimeLock.sol` source, deterministic Foundry tests, and recorded test output.
+
+Evidence added:
+
+- `r3tards-locked-supply-audit/contracts/NFTTimeLock.sol`
+- `r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol`
+- `r3tards-locked-supply-audit/test-results/foundry-test-output.txt`
+- `r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json`
+- Optional deployed-state reader: `r3tards-locked-supply-audit/verify-lock-contract-state.mjs`
+
+The source-level lock behavior is now documented: four owners, `unlockTime = block.timestamp + (3 * 365 days + 1 days)`, and owner-only withdrawals after unlock. The included Foundry test output records 31 passed / 0 failed. The repo still distinguishes this source/test evidence from deployed bytecode/source equivalence and exact deployed `unlockTime`, which can be checked with the optional read-only RPC script.

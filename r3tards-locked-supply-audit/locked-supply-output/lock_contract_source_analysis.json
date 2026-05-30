@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-05-30T23:37:53.915Z",
+  "script": "verify-locked-supply.mjs",
+  "contractAddress": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+  "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
+  "testFile": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
+  "foundryTestOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt",
+  "sourcePresent": true,
+  "testsPresent": true,
+  "sourceLevelFindings": {
+    "contractName": "NFTTimeLock",
+    "expectedOwners": [
+      "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+      "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+      "0x18D5346216315667C51D69F346E3C768136F8018",
+      "0xf10eD040f182511ef2179AdeA749920881A4eef9"
+    ],
+    "ownerCount": 4,
+    "unlockDurationExpressionFound": true,
+    "unlockDurationSeconds": 94694400,
+    "unlockDurationDays": 1096,
+    "unlockTimeFormula": "unlockTime = block.timestamp + (3 * 365 days + 1 days)",
+    "nftContractStoredFromConstructor": true,
+    "withdrawNFTRequiresOnlyOwner": true,
+    "withdrawMultipleNFTsRequiresOnlyOwner": true,
+    "emitsNFTWithdrawnEvent": true
+  },
+  "foundryTests": {
+    "claimedCommand": "forge test -v",
+    "passed": true,
+    "passedCount": 31,
+    "failedCount": 0,
+    "skippedCount": 0,
+    "coverage": [
+      "constructor owner list and nftContract storage",
+      "unlockTime equals deploy timestamp plus 3 years and 1 day",
+      "withdrawal reverts before unlock",
+      "withdrawal reverts for non-owners",
+      "single and multiple NFT withdrawals succeed at/after unlock",
+      "timeUntilUnlock returns expected values"
+    ]
+  },
+  "proofBoundaries": {
+    "sourceAndTestsProve": "The provided source implements a 3-year-plus-1-day timelock with four allowed owner addresses and onlyAfterUnlock withdrawal guards, and the provided deterministic Foundry tests pass against that source.",
+    "sourceAndTestsDoNotByThemselvesProve": "The committed source/test files alone do not prove deployed bytecode equality or exact deployed unlockTime. Use verify-lock-contract-state.mjs against Monad RPC to read deployed state."
+  }
+}

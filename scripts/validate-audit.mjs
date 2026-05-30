@@ -22,6 +22,10 @@ const required = [
   'r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification_summary.json',
   'r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties_evidence.csv',
   'r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json',
+  'r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json',
+  'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
+  'r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol',
+  'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
   'collection-info/official_wallets.csv','collection-info/burn_proofs.csv','data/checksums.json'
 ];
 required.forEach(exists);
@@ -54,8 +58,13 @@ if (Math.abs((gross-undelegated)-net) > 1e-6) fail('validator event formula mism
 if (String(validator.eventEndBlock).toLowerCase()==='latest') warn('validator summary still records eventEndBlock=latest; report should prefer canonical snapshot or rerun with END_BLOCK=77822541');
 
 const lock = readJson('r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json');
+const lockSource = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json');
 const lockedRows = parseCsv('r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv');
 if (lockedRows.length !== lock.lockedTokenCountVerifiedByOwnership) fail('locked token count mismatch'); else ok('locked token count matches proof');
+if (!lock.withdrawalRulesVerifiedFromProvidedSource) fail('lock withdrawal rules not verified from provided source'); else ok('lock withdrawal rules verified from provided source');
+if (!lock.foundryTestsPassedAgainstProvidedSource) fail('lock Foundry tests not marked passed'); else ok('lock Foundry tests marked passed');
+if (!lockSource.sourceLevelFindings?.unlockDurationExpressionFound) fail('lock source analysis did not find unlock duration expression'); else ok('lock source analysis found unlock duration expression');
+if (lockSource.foundryTests?.passed !== true) fail('lock source analysis did not record Foundry tests passed'); else ok('lock source analysis records Foundry tests passed');
 const burns = parseCsv('collection-info/burn_proofs.csv');
 if (burns.length !== 2) fail('burn proof count != 2'); else ok('burn proof count is 2');
 for (const r of burns) if ((r.to||'').toLowerCase() !== CFG.wallets.burnAddress.toLowerCase()) fail(`burn proof not to burn address: ${r.tx_hash}`);
