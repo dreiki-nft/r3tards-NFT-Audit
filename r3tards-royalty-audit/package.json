@@ -1,11 +1,14 @@
 {
   "name": "monad-royalty-audit-v4-indexed",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Fast indexed royalty audit for r3tards NFT royalties on Monad",
   "type": "module",
   "scripts": {
-    "api": "node audit-monad-royalties-indexed-api.mjs",
-    "rebuild": "REBUILD_ONLY=true node audit-monad-royalties-indexed-api.mjs"
+    "fetch": "node audit-monad-royalties-indexed-api.mjs",
+    "rebuild": "node build-royalty-evidence.mjs",
+    "audit": "node audit-monad-royalties-indexed-api.mjs && node build-royalty-evidence.mjs",
+    "api": "node audit-monad-royalties-indexed-api.mjs && node build-royalty-evidence.mjs",
+    "validate": "cd .. && npm run validate"
   },
   "license": "MIT"
 }

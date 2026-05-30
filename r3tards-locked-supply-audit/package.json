@@ -1,0 +1,13 @@
+{
+  "name": "r3tards-locked-supply-audit",
+  "version": "1.0.0",
+  "description": "Read-only locked supply and burn proof derivation from committed ERC721 transfer snapshots.",
+  "type": "module",
+  "scripts": {
+    "rebuild": "node verify-locked-supply.mjs",
+    "audit": "node verify-locked-supply.mjs",
+    "validate": "cd .. && npm run validate"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {}
+}

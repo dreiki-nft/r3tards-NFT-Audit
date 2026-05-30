@@ -1,0 +1,174 @@
+{
+  "generatedAt": "2026-05-30T23:20:06.431Z",
+  "generator": "scripts/generate-checksums.mjs",
+  "entries": [
+    {
+      "file": "config.json",
+      "sha256": "751848349f7cf93d5b2c9e51c5f9f212814ab0a0e9932d56966e5b3de2a2bc06",
+      "bytes": 1141,
+      "rowCount": null
+    },
+    {
+      "file": "README.md",
+      "sha256": "f3100f27928ea898abffa9366114e2600521d35fcdda70ebf6e7879a8ab259b5",
+      "bytes": 11448,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-transparency.docx",
+      "sha256": "c39893f49755d851548871ed2c7a196976bd82960e5a3e28782bfb4d9fd83563",
+      "bytes": 286908,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-transparency.pdf",
+      "sha256": "ac9cd789f082d657a0f4176e3293c458cc448172fa254f208eec5ccf8e58a814",
+      "bytes": 237164,
+      "rowCount": null
+    },
+    {
+      "file": "collection-info/collection-info.json",
+      "sha256": "3a96172988fe5ec565c33aca04f2dae6b4bfd823b5adfea4615385e03c6333d9",
+      "bytes": 1342,
+      "rowCount": null
+    },
+    {
+      "file": "collection-info/official_wallets.csv",
+      "sha256": "6de5a857c6ebcb754f254404026f523b962a5b8c6b90f0bbf7b3bf77c8a8f4da",
+      "bytes": 1531,
+      "rowCount": 7
+    },
+    {
+      "file": "collection-info/burn_proofs.csv",
+      "sha256": "ec0c29a0f4d378899258741a97de2ce46039c768880d0e9d6e9488e7bc07be85",
+      "bytes": 788,
+      "rowCount": 2
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json",
+      "sha256": "59be5ff6d23bc1e9b443a11e6de6c9c19c295e0054cd0371a9fc466d62979e74",
+      "bytes": 2088695,
+      "rowCount": 2553
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_internal_txs_for_nft_contract.json",
+      "sha256": "b0d0b0ba7eeadd65aa9c1b4c0c5666d2e47afc086910a7fab0d4d996805cd6b5",
+      "bytes": 55809,
+      "rowCount": 117
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_events_from_zero.csv",
+      "sha256": "da5ab0d140bfc15c90dd8aa14b465c318952e71385799ae05fa9941269597c05",
+      "bytes": 199360,
+      "rowCount": 1033
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_txs_with_native_value.csv",
+      "sha256": "99cab42dcc9fbf1adc58b776583fb6f04417769be9ef499a21b4c760cea16246",
+      "bytes": 183120,
+      "rowCount": 673
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification.csv",
+      "sha256": "ea550e7e5bf9f0cc96911557829579af9fa4d315741ecd8850bee70dd874846a",
+      "bytes": 493601,
+      "rowCount": 1033
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification_summary.json",
+      "sha256": "e5174cba680b9617fcbee939779ecfa49feb244ddf504a71cccaa5fda18e1de1",
+      "bytes": 2031,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/summary.json",
+      "sha256": "1ee6d406b9051af4cb10a14567da55d0ee7e7780edcd0f5c497677259e616d04",
+      "bytes": 2032,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/withdrawals_from_nft_contract.csv",
+      "sha256": "702413617ee79a24d2d9909964ce18407c5e9dceb60b367ba7c9619f4a4fa8df",
+      "bytes": 549,
+      "rowCount": 2
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/all_indexed_inbound_payments.csv",
+      "sha256": "dcee584312e22b756ff4910413f6dfde757d06c5002da00ebe8fd68c43482dca",
+      "bytes": 74636,
+      "rowCount": 272
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/checked_payment_txs.jsonl",
+      "sha256": "a9bd5b6a45582a65bf7fe25e5c54a8a08d119efb4a313a1c6c93e58dcfcada0c",
+      "bytes": 174041,
+      "rowCount": 272
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties.csv",
+      "sha256": "1df0c43cd5254acf7c21ba0d30b833ee0b0a715c8113c962c80f58b6d53a4f93",
+      "bytes": 41712,
+      "rowCount": 241
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties_evidence.csv",
+      "sha256": "d2c76f9b35a8c6b64b64504dfbb86db9d3b31d95cf7107cbba038415fd4dd48e",
+      "bytes": 129071,
+      "rowCount": 241
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/summary.json",
+      "sha256": "c7ae569c1500807b4ba26fc513ca4c16e57d09ca1950949d7503cea9f1214285",
+      "bytes": 2611,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/summary.json",
+      "sha256": "2b5b8b6c97a29c08599d8f0cedb3495a33f4d0a6c3de729ae12471d11387cd86",
+      "bytes": 2270,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/validator_state.json",
+      "sha256": "61768253208fcf5735b5f4eb147dfa03bce766720ab826aa243fa772c9e3867f",
+      "bytes": 1213,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.json",
+      "sha256": "7dfe957c3e50a5a85f29c7c52625f26aa7c5cc6e37211b232458dde33b23f96b",
+      "bytes": 487,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_delegation_events.csv",
+      "sha256": "301b6dce32eaf41f26ddcbf3e056a49d87434da4e5073961a2d0e4176db4b296",
+      "bytes": 867,
+      "rowCount": 5
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_undelegation_events.csv",
+      "sha256": "20613adee0c31c33bc26400d67fcfe6267cbe0a0f4a822f4765b9edb8467778b",
+      "bytes": 247,
+      "rowCount": 1
+    },
+    {
+      "file": "r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv",
+      "sha256": "fb5a1ae9847953cf203d11027a7fb9c706d9c114910a6be53e0a6baf3d5294e1",
+      "bytes": 7070,
+      "rowCount": 35
+    },
+    {
+      "file": "r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv",
+      "sha256": "1adaf789c0b36bfe031c03175af8f79aa1f2ec792efec978a49f1b676ea992e1",
+      "bytes": 775,
+      "rowCount": 2
+    },
+    {
+      "file": "r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json",
+      "sha256": "8409d6ddd0b58fd253a5b4a0adb695d34bfd485aac468a6d341dc4043a17814e",
+      "bytes": 1702,
+      "rowCount": null
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-05-30T23:20:03.607Z",
+  "script": "verify-locked-supply.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "collectionContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "lockContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+  "lockedTokenCountVerifiedByOwnership": 35,
+  "lockedTokenIds": [
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    270
+  ],
+  "unlockDateClaim": "April 2029",
+  "unlockDateVerifiedFromContractState": false,
+  "withdrawalRulesVerifiedFromSourceOrAbi": false,
+  "uncertainty": "This repo verifies token ownership by the lock contract from ERC721 Transfer history. It does not include decoded lock contract ABI/source/read outputs proving the unlock timestamp or withdrawal rules. The April 2029 date should be described as a documented project claim until contract-state proof is added.",
+  "burnProofs": {
+    "burnAddress": "0x000000000000000000000000000000000000dEaD",
+    "burnCountVerified": 2,
+    "burnedTokenIds": [
+      "257",
+      "296"
+    ],
+    "mechanism": "ERC721 Transfer to 0x000000000000000000000000000000000000dEaD"
+  },
+  "inputFiles": {
+    "rawErc721Transfers": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json"
+  },
+  "outputFiles": {
+    "lockedTokensCsv": "r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv",
+    "burnProofsCsv": "r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv"
+  }
+}

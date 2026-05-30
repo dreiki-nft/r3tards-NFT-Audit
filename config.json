@@ -1,0 +1,27 @@
+{
+  "chain": "Monad",
+  "chainId": 143,
+  "startBlock": 67220770,
+  "snapshotBlock": 77822541,
+  "collectionName": "r3tards NFT",
+  "nftContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "royaltyWallet": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+  "deployerWallet": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+  "wmonAddress": "0x3bd359c1119da7da1d913d1c4d2b7c461115433a",
+  "mintPriceMON": 333,
+  "validator": {
+    "name": "forthenads",
+    "id": 154,
+    "authAddress": "0xf9fdbEd64CeD4E052CAcb3C06507C34750843175",
+    "stakingPrecompile": "0x0000000000000000000000000000000000001000"
+  },
+  "wallets": {
+    "teamDeployerRoyalty": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "activations": "0x18d5346216315667c51d69f346e3c768136f8018",
+    "lockedTeamSupplyContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+    "futureCollabsPartners": "0xf10ed040f182511ef2179adea749920881a4eef9",
+    "communityTreasury": "0xdfc19dd5f80048df12d7a71cb01226f8ce24a954",
+    "mintInfrastructurePayoutContract": "0xaAfdfA4a935d8511bF285af11A0544ce7e4a1199",
+    "burnAddress": "0x000000000000000000000000000000000000dEaD"
+  }
+}

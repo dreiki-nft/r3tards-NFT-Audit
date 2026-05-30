@@ -3,7 +3,7 @@
   "network": "Monad mainnet",
   "chainId": 143,
   "rpcUrl": "https://rpc.monad.xyz",
-  "blockTag": "latest",
+  "blockTag": "77822541",
   "validatorNameSearch": "forthenads",
   "validatorId": 154,
   "stakingPrecompile": "0x0000000000000000000000000000000000001000",
@@ -29,7 +29,7 @@
   "specificDelegatorNextDeltaStakeMON": "0.0",
   "eventHistoryEnabled": true,
   "eventStartBlock": "67220770",
-  "eventEndBlock": "latest",
+  "eventEndBlock": "77822541",
   "delegateEventCount": 383,
   "undelegateEventCount": 115,
   "grossDelegatedMONByEvents": "9092099.678456359",
@@ -44,6 +44,8 @@
     "executionStakeMON is the real-time staking precompile execution view.",
     "consensusStakeMON is the stake currently used by consensus.",
     "snapshotStakeMON is the staking snapshot view for epoch transition logic.",
-    "Event totals are historical flow metrics. Current on-chain validator state is the authoritative snapshot."
-  ]
+    "Event totals are historical flow metrics. Current on-chain validator state is the authoritative snapshot.",
+    "This committed snapshot has been normalized to canonical snapshot block 77822541. If rerun with latest, mark output as non-canonical."
+  ],
+  "snapshotBlock": 77822541
 }

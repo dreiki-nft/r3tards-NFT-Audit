@@ -1,0 +1,3 @@
+token_id,burn_tx_hash,burn_block,from,to,functionName,burn_mechanism,evidence
+257,0x6e8d254e9a44a310814c73cae0271237e8f46157df5c05df3264ba4644b18032,70952594,0x5b76dd6d1506658eb25652a61854ded918463c28,0x000000000000000000000000000000000000dead,"redeemDelegations(bytes[] _permissionContexts,bytes32[] _modes,bytes[] _executionCallDatas)",transferred_to_dead_address,ERC721 Transfer to burn/dead address in committed raw transfer snapshot
+296,0x465c8c18e0089db770bcdfe6e69603ae145eac4b62b82e900bbd6f4b7b35edc7,76697747,0xbcc24929108278944aa180ff8322b900356f7701,0x000000000000000000000000000000000000dead,"safeTransferFrom(address from,address to,uint256 tokenId,bytes data)",transferred_to_dead_address,ERC721 Transfer to burn/dead address in committed raw transfer snapshot

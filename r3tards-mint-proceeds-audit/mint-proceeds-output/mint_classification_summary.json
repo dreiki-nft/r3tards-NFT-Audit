@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-05-30T23:20:02.001Z",
+  "script": "classify-mints.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "startBlock": 67220770,
+  "collection": "r3tards NFT",
+  "collectionContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "mintPriceMON": 333,
+  "summary": {
+    "totalMintEvents": 1033,
+    "totalUniqueTokensMinted": 1033,
+    "directPaidMintCount": 705,
+    "directPaidMintMON": 234765,
+    "routerPaidMintCount": 160,
+    "routerPaidMintMON": 53280,
+    "freeMintCount": 168,
+    "teamOrReserveMintCount": 0,
+    "unknownUnprovenCount": 0,
+    "totalProvenPaidMintProceedsMON": 288045,
+    "claimedProceedsMON": 288045,
+    "differenceClaimedMinusProvenMON": 0
+  },
+  "routerOrForwarderContracts": [
+    {
+      "contract": "0xdb9b1e94b5b69df7e401ddbede43491141047db3",
+      "tokenCount": 156,
+      "amountMON": 51948,
+      "evidenceType": "internal_transfer"
+    },
+    {
+      "contract": "0xea49e7be310716da66725c84a5127d2f6a202eaf",
+      "tokenCount": 4,
+      "amountMON": 1332,
+      "evidenceType": "internal_transfer"
+    }
+  ],
+  "withdrawalReconciliation": {
+    "totalWithdrawnFromNFTContractMON": 288045,
+    "provenPaidMintProceedsMON": 288045,
+    "differenceWithdrawnMinusProvenMON": 0,
+    "note": "The withdrawal total is used as a reconciliation check, not as the only proof of individual mint payment. Individual router-paid mints are supported by internal transfer evidence in raw_internal_txs_for_nft_contract.json."
+  },
+  "inputFiles": {
+    "mintEventsCsv": "mint-proceeds-output/mint_events_from_zero.csv",
+    "mintTxsCsv": "mint-proceeds-output/mint_txs_with_native_value.csv",
+    "internalTxsJson": "mint-proceeds-output/raw_internal_txs_for_nft_contract.json",
+    "withdrawalsCsv": "mint-proceeds-output/withdrawals_from_nft_contract.csv"
+  },
+  "outputFiles": {
+    "mintClassificationCsv": "mint-proceeds-output/mint_classification.csv",
+    "mintClassificationSummaryJson": "mint-proceeds-output/mint_classification_summary.json"
+  }
+}

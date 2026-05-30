@@ -3,7 +3,7 @@
   "mode": "indexed-api-fast",
   "chainId": "143",
   "startBlock": 67220770,
-  "endBlock": 999999999,
+  "endBlock": 77822541,
   "nftContract": "0x200723a706de0013316e5cd8eba2b3f53dd90c29",
   "royaltyWallet": "0x40ea55e0b8f02f8ebc9d91e082e202ed988647fa",
   "wmonAddress": "0x3bd359c1119da7da1d913d1c4d2b7c461115433a",
@@ -13,23 +13,36 @@
     "checkedPaymentTxs": 272,
     "likelyRoyaltyPaymentRows": 241,
     "likelyRoyaltyTxs": 241,
-    "ignoredInboundPaymentRows": 31
+    "ignoredInboundPaymentRows": 31,
+    "confidenceHigh": 241,
+    "confidenceMedium": 0,
+    "confidenceLow": 0
   },
   "totals": {
     "likelyWmonRaw": "22950598000000000000000",
-    "likelyWmonMON": "22950.598",
+    "likelyWmonMON": "22950.597999999998",
     "likelyNativeInternalRaw": "55533012000000000000000",
     "likelyNativeInternalMON": "55533.012",
     "likelyNativeDirectRaw": "0",
     "likelyNativeDirectMON": "0",
     "likelyTotalRaw": "78483610000000000000000",
-    "likelyTotalMONEquivalent": "78483.61"
+    "likelyTotalMONEquivalent": "78483.61000000004",
+    "likelyNativeMON": "55533.01200000004",
+    "likelyOtherMON": "0"
   },
   "outputFiles": {
     "allIndexedInboundPaymentsCsv": "C:\\Users\\dre\\Desktop\\monad-royalty-audit\\royalty-audit-v4-output\\all_indexed_inbound_payments.csv",
     "likelyRoyaltiesCsv": "C:\\Users\\dre\\Desktop\\monad-royalty-audit\\royalty-audit-v4-output\\likely_royalties.csv",
     "ignoredInboundPaymentsCsv": "C:\\Users\\dre\\Desktop\\monad-royalty-audit\\royalty-audit-v4-output\\ignored_inbound_payments_no_matching_nft_transfer.csv",
-    "receiptCheckJournal": "C:\\Users\\dre\\Desktop\\monad-royalty-audit\\royalty-audit-v4-output\\checked_payment_txs.jsonl"
+    "receiptCheckJournal": "C:\\Users\\dre\\Desktop\\monad-royalty-audit\\royalty-audit-v4-output\\checked_payment_txs.jsonl",
+    "likelyRoyaltiesEvidenceCsv": "royalty-audit-v4-output/likely_royalties_evidence.csv"
   },
-  "note": "A tx is counted only if the indexed inbound payment to the royalty wallet shares a tx hash with a secondary ERC721 Transfer from the configured NFT contract. WMON is treated as 1:1 MON-equivalent."
+  "note": "A tx is counted only if the indexed inbound payment to the royalty wallet shares a tx hash with a secondary ERC721 Transfer from the configured NFT contract. WMON is treated as 1:1 MON-equivalent.",
+  "snapshotBlock": 77822541,
+  "methodology": "Matched likely royalties: inbound MON/WMON payment to royalty wallet in the same transaction as a secondary ERC721 transfer from the r3tards NFT contract. This is a heuristic, not contract-level royalty enforcement proof.",
+  "limitations": {
+    "possibleFalsePositives": "A non-royalty inbound payment in the same tx as a secondary transfer could be counted.",
+    "possibleFalseNegatives": "A royalty paid in a different tx, different asset, or route not indexed here could be missed.",
+    "exactness": "Report as matched likely royalties unless stronger marketplace/contract proof is added."
+  }
 }

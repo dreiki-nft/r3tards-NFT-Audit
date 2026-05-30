@@ -1,0 +1,20 @@
+{
+  "name": "r3tards-nft-audit",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Public read-only transparency audit package for r3tards NFT on Monad.",
+  "type": "module",
+  "scripts": {
+    "rebuild": "npm run mint:rebuild && npm run royalty:rebuild && npm run lock:rebuild && npm run checksums",
+    "validate": "node scripts/validate-audit.mjs",
+    "checksums": "node scripts/generate-checksums.mjs",
+    "mint:rebuild": "cd r3tards-mint-proceeds-audit && npm run rebuild",
+    "mint:fetch": "cd r3tards-mint-proceeds-audit && npm run fetch",
+    "royalty:rebuild": "cd r3tards-royalty-audit && npm run rebuild",
+    "lock:rebuild": "cd r3tards-locked-supply-audit && npm run rebuild"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}
