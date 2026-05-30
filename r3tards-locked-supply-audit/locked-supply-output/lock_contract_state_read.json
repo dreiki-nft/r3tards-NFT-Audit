@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-05-30T23:38:38.831Z",
+  "script": "verify-lock-contract-state.mjs",
+  "rpcUrl": "https://rpc.monad.xyz",
+  "blockTag": "77822541",
+  "chain": "Monad",
+  "chainId": 143,
+  "lockContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+  "nftContractReadFromLock": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "expectedNftContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "nftContractMatchesExpected": true,
+  "unlockTime": "1870741769",
+  "unlockDateUTC": "2029-04-13T02:29:29.000Z",
+  "unlockDateHuman": "2029-04-13",
+  "timeUntilUnlockSecondsAtBlockTag": "90664568",
+  "ownersReadFromLock": [
+    "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+    "0x18D5346216315667C51D69F346E3C768136F8018",
+    "0xf10eD040f182511ef2179AdeA749920881A4eef9"
+  ],
+  "expectedOwners": [
+    "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "0xdfc19dd5f80048df12d7a71cb01226f8ce24a954",
+    "0x18d5346216315667c51d69f346e3c768136f8018",
+    "0xf10ed040f182511ef2179adea749920881a4eef9"
+  ],
+  "ownersMatchExpectedSet": true,
+  "isOwnerResults": {
+    "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA": true,
+    "0xdfc19dd5f80048df12d7a71cb01226f8ce24a954": true,
+    "0x18d5346216315667c51d69f346e3c768136f8018": true,
+    "0xf10ed040f182511ef2179adea749920881a4eef9": true
+  },
+  "note": "Read-only eth_call evidence from deployed timelock contract. Add this file to the repo only if you want committed on-chain read proof for exact unlockTime and owner set."
+}
