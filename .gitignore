@@ -1,0 +1,19 @@
+node_modules/
+
+# secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# raw cache / resumable state
+**/raw_*.json
+**/*cache*.json
+**/checked_payment_txs.jsonl
+**/mint_tx_details.jsonl
+**/processed_txs.jsonl
+**/state.json
+
+# OS junk
+.DS_Store
+Thumbs.db

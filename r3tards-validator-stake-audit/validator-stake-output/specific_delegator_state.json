@@ -1,0 +1,15 @@
+{
+  "validatorId": 154,
+  "delegator": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+  "stakeWei": "281946174244029167797362",
+  "stakeMON": "281946.174244029167797362",
+  "accRewardPerToken": "67349954532236112655657841927913058",
+  "unclaimedRewardsWei": "297182739976884036285",
+  "unclaimedRewardsMON": "297.182739976884036285",
+  "deltaStakeWei": "0",
+  "deltaStakeMON": "0.0",
+  "nextDeltaStakeWei": "0",
+  "nextDeltaStakeMON": "0.0",
+  "deltaEpoch": "0",
+  "nextDeltaEpoch": "0"
+}

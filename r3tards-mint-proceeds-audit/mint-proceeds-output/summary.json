@@ -1,0 +1,22 @@
+{
+  "collection": "r3tards NFT",
+  "chain": "Monad",
+  "nftContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "deployerWallet": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+  "startBlock": 67220770,
+  "snapshotBlock": 77822541,
+  "mint": {
+    "totalSupply": 1033,
+    "currentSupplyAtSnapshot": 1031,
+    "freeMintedNFTs": 168,
+    "nonFreeMintedNFTs": 865,
+    "mintPriceMON": 333,
+    "mintProceedsCollectedMON": 288045
+  },
+  "withdrawals": {
+    "totalWithdrawnFromNFTContractMON": 288045,
+    "withdrawnToDeployerWalletMON": 273642.75,
+    "withdrawnToOtherWalletMON": 14402.25,
+    "nftContractNativeBalanceAtSnapshotMON": 0
+  }
+}

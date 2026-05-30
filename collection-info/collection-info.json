@@ -1,0 +1,32 @@
+{
+  "collection": "r3tards NFT",
+  "chain": "Monad",
+  "nftContract": "0x200723A706de0013316E5cd8EBa2b3f53DD90c29",
+  "totalSupply": 1033,
+  "currentSupplyAtSnapshot": 1031,
+  "wallets": {
+    "teamDeployer": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "activations": "0x18d5346216315667c51d69f346e3c768136f8018",
+    "lockedTeamSupplySmartContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+    "futureCollabsAndPartners": "0xf10ed040f182511ef2179adea749920881a4eef9",
+    "communityTreasury": "0xdfc19dd5f80048df12d7a71cb01226f8ce24a954"
+  },
+  "lockedTeamSupply": {
+    "contract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+    "lockedUntil": "April 2029"
+  },
+  "communityBurns": [
+    {
+      "burnNumber": 1,
+      "r3tardbotReport": "https://x.com/r3tardbot/status/2048889359558939060?s=20",
+      "communityMemberProof": "https://x.com/AlexxDumii/status/2048890619712467148?s=20",
+      "tx": "https://monadscan.com/tx/0x6e8d254e9a44a310814c73cae0271237e8f46157df5c05df3264ba4644b18032"
+    },
+    {
+      "burnNumber": 2,
+      "r3tardbotReport": "https://x.com/r3tardbot/status/2058532823800172774?s=20",
+      "communityMemberProof": "https://x.com/andalfthegreat/status/2058533141304799319?s=20",
+      "tx": "https://monadscan.com/tx/0x465c8c18e0089db770bcdfe6e69603ae145eac4b62b82e900bbd6f4b7b35edc7"
+    }
+  ]
+}

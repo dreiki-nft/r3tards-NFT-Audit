@@ -1,0 +1,29 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex dfbead1..1ff199d 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1,4 +1,24 @@[m
+ [m
+[32m+[m[32m## Full Community Report[m
+[32m+[m
+[32m+[m[32mA full community-friendly DOCX version of this audit is available here:[m
+[32m+[m
+[32m+[m[32m[Download / view the r3tards transparency report](./r3tards-transparency.docx)[m
+[32m+[m
+[32m+[m[32m## Introduction[m
+[32m+[m
+[32m+[m[32mThis audit was created to give the r3tards NFT community a clear, reproducible, and public view of the collection’s on-chain transparency data.[m
+[32m+[m
+[32m+[m[32mIt separates the most important categories instead of mixing everything into one vague number:[m
+[32m+[m
+[32m+[m[32m- **Mint proceeds** — MON collected from primary mint activity.[m
+[32m+[m[32m- **Royalties actually received** — MON / WMON that actually reached the royalty wallet from secondary activity.[m
+[32m+[m[32m- **Validator stake** — MON committed to the `forthenads` validator, reported separately because stake is not revenue.[m
+[32m+[m[32m- **Supply, wallets, locked allocation, and burns** — project context that helps the community verify what exists, what is locked, and what has been burned.[m
+[32m+[m
+[32m+[m[32mThe goal is not to overcomplicate the numbers. The goal is to make them easy to inspect, easy to verify, and easy for the community to understand.[m
+[32m+[m
+[32m+[m
+ ## Supply, Wallets & Burns[m
+ [m
+ Additional collection transparency information is available here:[m

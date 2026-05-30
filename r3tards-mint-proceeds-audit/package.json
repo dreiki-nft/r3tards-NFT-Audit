@@ -1,0 +1,15 @@
+{
+  "name": "monad-mint-proceeds-audit-v5",
+  "version": "5.1.0",
+  "description": "Fast indexed mint proceeds audit for r3tards NFT on Monad using Etherscan API V2 + RPC tx lookups.",
+  "type": "module",
+  "scripts": {
+    "mint": "node audit-mint-proceeds.mjs",
+    "audit": "node audit-mint-proceeds.mjs",
+    "rebuild": "REBUILD_ONLY=true node audit-mint-proceeds.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

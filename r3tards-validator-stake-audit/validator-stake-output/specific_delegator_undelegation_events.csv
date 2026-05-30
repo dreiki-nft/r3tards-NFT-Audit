@@ -1,0 +1,2 @@
+eventName,blockNumber,txHash,logIndex,validatorId,delegator,withdrawId,amountMON,activationEpoch
+Undelegate,71593718,0x2bd076c14aadfb784eb10c63ada8b30ce8c755746caddafa51d05472c0586343,7,154,0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA,5,35555.0,1433
