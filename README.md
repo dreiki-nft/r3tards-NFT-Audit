@@ -4,7 +4,7 @@
 
 A full community-friendly report is available in multiple formats:
 
-- [Read the report online on Google Docs](https://docs.google.com/document/d/1hRabjj9FTkvruwnQ0b9RVOFMttnZ51Ancz_LcISCy28/edit?usp=sharing)
+- [Read the report online on Google Docs](https://docs.google.com/document/d/1vTypr9qca1XIcvzcB9uADj8otd3eipGYZKT4_eVKJJ8/edit?usp=sharing)
 - [Download the r3tards transparency report as DOCX](./r3tards-transparency.docx)
 - [Download the r3tards transparency report as PDF](./r3tards-transparency.pdf)
 
