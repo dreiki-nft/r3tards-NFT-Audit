@@ -141,6 +141,16 @@ This pass fixes five post-review issues:
 1. `data/checksums.json` is now deterministic and includes the README, claim status, data dictionary, report files, lock proof artifacts, and key raw/derived outputs.
 2. `npm run validate` now recomputes SHA256 hashes for every checksum entry and verifies `REPORT_HASHES.txt`. Stale README/report/checksum files now fail validation.
 3. Rebuild-generated files now use the canonical deterministic `generatedAt` value from `config.json` instead of wall-clock timestamps. Re-running `npm run rebuild` should not change files.
-4. `lock_bytecode_verification.json` explicitly records that deployed bytecode/source equivalence is `not_verified_by_repo`. The repo no longer leaves this as an implicit ambiguity.
-5. Report wording keeps royalties as matched likely royalties and lock proof as source/test/state-read supported, not bytecode-equivalence-proven.
+4. `lock_bytecode_verification.json` explicitly records the bytecode/source equivalence status. In the current canonical package this is `verified_match`, with committed metadata-stripped runtime match evidence.
+5. Report wording keeps royalties as matched likely royalties and distinguishes bytecode-equivalence proof from third-party security-audit sign-off.
 
+
+
+## v6 bytecode-equivalence and zero-warning hardening
+
+The v6 release closes the two remaining technical proof gaps that were still inside the self-contained repo scope:
+
+1. Validator and specific-delegator state reads are now recorded at canonical snapshot block `77822541`, clearing the former `blockTag=latest` warning.
+2. The deployed lock contract runtime bytecode is compared against locally compiled runtime bytecode from committed `NFTTimeLock.sol`. Solidity metadata differs, but metadata-stripped executable runtime logic matches.
+3. `npm run validate` now requires the bytecode match evidence file when `sourceEquivalenceStatus` is `verified_match`.
+4. The remaining boundary is external/security-review scope, not a missing internal reproducibility proof.

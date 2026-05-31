@@ -40,14 +40,14 @@
     },
     {
       "file": "AUDIT_FIXES.md",
-      "sha256": "b3bd13621e4129a4ee0815688f3f02f9d147b58639339fab6322c3ba3d23e70a",
-      "bytes": 7016,
+      "sha256": "ffdc7c0c773fa10cae25d8ca5127237af6606071e308787aaebb979520cda780",
+      "bytes": 7818,
       "rowCount": null
     },
     {
       "file": "CLAIM_STATUS.md",
-      "sha256": "c757811fc103b3187178484281e46e13a855cde5413b254873b3b671a0553463",
-      "bytes": 2794,
+      "sha256": "1afc1348771b258fd031b0f9de3c8a4b2e82294513d3da101286b209616913e9",
+      "bytes": 2887,
       "rowCount": null
     },
     {
@@ -76,14 +76,14 @@
     },
     {
       "file": "config.json",
-      "sha256": "b2758e2eb495ac66f5a4bcf7c70921c978b5aa80b6d5cf6427025fb0bf5b4220",
+      "sha256": "88e946b9ef97c400facf1fe7f9cc344ed789e6f16941721041ada0cc1afac6ba",
       "bytes": 1685,
       "rowCount": null
     },
     {
       "file": "DATA_DICTIONARY.md",
-      "sha256": "3802f4fb61fbd7fd3d939e3c1ceb32a03d1740c0787ea8cd87a030d8b19262ee",
-      "bytes": 2923,
+      "sha256": "54da375ec7e35ed76c50aa6187608383bc29317d77a122bda89346b398f8512f",
+      "bytes": 2994,
       "rowCount": null
     },
     {
@@ -430,8 +430,8 @@
     },
     {
       "file": "r3tards-validator-stake-audit/rebuild-validator-summary.mjs",
-      "sha256": "74d31672aa67376191768b7d5be1edfb679d57b791e9833f23956c8f3fb58488",
-      "bytes": 6695,
+      "sha256": "1ea1c04222f9c44851cad2e2f0cdaed09147e76881857466847ca8bc99e6b213",
+      "bytes": 6988,
       "rowCount": null
     },
     {
@@ -478,8 +478,8 @@
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/summary.json",
-      "sha256": "289d7e5611e1b455da0e99bdeeee43f7cc3f560be07744879c5df97da6f9377d",
-      "bytes": 2933,
+      "sha256": "ecd00a1fa447e2398b34d633a060a59574b63bb54847ab7e47d36da6026db5aa",
+      "bytes": 2893,
       "rowCount": null
     },
     {
@@ -496,8 +496,14 @@
     },
     {
       "file": "README.md",
-      "sha256": "f8c37560274acbd033bbc0d9770b75f9950140cde7d733a5b386911cbf9c3d2d",
-      "bytes": 16007,
+      "sha256": "351522c61e3e9d1add0acc44241b513c9b60c17e020f043a29c391bc6935f1b3",
+      "bytes": 16508,
+      "rowCount": null
+    },
+    {
+      "file": "RELEASE_INTEGRITY.md",
+      "sha256": "98cec20a84c72f3809b31bb69de5b38bfed6db4ab6ca2e55aafc297b4931c0a8",
+      "bytes": 1874,
       "rowCount": null
     },
     {
@@ -514,8 +520,8 @@
     },
     {
       "file": "scripts/validate-audit.mjs",
-      "sha256": "8c8e0b094c0186256f8feb1facd3a00948c3ab59bd11b9e22ce8ccc8679ff0e7",
-      "bytes": 16049,
+      "sha256": "6e0b57aa22fbbcd2a5e8635c5a47a3adf0a8463bf6eae8505ebf92c3ca8fdb7f",
+      "bytes": 17659,
       "rowCount": null
     },
     {

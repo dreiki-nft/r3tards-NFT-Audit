@@ -58,7 +58,7 @@ const required = [
   'r3tards-locked-supply-audit/verify-lock-contract-state.mjs',
   'r3tards-locked-supply-audit/verify-lock-bytecode.mjs',
   'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
-  'collection-info/official_wallets.csv','collection-info/burn_proofs.csv','data/checksums.json','CLAIM_STATUS.md','DATA_DICTIONARY.md','REPORT_HASHES.txt'
+  'collection-info/official_wallets.csv','collection-info/burn_proofs.csv','data/checksums.json','CLAIM_STATUS.md','DATA_DICTIONARY.md','REPORT_HASHES.txt','RELEASE_INTEGRITY.md'
 ];
 required.forEach(exists);
 
@@ -78,7 +78,7 @@ else {
     const actual = sha256(buf);
     if (actual !== entry.sha256) fail(`checksum mismatch for ${entry.file}: expected ${entry.sha256}, got ${actual}`);
   }
-  for (const must of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','r3tards-transparency.pdf','r3tards-transparency.docx']) {
+  for (const must of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','RELEASE_INTEGRITY.md','r3tards-transparency.pdf','r3tards-transparency.docx']) {
     if (!seen.has(must)) fail(`important file missing from checksum manifest: ${must}`);
   }
   const auditedFiles = listAuditedFiles();
@@ -105,6 +105,17 @@ if (fs.existsSync(relPath('REPORT_HASHES.txt'))) {
   ok('REPORT_HASHES.txt matches current report/checksum files');
 }
 
+const canonicalTag = CFG.reproducibleBuild?.canonicalReleaseTag || '';
+const canonicalUrl = CFG.reproducibleBuild?.canonicalReleaseUrl || '';
+if (!canonicalTag) fail('config missing reproducibleBuild.canonicalReleaseTag');
+else ok(`canonical release tag configured: ${canonicalTag}`);
+if (canonicalUrl && !canonicalUrl.endsWith(canonicalTag)) fail('canonicalReleaseUrl does not end with canonicalReleaseTag');
+else ok('canonical release URL matches canonical release tag');
+for (const f of ['README.md','RELEASE_INTEGRITY.md']) {
+  const t = fs.readFileSync(path.join(ROOT,f),'utf8');
+  if (canonicalTag && !t.includes(canonicalTag)) fail(`${f} missing canonical release tag ${canonicalTag}`);
+  else ok(`${f} references canonical release tag`);
+}
 
 const mintClass = parseCsv('r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification.csv');
 const mintSummary = readJson('r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification_summary.json');
@@ -132,6 +143,11 @@ if (validator.generatedAt !== EXPECTED_GENERATED_AT) fail('validator summary gen
 if (String(validator.eventEndBlock) !== String(SNAP)) fail(`validator eventEndBlock ${validator.eventEndBlock} != canonical snapshot block ${SNAP}`); else ok('validator eventEndBlock matches canonical snapshot block');
 if (validator.eventWindowCanonicalToSnapshot !== true) fail('validator event window is not marked canonical to snapshot'); else ok('validator event window marked canonical to snapshot');
 if (String(validator.validatorStateBlockTag || validator.blockTag) !== String(SNAP)) warn(`validator state read blockTag=${validator.validatorStateBlockTag || validator.blockTag}; state values should be described as recorded/current unless refetched at canonical snapshot`);
+else {
+  const notes = Array.isArray(validator.notes) ? validator.notes.join('\n') : '';
+  if (/blockTag=latest/i.test(notes)) fail('validator summary notes contain stale blockTag=latest wording even though snapshot state read is present');
+  else ok('validator summary notes match snapshot block state read');
+}
 const gross = Number(validator.specificDelegatorGrossDelegatedMONByEvents);
 const undelegated = Number(validator.specificDelegatorGrossUndelegatedMONByEvents);
 const net = Number(validator.specificDelegatorNetDelegatedMONByEvents);
@@ -160,6 +176,13 @@ if (lockBytecode.sourceEquivalenceStatus === 'verified_match') {
   }
 } else {
   ok('lock bytecode/source equivalence is explicitly not claimed as verified');
+}
+if (lockBytecode.sourceEquivalenceStatus === 'verified_match') {
+  for (const f of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','AUDIT_FIXES.md','RELEASE_INTEGRITY.md']) {
+    const t = fs.readFileSync(path.join(ROOT,f),'utf8');
+    if (/not_verified_by_repo|Exact deployed bytecode\/source equivalence is not proven by this repo/i.test(t)) fail(`${f} contains stale lock bytecode proof-boundary wording`);
+  }
+  ok('documentation does not contain stale lock bytecode proof-boundary wording');
 }
 if (fs.existsSync(relPath('r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json'))) {
   const lockStateRead = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json');

@@ -72,11 +72,11 @@ Summarizes source-level lock behavior from `NFTTimeLock.sol`.
 
 ### `lock_contract_state_read.json`
 
-Read-only deployed state read. When present, it records deployed lock contract readable state at the snapshot or requested block. It supports deployed-state claims but does not prove source/bytecode equivalence.
+Read-only deployed state read. When present, it records deployed lock contract readable state at the snapshot or requested block. It supports deployed-state claims and is separate from the runtime bytecode/source equivalence proof.
 
 ### `lock_bytecode_verification.json`
 
-Explicit proof-boundary file for deployed bytecode/source equivalence. Current committed status is `not_verified_by_repo`, so the repo must not claim exact bytecode/source matching.
+Deployed bytecode/source equivalence summary. Current committed status is `verified_match`; metadata-stripped deployed runtime bytecode matches metadata-stripped runtime bytecode compiled from the committed `NFTTimeLock.sol` source.
 
 ## Burns
 
