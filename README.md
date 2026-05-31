@@ -48,9 +48,9 @@ Canonical config is stored in [`config.json`](./config.json).
 | Free mints | 168 NFTs | Verified as minted with no native payment trace in committed evidence |
 | Total proven paid mint proceeds | 288,045 MON | 234,765 + 53,280 MON |
 | Matched likely royalties | 78,483.61 MON-equivalent | Heuristic match; see royalty limitations |
-| Deployer-specific validator stake | 281,946.1742440292 MON | Recalculated from delegate/undelegate events and current state |
+| Deployer-specific validator stake | 281,946.1742440292 MON | Recalculated from delegate/undelegate events and snapshot-bounded state/read evidence |
 | Locked contract current holdings | 35 NFTs | Verified from ERC-721 ownership derivation |
-| Lock source/tests | 3 years + 1 day duration; owner-gated withdrawals; 31/31 Foundry tests passed | Verified from provided source and deterministic tests; exact deployed unlockTime requires optional RPC read |
+| Lock source/tests/bytecode | 3 years + 1 day duration; owner-gated withdrawals; 31/31 Foundry tests passed; deployed runtime logic matches committed source after Solidity metadata stripping | Verified from committed source, deterministic tests, deployed state read, and bytecode match evidence |
 
 ## Reproduce the audit
 
@@ -149,8 +149,8 @@ Network fetches, when needed, require read-only environment variables. See `.env
 | `r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv` | Token IDs currently owned by the lock contract at snapshot. |
 | `r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json` | Locked supply proof summary, source/test evidence, and proof boundaries. |
 | `r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json` | Static analysis of the provided NFTTimeLock source and Foundry test-result summary. |
-| `r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json` | Optional/read-only RPC output for deployed unlockTime/getOwners/nftContract. Included when committed, but it does not prove bytecode/source equivalence. |
-| `r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json` | Explicit bytecode/source proof boundary. Current status: `not_verified_by_repo`. |
+| `r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json` | Read-only RPC output for deployed unlockTime/getOwners/nftContract at the canonical snapshot block when committed. |
+| `r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json` | Deployed bytecode/source equivalence summary. Current status: `verified_match` with metadata-stripped runtime logic match evidence. |
 | `r3tards-locked-supply-audit/contracts/NFTTimeLock.sol` | Provided lock contract source. |
 | `r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol` | Provided deterministic Foundry tests. |
 | `r3tards-locked-supply-audit/test-results/foundry-test-output.txt` | Recorded local `forge test -v` output: 31 passed, 0 failed. |
@@ -237,11 +237,11 @@ The repo now includes four lock-evidence layers and one explicit proof boundary:
 1. **On-chain custody proof from ERC-721 transfers:** 35 NFTs are verified as owned by the lock contract at the snapshot block.
 2. **Provided source/test proof:** `NFTTimeLock.sol` defines four allowed owner addresses, stores the NFT contract in the constructor, sets `unlockTime = block.timestamp + (3 * 365 days + 1 days)`, and restricts `withdrawNFT` / `withdrawMultipleNFTs` with `onlyOwner` and `onlyAfterUnlock`. The included Foundry output records 31 tests passed and 0 failed.
 3. **Deployed-state read:** `lock_contract_state_read.json`, when committed, records read-only RPC results for `unlockTime`, `nftContract`, `getOwners`, and `isOwner` on the deployed Monad contract.
-4. **Bytecode/source equivalence boundary:** `lock_bytecode_verification.json` currently records `sourceEquivalenceStatus: not_verified_by_repo`. This means the repo does not claim the committed source exactly matches deployed runtime bytecode.
+4. **Bytecode/source equivalence proof:** `lock_bytecode_verification.json` records `sourceEquivalenceStatus: verified_match`. The committed `NFTTimeLock.sol` source compiles to runtime bytecode whose metadata-stripped executable logic matches the deployed lock contract bytecode recorded in `lock_bytecode_match_evidence.json`.
 
 Use this wording:
 
-> 35 NFTs are verified as currently held by the locked team supply contract at snapshot. The provided `NFTTimeLock.sol` source and deterministic Foundry tests show a 3-year-plus-1-day timelock, four owner addresses, and owner-only withdrawals after unlock. The deployed state read documents the configured NFT contract, owner set, and unlock date when present. Exact deployed bytecode/source equivalence is not proven by this repo and should not be claimed unless a future bytecode verification output records `verified_match`.
+> 35 NFTs are verified as held by the locked team supply contract at snapshot. The committed `NFTTimeLock.sol` source and deterministic Foundry tests show a 3-year-plus-1-day timelock, four owner addresses, and owner-only withdrawals after unlock. The deployed state read documents the configured NFT contract, owner set, and unlock date at the canonical snapshot block. The deployed runtime bytecode has been compared against the committed source and the metadata-stripped executable runtime logic matches.
 
 ## Burn proofs
 
@@ -268,6 +268,8 @@ The mechanism documented here is transfer to `0x00000000000000000000000000000000
 - Source-level lock behavior from provided `NFTTimeLock.sol`: 3-year-plus-1-day duration, four owner addresses, and `onlyOwner` + `onlyAfterUnlock` withdrawal guards.
 - Deterministic Foundry test run: 31 passed, 0 failed.
 - Deployer-specific validator net delegated amount from event math.
+- Validator/delegator state reads recorded at canonical snapshot block `77,822,541`.
+- Lock deployed bytecode/source equivalence: `verified_match` with metadata-stripped runtime logic match evidence.
 
 ### Inferred or heuristic
 
@@ -277,15 +279,16 @@ The mechanism documented here is transfer to `0x00000000000000000000000000000000
 
 ### Not proven by current repo
 
-- Exact deployed bytecode/source equivalence for the lock contract. The repo includes source/tests and deployed state reads, but `lock_bytecode_verification.json` currently records `not_verified_by_repo`.
 - Complete marketplace attribution for every royalty payment.
+- Total royalties owed but unpaid.
 - A per-delegator sum for the full `forthenads` validator.
+- Third-party security-audit sign-off; this repository is a self-contained public transparency/proof package.
 
 ## Data integrity
 
 Checksums and row counts are in [`data/checksums.json`](./data/checksums.json). The manifest includes README, claim-status/data-dictionary files, raw/derived audit outputs, report files, lock source/tests, and proof artifacts.
 
-`npm run validate` recomputes hashes and fails if any listed file differs from the committed checksum manifest. `REPORT_HASHES.txt` separately pins the DOCX, PDF, and `data/checksums.json` hashes.
+`npm run validate` recomputes hashes and fails if any listed file differs from the committed checksum manifest. It also checks for stale release-tag references, stale validator-state wording, and stale lock bytecode proof-boundary wording. `REPORT_HASHES.txt` separately pins the DOCX, PDF, and `data/checksums.json` hashes.
 
 Regenerate with:
 
@@ -304,14 +307,15 @@ Additional reproducibility files:
 - [CLAIM_STATUS.md](CLAIM_STATUS.md)
 - [DATA_DICTIONARY.md](DATA_DICTIONARY.md)
 - [REPORT_HASHES.txt](REPORT_HASHES.txt)
+- [RELEASE_INTEGRITY.md](RELEASE_INTEGRITY.md)
 
 ## Canonical Release
 
 The canonical public snapshot for this audit is:
 
-- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v5
+- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v7
 - Snapshot block: 77,822,541
-- Release tag: `snapshot-77822541-v5`
+- Release tag: `snapshot-77822541-v7`
 
 This release contains the frozen PDF/DOCX report, checksum files, and reproducibility artifacts for the public r3tards NFT transparency audit.
 

@@ -74,6 +74,7 @@ const specificGrossDelegated = sumMON(specificDelegateRows);
 const specificGrossUndelegated = sumMON(specificUndelegateRows);
 const delegatorStakeSum = delegatorRows.reduce((acc, row) => acc + Number(row.stakeMON || 0), 0);
 const delegatorRewardsSum = delegatorRows.reduce((acc, row) => acc + Number(row.unclaimedRewardsMON || 0), 0);
+const validatorBlockTag = String(validatorState.blockTag || 'unknown');
 
 const summary = {
   generatedAt: GENERATED_AT,
@@ -120,7 +121,9 @@ const summary = {
   notes: [
     'This file is rebuilt offline from committed validator_state/specific_delegator_state JSON plus committed delegate/undelegate CSV evidence.',
     'Delegate/undelegate event totals are bounded to the canonical snapshot block when eventWindowCanonicalToSnapshot is true.',
-    'Validator and specific-delegator state files record blockTag=latest; do not describe those state reads as historical snapshot reads unless refetched with BLOCK_TAG=77822541.',
+    validatorBlockTag === String(SNAPSHOT_BLOCK)
+      ? `Validator and specific-delegator state files record blockTag=${SNAPSHOT_BLOCK}; these state reads are bounded to the canonical snapshot block.`
+      : `Validator and specific-delegator state files record blockTag=${validatorBlockTag}; describe those state reads using the recorded blockTag unless refetched with BLOCK_TAG=${SNAPSHOT_BLOCK}.`,
     'executionStakeMON is the staking precompile execution view for the recorded validator_state blockTag.',
     'consensusStakeMON is the stake currently used by consensus for the recorded validator_state blockTag.',
     'snapshotStakeMON is the staking snapshot view for epoch transition logic at the recorded validator_state blockTag.',

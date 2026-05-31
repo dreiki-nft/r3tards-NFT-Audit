@@ -28,7 +28,7 @@
     "generatedAt": "2026-05-31T00:00:00.000Z",
     "snapshotTag": "snapshot-77822541",
     "notes": "Deterministic rebuild metadata; scripts use this timestamp so offline rebuilds do not rewrite outputs with wall-clock time. The immutable public release is pinned by canonicalReleaseTag/canonicalReleaseUrl instead of a self-referential commit hash.",
-    "canonicalReleaseTag": "snapshot-77822541-v5",
-    "canonicalReleaseUrl": "https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v5"
+    "canonicalReleaseTag": "snapshot-77822541-v7",
+    "canonicalReleaseUrl": "https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v7"
   }
 }
