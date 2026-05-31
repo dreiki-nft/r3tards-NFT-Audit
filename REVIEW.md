@@ -81,18 +81,20 @@ The committed bytecode evidence should keep:
 
 ## Wallet-attestation verification
 
-Wallet-control attestations are verified offline from committed files. Pending templates are not counted as verified.
+Wallet-control attestations are verified offline from committed files. For this release, all four expected owner wallets have signed the canonical wallet-attestation message.
 
 ```bash
 npm run attestations:verify
 npm run validate
 ```
 
-Expected current status for this release, unless real owner signatures have been committed:
+Expected current status for this release:
 
 ```text
-0 owner-wallet attestations verified; 4 pending signatures; 0 invalid attestations.
+wallet attestations verified 4/4; pending 0/4
 ```
+
+The signatures prove key control for the canonical release-bound message only. They do not prove personal identity or beneficial ownership.
 
 ## Reviewer-attestation verification
 
@@ -108,6 +110,23 @@ Expected current status without a committed external reviewer signature:
 ```text
 0 verified external reviewer attestations.
 ```
+
+## Optional reviewer-attestation signing
+
+Only an actual external reviewer should perform this step after independently running the reproduction commands above. Do not commit a reviewer attestation unless the reviewer address signs the exact canonical reviewer message from `config.json`:
+
+```text
+r3tards NFT audit independent reproduction attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8
+```
+
+A reviewer can create a JSON file under `reviews/reviewer-attestations/`, using [`reviews/REVIEWER_ATTESTATION_TEMPLATE.md`](./reviews/REVIEWER_ATTESTATION_TEMPLATE.md) as the source format, then run:
+
+```bash
+npm run review:verify
+npm run validate
+```
+
+The reviewer verification only counts if the committed signature recovers to a non-owner address over the exact canonical reviewer message. A verified reviewer attestation is not a broad security certification.
 
 ## SHA256s to recompute
 

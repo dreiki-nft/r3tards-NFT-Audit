@@ -1,7 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { verifyMessage, getAddress } from 'ethers';
+
+let verifyMessage;
+let getAddress;
+try {
+  ({ verifyMessage, getAddress } = await import('ethers'));
+} catch (error) {
+  console.error('FAIL: ethers dependency missing. Run npm install --ignore-scripts first — ethers is required for signature verification.');
+  if (error?.code && error.code !== 'ERR_MODULE_NOT_FOUND') console.error(`Underlying error code: ${error.code}`);
+  process.exit(1);
+}
 
 const ROOT = process.cwd();
 const CFG = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
@@ -257,6 +266,42 @@ const walletVerified = Number(walletEvidence.verifiedCount || 0);
 const walletPending = Number(walletEvidence.pendingCount || 0);
 if (walletVerified + walletPending !== expectedOwnerAddresses.length) fail('wallet attestation verified+pending count does not match expected owner count');
 else ok(`wallet attestations verified ${walletVerified}/${expectedOwnerAddresses.length}; pending ${walletPending}/${expectedOwnerAddresses.length}`);
+
+const walletTotal = expectedOwnerAddresses.length;
+const expectedWalletStatusRe = new RegExp(`${walletVerified}\/${walletTotal}[^\n]{0,160}cryptographically attested by owner signature[^\n]{0,160}${walletPending}\/${walletTotal}[^\n]{0,160}pending`, 'i');
+for (const f of ['README.md','CLAIM_STATUS.md']) {
+  const text = fs.readFileSync(relPath(f), 'utf8');
+  if (!expectedWalletStatusRe.test(text)) {
+    fail(`${f} wallet-control status does not match evidence counts ${walletVerified}/${walletTotal} verified and ${walletPending}/${walletTotal} pending`);
+  }
+
+  const walletLines = text.split(/\r?\n/).filter(line => /wallet-control|owner-wallet key control|owner wallets cryptographically|pending attestation|attestation templates|pending_signature/i.test(line));
+  for (const line of walletLines) {
+    const segments = line.split(/[;|]/);
+    for (const segment of segments) {
+      const countMatches = [...segment.matchAll(/(\d+)\/(\d+)/g)];
+      for (const m of countMatches) {
+        const count = Number(m[1]);
+        const total = Number(m[2]);
+        if (total !== walletTotal) continue;
+        if (/attested|cryptographically/i.test(segment) && count !== walletVerified) {
+          fail(`${f} wallet-control attested count ${count}/${total} disagrees with evidence ${walletVerified}/${walletTotal}: ${line.trim()}`);
+        }
+        if (/pending/i.test(segment) && count !== walletPending) {
+          fail(`${f} wallet-control pending count ${count}/${total} disagrees with evidence ${walletPending}/${walletTotal}: ${line.trim()}`);
+        }
+      }
+    }
+    if (walletVerified === walletTotal && walletPending === 0) {
+      if (/pending_signature/i.test(line)) fail(`${f} contains stale pending_signature wallet wording while all wallet attestations are verified: ${line.trim()}`);
+      if (/attestation templates?/i.test(line)) fail(`${f} contains stale wallet attestation-template wording while all wallet attestations are verified: ${line.trim()}`);
+      if (/0\/4.{0,120}attested/i.test(line)) fail(`${f} contains stale 0/4 attested wallet wording while all wallet attestations are verified: ${line.trim()}`);
+    }
+  }
+  if (!/does not prove personal identity or beneficial ownership/i.test(text)) fail(`${f} missing wallet key-control-only caveat`);
+}
+if (walletVerified === walletTotal && walletPending === 0) ok(`wallet-control prose matches evidence: ${walletVerified}/${walletTotal} verified; ${walletPending}/${walletTotal} pending`);
+else ok(`wallet-control prose matches evidence: ${walletVerified}/${walletTotal} verified; ${walletPending}/${walletTotal} pending`);
 
 const reviewerEvidence = readJson('reviews/reviewer_attestation_evidence.json');
 if (reviewerEvidence.generatedAt !== EXPECTED_GENERATED_AT) fail('reviewer attestation evidence generatedAt is not deterministic'); else ok('reviewer attestation evidence generatedAt is deterministic');

@@ -94,7 +94,7 @@ Contains SHA256 hashes and row counts for important committed files. `npm run va
 
 ### `collection-info/wallet-attestations/*.json`
 
-Per-owner wallet-control attestation files. A file may be a pending template or a real signed attestation. Pending templates are not counted as verified.
+Per-owner wallet-control attestation files. For this release, all four expected owner wallets have signed the canonical message. If future files are pending templates, they are not counted as verified.
 
 | Field | Meaning |
 |---|---|

@@ -54,7 +54,7 @@ Canonical config is stored in [`config.json`](./config.json).
 
 ## Reproduce the audit
 
-Install with lifecycle scripts disabled:
+Install dependencies with lifecycle scripts disabled before rebuilding or validating. This installs `ethers`, which is required for offline signature verification, without running package lifecycle scripts:
 
 ```bash
 npm install --ignore-scripts
@@ -156,7 +156,7 @@ Network fetches, when needed, require read-only environment variables. See `.env
 | `r3tards-locked-supply-audit/test-results/foundry-test-output.txt` | Recorded local `forge test -v` output: 31 passed, 0 failed. |
 | `r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv` | Burn/dead-address token transfer proof. |
 | `collection-info/official_wallets.csv` | Wallet labels, attribution, evidence source, and confidence. |
-| `collection-info/wallet-attestations/*.json` | Per-owner wallet-control attestation templates or signed attestations. Pending templates are not counted as verified. |
+| `collection-info/wallet-attestations/*.json` | Per-owner wallet-control attestations. For this release, all four expected owner wallets have signed the canonical message. |
 | `collection-info/wallet_attestation_evidence.json` | Offline EIP-191 signature-verification result for wallet-control attestations. |
 | `reviews/reviewer_attestation_evidence.json` | Offline EIP-191 signature-verification result for optional independent reviewer attestations. |
 | `collection-info/burn_proofs.csv` | Community-facing burn proof file with txs and links. |
@@ -239,9 +239,9 @@ For release `snapshot-77822541-v8`, `config.json` defines this canonical EIP-191
 r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8
 ```
 
-The current committed attestation files are templates with `status: pending_signature`. They are **not** counted as verified wallet-control proof until the listed owner address signs the exact canonical message offline and `collection-info/verify-wallet-attestations.mjs` recovers that same address with `ethers.verifyMessage`.
+The current committed attestation files contain EIP-191 signatures from all four expected owner wallets. Each signature is counted as verified only when `collection-info/verify-wallet-attestations.mjs` recovers the listed owner address from the exact canonical message using `ethers.verifyMessage`.
 
-Current wallet-control status: `0/4` owner wallets cryptographically attested by owner signature; `4/4` pending attestation templates.
+Current wallet-control status: `4/4` owner wallets cryptographically attested by owner signature; `0/4` pending. This proves key control for the canonical release-bound message only; it does not prove personal identity or beneficial ownership.
 
 Run the verifier with:
 

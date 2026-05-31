@@ -35,7 +35,7 @@ Validation complete: 0 failure(s), 0 warning(s).
 - Locked supply proof verifies `35` NFTs held by the lock contract at snapshot.
 - Lock contract deployed runtime bytecode has been compared against locally compiled runtime bytecode from the committed `NFTTimeLock.sol` source.
 - The lock bytecode proof requires `sourceEquivalenceStatus: verified_match` and `metadataStrippedRuntimeMatch: true`.
-- Wallet-control attestation evidence is rebuilt from committed template/signature files. Pending attestations are reported as pending and are not counted as verified.
+- Wallet-control attestation evidence is rebuilt from committed attestation/signature files. Verified signatures are counted only when they recover to the claimed owner address over the canonical release-bound message; any pending attestations remain pending and are not counted as verified.
 - Reviewer attestation evidence is rebuilt from committed reviewer-signature files. Without a valid non-owner reviewer signature, the package continues to state that it is not independently reviewed.
 
 ## Remaining boundary

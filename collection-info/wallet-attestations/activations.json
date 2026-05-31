@@ -5,5 +5,5 @@
   "signedMessage": "r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
   "signature": "0x6158f58cb35877159349ec53083f3b13e6deddf397ad1dca685813c9648c71c14edbfcde6d816a07b2e33d0398f129dd64a350d32f8fe2df96bf8f7404d679001c",
   "signatureScheme": "EIP-191 personal_sign / ethers.verifyMessage",
-  "notes": "Template only. This is not verified until the listed address signs the exact signedMessage offline and the recovered address matches address."
+  "notes": "Signature recovers to this owner address for the canonical release-bound message; proves key control only, not personal identity or beneficial ownership."
 }
