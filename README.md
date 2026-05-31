@@ -287,3 +287,12 @@ npm run checksums
 ## Safety note
 
 See [`SECURITY.md`](./SECURITY.md). Scripts are read-only and should never require private keys, seed phrases, signatures, token approvals, or a connected wallet.
+
+## Claim Status, Data Dictionary & Report Hashes
+
+Additional reproducibility files:
+
+- [CLAIM_STATUS.md](CLAIM_STATUS.md)
+- [DATA_DICTIONARY.md](DATA_DICTIONARY.md)
+- [REPORT_HASHES.txt](REPORT_HASHES.txt)
+

@@ -1,0 +1,15 @@
+*.docx binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+*.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf
+*.sol text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
