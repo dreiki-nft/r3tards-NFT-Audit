@@ -89,3 +89,30 @@ Documents community burn transactions and proof links.
 ### `data/checksums.json`
 
 Contains SHA256 hashes and row counts for important committed files. `npm run validate` recomputes and verifies these hashes against the current working tree.
+
+## Wallet Attestations
+
+### `collection-info/wallet-attestations/*.json`
+
+Per-owner wallet-control attestation files. A file may be a pending template or a real signed attestation. Pending templates are not counted as verified.
+
+| Field | Meaning |
+|---|---|
+| `address` | Claimed owner wallet address expected to sign the canonical message |
+| `signedMessage` | Exact EIP-191 message from `config.json -> walletControlAttestations.canonicalMessage` |
+| `signature` | EIP-191 `personal_sign` / `signMessage` signature, empty while pending |
+| `status` | Declared file status such as `pending_signature` or `verified` |
+
+### `collection-info/wallet_attestation_evidence.json`
+
+Deterministic output from `collection-info/verify-wallet-attestations.mjs`. It records recovered addresses, message matching, signature validity, and per-wallet verified/pending/invalid status. It proves key control only when a valid signature recovers to the claimed address for the canonical release-bound message.
+
+## External Reviewer Attestations
+
+### `reviews/REVIEWER_ATTESTATION_TEMPLATE.md`
+
+Human-readable template for a reviewer who independently reproduces the package and wants to sign a release-bound reproduction statement.
+
+### `reviews/reviewer_attestation_evidence.json`
+
+Deterministic output from `reviews/verify-reviewer-attestation.mjs`. Without a valid non-owner reviewer signature, the status remains `no_signed_external_review` and the package continues to state that it is not independently reviewed.

@@ -1,0 +1,9 @@
+{
+  "schema": "r3tards-wallet-control-attestation-v1",
+  "status": "pending_signature",
+  "address": "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+  "signedMessage": "r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
+  "signature": "",
+  "signatureScheme": "EIP-191 personal_sign / ethers.verifyMessage",
+  "notes": "Template only. This is not verified until the listed address signs the exact signedMessage offline and the recovered address matches address."
+}

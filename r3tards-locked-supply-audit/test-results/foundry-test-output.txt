@@ -1,10 +1,39 @@
-$ forge test -v
-[⠊] Compiling...
-[⠒] Compiling 1 files with Solc 0.8.33
-[⠑] Solc 0.8.33 finished in 1.07s
+Compiling 21 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.20s
 Compiler run successful!
 
 Ran 31 tests for test/NFTTimeLockTest.t.sol:NFTTimeLockTest
-Suite result: ok. 31 passed; 0 failed; 0 skipped; finished in 2.40ms (9.21ms CPU time)
+[PASS] test_constructor_isOwner_allFourOwnersSet() (gas: 20036)
+[PASS] test_constructor_isOwner_nonOwnerReturnsFalse() (gas: 12414)
+[PASS] test_constructor_nftContract_storedCorrectly() (gas: 10238)
+[PASS] test_constructor_ownersArray_lengthAndOrder() (gas: 20514)
+[PASS] test_constructor_revertsOnZeroAddress() (gas: 37394)
+[PASS] test_constructor_unlockTime_exactlyThreeYearsPlusOneDay() (gas: 8145)
+[PASS] test_getOwners_returnsCorrectAddressesAndLength() (gas: 20556)
+[PASS] test_isOwner_falseForNonOwnerAndZeroAddress() (gas: 12436)
+[PASS] test_isOwner_trueForAllFour() (gas: 20034)
+[PASS] test_nftContract_returnsCorrectAddress() (gas: 10238)
+[PASS] test_timeUntilUnlock_returnsFullDurationAtDeployment() (gas: 8272)
+[PASS] test_timeUntilUnlock_returnsOneAtOneBefore() (gas: 11582)
+[PASS] test_timeUntilUnlock_returnsZeroAfterUnlock() (gas: 11328)
+[PASS] test_timeUntilUnlock_returnsZeroAtUnlockTime() (gas: 11144)
+[PASS] test_unlockTime_equalsDeployTsPlusLockDuration() (gas: 8100)
+[PASS] test_withdrawMultipleNFTs_allFourOwnersCanWithdraw() (gas: 147196)
+[PASS] test_withdrawMultipleNFTs_allTransferSucceed_postStateCheck() (gas: 55299)
+[PASS] test_withdrawMultipleNFTs_emitsEventForEachToken() (gas: 43764)
+[PASS] test_withdrawMultipleNFTs_emptyArraySucceedsWithNoTransfers() (gas: 30866)
+[PASS] test_withdrawMultipleNFTs_revertsIfNotOwner() (gas: 13857)
+[PASS] test_withdrawMultipleNFTs_revertsIfTokenNotHeldByContract() (gas: 33687)
+[PASS] test_withdrawMultipleNFTs_revertsOnDuplicateId() (gas: 31643)
+[PASS] test_withdrawMultipleNFTs_revertsOneSecondBeforeUnlock() (gas: 16047)
+[PASS] test_withdrawNFT_allFourOwnersCanWithdraw() (gas: 143475)
+[PASS] test_withdrawNFT_emitsNFTWithdrawnEvent() (gas: 30494)
+[PASS] test_withdrawNFT_revertsAtDeployTime() (gas: 14081)
+[PASS] test_withdrawNFT_revertsIfNotOwner() (gas: 12806)
+[PASS] test_withdrawNFT_revertsIfTokenNotHeldByContract() (gas: 23165)
+[PASS] test_withdrawNFT_revertsOneSecondBeforeUnlock() (gas: 14910)
+[PASS] test_withdrawNFT_succeedsAfterUnlock_postStateCheck() (gas: 31452)
+[PASS] test_withdrawNFT_succeedsExactlyAtUnlockTime() (gas: 31268)
+Suite result: ok. 31 passed; 0 failed; 0 skipped; finished in 28.43ms (22.80ms CPU time)
 
-Ran 1 test suite in 18.12ms (2.40ms CPU time): 31 tests passed, 0 failed, 0 skipped (31 total tests)
+Ran 1 test suite in 45.66ms (28.43ms CPU time): 31 tests passed, 0 failed, 0 skipped (31 total tests)

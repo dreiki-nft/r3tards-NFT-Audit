@@ -81,7 +81,8 @@
     "rawErc721Transfers": "r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json",
     "lockContractSource": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
     "lockContractTests": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
-    "foundryTestOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt"
+    "foundryTestOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt",
+    "foundryConfig": "r3tards-locked-supply-audit/foundry.toml"
   },
   "outputFiles": {
     "lockedTokensCsv": "r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv",

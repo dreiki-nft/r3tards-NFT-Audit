@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { verifyMessage, getAddress } from 'ethers';
 
 const ROOT = process.cwd();
 const CFG = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
@@ -17,6 +18,8 @@ function parseCsv(file){const full=path.join(ROOT,file); const text=fs.readFileS
 function readJson(file){return JSON.parse(fs.readFileSync(path.join(ROOT,file),'utf8'));}
 function sum(rows, key){return rows.reduce((a,r)=>a+Number(r[key]||0),0)}
 function validAddr(a){return /^0x[a-fA-F0-9]{40}$/.test(String(a||''));}
+function normAddr(a){ try { return getAddress(a); } catch { return null; } }
+function sameAddr(a,b){ const na=normAddr(a), nb=normAddr(b); return Boolean(na && nb && na.toLowerCase() === nb.toLowerCase()); }
 function sha256(buf){return crypto.createHash('sha256').update(buf).digest('hex');}
 function relPath(p){return path.join(ROOT,p);}
 function toPosix(p){return p.split(path.sep).join('/');}
@@ -57,8 +60,17 @@ const required = [
   'r3tards-locked-supply-audit/verify-locked-supply.mjs',
   'r3tards-locked-supply-audit/verify-lock-contract-state.mjs',
   'r3tards-locked-supply-audit/verify-lock-bytecode.mjs',
+  'r3tards-locked-supply-audit/foundry.toml',
   'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
-  'collection-info/official_wallets.csv','collection-info/burn_proofs.csv','data/checksums.json','CLAIM_STATUS.md','DATA_DICTIONARY.md','REPORT_HASHES.txt','RELEASE_INTEGRITY.md'
+  'collection-info/official_wallets.csv',
+  'collection-info/burn_proofs.csv',
+  'collection-info/verify-wallet-attestations.mjs',
+  'collection-info/wallet_attestation_evidence.json',
+  'reviews/REVIEWER_ATTESTATION_TEMPLATE.md',
+  'reviews/verify-reviewer-attestation.mjs',
+  'reviews/reviewer_attestation_evidence.json',
+  'REVIEW.md',
+  'data/checksums.json','CLAIM_STATUS.md','DATA_DICTIONARY.md','REPORT_HASHES.txt','RELEASE_INTEGRITY.md'
 ];
 required.forEach(exists);
 
@@ -78,7 +90,7 @@ else {
     const actual = sha256(buf);
     if (actual !== entry.sha256) fail(`checksum mismatch for ${entry.file}: expected ${entry.sha256}, got ${actual}`);
   }
-  for (const must of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','RELEASE_INTEGRITY.md','r3tards-transparency.pdf','r3tards-transparency.docx']) {
+  for (const must of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','RELEASE_INTEGRITY.md','REVIEW.md','r3tards-transparency.pdf','r3tards-transparency.docx']) {
     if (!seen.has(must)) fail(`important file missing from checksum manifest: ${must}`);
   }
   const auditedFiles = listAuditedFiles();
@@ -111,11 +123,19 @@ if (!canonicalTag) fail('config missing reproducibleBuild.canonicalReleaseTag');
 else ok(`canonical release tag configured: ${canonicalTag}`);
 if (canonicalUrl && !canonicalUrl.endsWith(canonicalTag)) fail('canonicalReleaseUrl does not end with canonicalReleaseTag');
 else ok('canonical release URL matches canonical release tag');
-for (const f of ['README.md','RELEASE_INTEGRITY.md']) {
+for (const f of ['README.md','RELEASE_INTEGRITY.md','REVIEW.md']) {
   const t = fs.readFileSync(path.join(ROOT,f),'utf8');
   if (canonicalTag && !t.includes(canonicalTag)) fail(`${f} missing canonical release tag ${canonicalTag}`);
   else ok(`${f} references canonical release tag`);
+  const staleTags = [...t.matchAll(/snapshot-77822541-v(\d+)/g)].map(m => m[0]).filter(tag => tag !== canonicalTag);
+  if (staleTags.length) fail(`${f} contains stale canonical release tag references: ${[...new Set(staleTags)].join(', ')}`);
 }
+const expectedAttestationMessage = `r3tards NFT audit wallet attestation | chainId ${CFG.chainId} | NFT ${CFG.nftContract} | lock ${CFG.wallets.lockedTeamSupplyContract} | snapshot ${CFG.snapshotBlock} | release ${canonicalTag}`;
+if (CFG.walletControlAttestations?.canonicalMessage !== expectedAttestationMessage) fail('wallet attestation canonical message does not match config release/chain/contracts/snapshot');
+else ok('wallet attestation canonical message matches release parameters');
+const expectedReviewerMessage = `r3tards NFT audit independent reproduction attestation | chainId ${CFG.chainId} | NFT ${CFG.nftContract} | lock ${CFG.wallets.lockedTeamSupplyContract} | snapshot ${CFG.snapshotBlock} | release ${canonicalTag}`;
+if (CFG.reviewerAttestations?.canonicalMessage !== expectedReviewerMessage) fail('reviewer attestation canonical message does not match config release/chain/contracts/snapshot');
+else ok('reviewer attestation canonical message matches release parameters');
 
 const mintClass = parseCsv('r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification.csv');
 const mintSummary = readJson('r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification_summary.json');
@@ -158,6 +178,14 @@ const lock = readJson('r3tards-locked-supply-audit/locked-supply-output/locked_s
 if (lock.generatedAt !== EXPECTED_GENERATED_AT) fail('locked supply summary generatedAt is not deterministic'); else ok('locked supply summary generatedAt is deterministic');
 const lockSource = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json');
 if (lockSource.generatedAt !== EXPECTED_GENERATED_AT) fail('lock source analysis generatedAt is not deterministic'); else ok('lock source analysis generatedAt is deterministic');
+const foundryConfigText = fs.readFileSync(relPath('r3tards-locked-supply-audit/foundry.toml'), 'utf8');
+const foundryOutputText = fs.readFileSync(relPath('r3tards-locked-supply-audit/test-results/foundry-test-output.txt'), 'utf8');
+if (!/solc_version\s*=\s*["']0\.8\.28["']/.test(foundryConfigText)) fail('Foundry solc_version is not pinned to 0.8.28'); else ok('Foundry solc_version pinned to 0.8.28');
+if (!/Solc\s+0\.8\.28/i.test(foundryOutputText)) fail('Foundry test output does not record Solc 0.8.28'); else ok('Foundry test output records Solc 0.8.28');
+if (/Solc\s+0\.8\.33/i.test(foundryOutputText)) fail('Foundry test output still records stale Solc 0.8.33');
+if (lockSource.foundryTests?.compilerVersion !== '0.8.28') fail(`lock source analysis compilerVersion ${lockSource.foundryTests?.compilerVersion} != 0.8.28`); else ok('lock source analysis records Solc 0.8.28 test compiler');
+if (lockSource.foundryTests?.configuredCompilerVersion !== '0.8.28') fail(`lock source analysis configuredCompilerVersion ${lockSource.foundryTests?.configuredCompilerVersion} != 0.8.28`); else ok('lock source analysis records Foundry config Solc 0.8.28');
+if (lockSource.foundryTests?.compilerVersionAlignedWithDeployedBytecodeCompiler !== true) fail('lock source analysis does not mark test compiler aligned with deployed bytecode compiler'); else ok('lock test compiler aligns with deployed bytecode compiler');
 const lockBytecode = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json');
 if (lockBytecode.generatedAt !== EXPECTED_GENERATED_AT) fail('lock bytecode verification generatedAt is not deterministic'); else ok('lock bytecode verification generatedAt is deterministic');
 if (lockBytecode.sourceEquivalenceStatus === 'verified_match') {
@@ -202,7 +230,62 @@ const official = parseCsv('collection-info/official_wallets.csv');
 for (const r of official) if (!validAddr(r.address)) fail(`invalid official wallet address: ${r.label} ${r.address}`);
 ok('official wallet addresses checked');
 
-const repoTextFiles = ['README.md','SECURITY.md','AUDIT_FIXES.md','CLAIM_STATUS.md','DATA_DICTIONARY.md'];
+const expectedOwnerAddresses = (CFG.walletControlAttestations?.expectedOwnerAddresses || CFG.ownersFromProvidedSource || []).map(a => normAddr(a)).filter(Boolean);
+if (expectedOwnerAddresses.length !== 4) fail(`expected 4 owner addresses for wallet attestations, got ${expectedOwnerAddresses.length}`); else ok('wallet attestation owner set has 4 addresses');
+const walletEvidence = readJson('collection-info/wallet_attestation_evidence.json');
+if (walletEvidence.generatedAt !== EXPECTED_GENERATED_AT) fail('wallet attestation evidence generatedAt is not deterministic'); else ok('wallet attestation evidence generatedAt is deterministic');
+if (walletEvidence.canonicalMessage !== CFG.walletControlAttestations?.canonicalMessage) fail('wallet attestation evidence canonical message mismatch'); else ok('wallet attestation evidence uses canonical message');
+if (Number(walletEvidence.expectedOwnerCount) !== expectedOwnerAddresses.length) fail('wallet attestation evidence owner count mismatch');
+const ownerRows = Array.isArray(walletEvidence.attestations) ? walletEvidence.attestations.filter(a => a.address) : [];
+for (const expected of expectedOwnerAddresses) {
+  const row = ownerRows.find(a => sameAddr(a.address, expected));
+  if (!row) { fail(`wallet attestation evidence missing owner ${expected}`); continue; }
+  if (!['verified','pending_signature','invalid'].includes(row.status)) fail(`wallet attestation ${expected} has unknown status ${row.status}`);
+  if (row.status === 'verified') {
+    if (!row.file) { fail(`verified wallet attestation ${expected} missing source file`); continue; }
+    const att = readJson(row.file);
+    if (att.signedMessage !== CFG.walletControlAttestations?.canonicalMessage) fail(`verified wallet attestation ${expected} source message mismatch`);
+    let recovered = null;
+    try { recovered = getAddress(verifyMessage(att.signedMessage || '', att.signature || '')); } catch {}
+    if (!sameAddr(recovered, expected)) fail(`verified wallet attestation ${expected} does not recover to expected owner`);
+    if (row.signatureValid !== true || !sameAddr(row.recovered, expected) || row.messageMatches !== true || row.addressMatches !== true) fail(`verified wallet attestation ${expected} evidence flags are not valid`);
+  }
+  if (row.status === 'pending_signature' && row.signatureValid === true) fail(`pending wallet attestation ${expected} is marked pending but signatureValid=true`);
+}
+if (Number(walletEvidence.invalidCount || 0) !== 0) fail(`wallet attestation evidence has ${walletEvidence.invalidCount} invalid attestation(s)`);
+const walletVerified = Number(walletEvidence.verifiedCount || 0);
+const walletPending = Number(walletEvidence.pendingCount || 0);
+if (walletVerified + walletPending !== expectedOwnerAddresses.length) fail('wallet attestation verified+pending count does not match expected owner count');
+else ok(`wallet attestations verified ${walletVerified}/${expectedOwnerAddresses.length}; pending ${walletPending}/${expectedOwnerAddresses.length}`);
+
+const reviewerEvidence = readJson('reviews/reviewer_attestation_evidence.json');
+if (reviewerEvidence.generatedAt !== EXPECTED_GENERATED_AT) fail('reviewer attestation evidence generatedAt is not deterministic'); else ok('reviewer attestation evidence generatedAt is deterministic');
+if (reviewerEvidence.canonicalMessage !== CFG.reviewerAttestations?.canonicalMessage) fail('reviewer attestation evidence canonical message mismatch'); else ok('reviewer attestation evidence uses canonical message');
+if (Number(reviewerEvidence.invalidReviewerCount || 0) !== 0) fail(`reviewer attestation evidence has ${reviewerEvidence.invalidReviewerCount} invalid reviewer attestation(s)`);
+const ownerLower = new Set(expectedOwnerAddresses.map(a => a.toLowerCase()));
+for (const row of reviewerEvidence.attestations || []) {
+  if (row.status === 'verified_external_reviewer') {
+    if (!row.file) { fail('verified reviewer attestation missing source file'); continue; }
+    const att = readJson(row.file);
+    let recovered = null;
+    try { recovered = getAddress(verifyMessage(att.signedMessage || '', att.signature || '')); } catch {}
+    if (!recovered) fail(`verified reviewer attestation ${row.file} did not recover`);
+    else if (ownerLower.has(recovered.toLowerCase())) fail(`verified reviewer attestation ${row.file} recovers to owner address`);
+    if (att.signedMessage !== CFG.reviewerAttestations?.canonicalMessage) fail(`verified reviewer attestation ${row.file} source message mismatch`);
+    if (row.signatureValid !== true || row.nonOwnerReviewer !== true || row.messageMatches !== true || row.referencesRelease !== true) fail(`verified reviewer attestation ${row.file} evidence flags are not valid`);
+  }
+}
+const reviewerVerified = Number(reviewerEvidence.verifiedReviewerCount || 0);
+if (reviewerVerified === 0) {
+  const claimStatusText = fs.readFileSync(relPath('CLAIM_STATUS.md'), 'utf8');
+  if (/independently reproduced by/i.test(claimStatusText)) fail('CLAIM_STATUS claims independent reproduction without signed reviewer evidence');
+  if (!/Independent third-party review \| Not present/i.test(claimStatusText)) fail('CLAIM_STATUS does not plainly state independent review is not present');
+  ok('independent review boundary remains explicit without reviewer signature');
+} else {
+  ok(`independent reviewer attestations verified: ${reviewerVerified}`);
+}
+
+const repoTextFiles = ['README.md','SECURITY.md','AUDIT_FIXES.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','RELEASE_INTEGRITY.md','REVIEW.md'];
 for (const f of repoTextFiles) {
   const t = fs.readFileSync(path.join(ROOT,f),'utf8');
   for (const bad of ['100% verified','irrefutable','trustless proof','fully audited']) if (t.toLowerCase().includes(bad.toLowerCase())) fail(`overstated phrase in ${f}: ${bad}`);

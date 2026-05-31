@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-05-31T00:00:00.000Z",
+  "script": "collection-info/verify-wallet-attestations.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "releaseTag": "snapshot-77822541-v8",
+  "canonicalMessage": "r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
+  "expectedOwnerCount": 4,
+  "verifiedCount": 0,
+  "pendingCount": 4,
+  "invalidCount": 0,
+  "status": "pending_signatures",
+  "proofBoundary": "This file verifies key control only for addresses with valid EIP-191 signatures over the canonical message. Pending templates are not counted as verified and do not prove personal identity or beneficial ownership.",
+  "attestations": [
+    {
+      "address": "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+      "file": "collection-info/wallet-attestations/team-deployer-royalty.json",
+      "declaredStatus": "pending_signature",
+      "recovered": null,
+      "messageMatches": true,
+      "addressMatches": false,
+      "signatureValid": false,
+      "status": "pending_signature",
+      "notes": "Template pending a real owner signature; not counted as verified."
+    },
+    {
+      "address": "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+      "file": "collection-info/wallet-attestations/community-treasury.json",
+      "declaredStatus": "pending_signature",
+      "recovered": null,
+      "messageMatches": true,
+      "addressMatches": false,
+      "signatureValid": false,
+      "status": "pending_signature",
+      "notes": "Template pending a real owner signature; not counted as verified."
+    },
+    {
+      "address": "0x18D5346216315667C51D69F346E3C768136F8018",
+      "file": "collection-info/wallet-attestations/activations.json",
+      "declaredStatus": "pending_signature",
+      "recovered": null,
+      "messageMatches": true,
+      "addressMatches": false,
+      "signatureValid": false,
+      "status": "pending_signature",
+      "notes": "Template pending a real owner signature; not counted as verified."
+    },
+    {
+      "address": "0xf10eD040f182511ef2179AdeA749920881A4eef9",
+      "file": "collection-info/wallet-attestations/future-collabs-partners.json",
+      "declaredStatus": "pending_signature",
+      "recovered": null,
+      "messageMatches": true,
+      "addressMatches": false,
+      "signatureValid": false,
+      "status": "pending_signature",
+      "notes": "Template pending a real owner signature; not counted as verified."
+    }
+  ]
+}

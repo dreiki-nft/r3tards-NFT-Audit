@@ -5,7 +5,7 @@
   "description": "Public read-only transparency audit package for r3tards NFT on Monad.",
   "type": "module",
   "scripts": {
-    "rebuild": "npm run mint:rebuild && npm run royalty:rebuild && npm run validator:rebuild && npm run lock:rebuild && npm run checksums",
+    "rebuild": "npm run mint:rebuild && npm run royalty:rebuild && npm run validator:rebuild && npm run lock:rebuild && npm run attestations:rebuild && npm run review:rebuild && npm run checksums",
     "validate": "node scripts/validate-audit.mjs",
     "checksums": "node scripts/generate-checksums.mjs && node scripts/generate-report-hashes.mjs",
     "mint:rebuild": "cd r3tards-mint-proceeds-audit && npm run rebuild",
@@ -16,10 +16,16 @@
     "report-hashes": "node scripts/generate-report-hashes.mjs",
     "validator:rebuild": "cd r3tards-validator-stake-audit && npm run rebuild",
     "validator:fetch": "cd r3tards-validator-stake-audit && npm run stake",
-    "lock:fetch-bytecode": "cd r3tards-locked-supply-audit && npm run fetch:bytecode"
+    "lock:fetch-bytecode": "cd r3tards-locked-supply-audit && npm run fetch:bytecode",
+    "attestations:rebuild": "cd collection-info && node verify-wallet-attestations.mjs",
+    "review:rebuild": "cd reviews && node verify-reviewer-attestation.mjs",
+    "attestations:verify": "cd collection-info && node verify-wallet-attestations.mjs",
+    "review:verify": "cd reviews && node verify-reviewer-attestation.mjs"
   },
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ethers": "6.13.5"
+  }
 }

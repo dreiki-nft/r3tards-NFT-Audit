@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-05-31T00:00:00.000Z",
+  "script": "reviews/verify-reviewer-attestation.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "releaseTag": "snapshot-77822541-v8",
+  "canonicalMessage": "r3tards NFT audit independent reproduction attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
+  "verifiedReviewerCount": 0,
+  "pendingReviewerCount": 0,
+  "invalidReviewerCount": 0,
+  "status": "no_signed_external_review",
+  "proofBoundary": "Absence of a valid non-owner reviewer signature means the package remains self-contained and not independently reviewed. A valid signature verifies reproduction/key control for a reviewer address; it is not a broad security certification.",
+  "attestations": []
+}
