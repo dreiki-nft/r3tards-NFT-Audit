@@ -296,3 +296,13 @@ Additional reproducibility files:
 - [DATA_DICTIONARY.md](DATA_DICTIONARY.md)
 - [REPORT_HASHES.txt](REPORT_HASHES.txt)
 
+## Canonical Release
+
+The canonical public snapshot for this audit is:
+
+- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541
+- Snapshot block: 77,822,541
+- Release tag: `snapshot-77822541`
+
+This release contains the frozen PDF/DOCX report, checksum files, and reproducibility artifacts for the public r3tards NFT transparency audit.
+
