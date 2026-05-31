@@ -9,61 +9,30 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const deterministicGeneratedAt = process.env.AUDIT_GENERATED_AT || CFG.reproducibleBuild?.generatedAt || 'snapshot-77822541';
 
-// Keep this list explicit. REPORT_HASHES.txt is intentionally excluded because it
-// includes the hash of data/checksums.json and would create a circular checksum.
-const files = [
-  '.gitattributes',
-  '.github/workflows/audit.yml',
-  '.env.example',
-  'package.json',
-  'package-lock.json',
-  'config.json',
-  'README.md',
-  'CLAIM_STATUS.md',
-  'DATA_DICTIONARY.md',
-  'SECURITY.md',
-  'AUDIT_FIXES.md',
-  'scripts/generate-checksums.mjs',
-  'scripts/generate-report-hashes.mjs',
-  'scripts/validate-audit.mjs',
-  'r3tards-mint-proceeds-audit/package.json',
-  'r3tards-royalty-audit/package.json',
-  'r3tards-locked-supply-audit/package.json',
-  'r3tards-validator-stake-audit/package.json',
-  'r3tards-transparency.docx',
-  'r3tards-transparency.pdf',
-  'collection-info/collection-info.json',
-  'collection-info/official_wallets.csv',
-  'collection-info/burn_proofs.csv',
-  'collection-info/supply-wallets-and-burns.md',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/raw_internal_txs_for_nft_contract.json',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/mint_events_from_zero.csv',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/mint_txs_with_native_value.csv',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification.csv',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/mint_classification_summary.json',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/summary.json',
-  'r3tards-mint-proceeds-audit/mint-proceeds-output/withdrawals_from_nft_contract.csv',
-  'r3tards-royalty-audit/royalty-audit-v4-output/all_indexed_inbound_payments.csv',
-  'r3tards-royalty-audit/royalty-audit-v4-output/checked_payment_txs.jsonl',
-  'r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties.csv',
-  'r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties_evidence.csv',
-  'r3tards-royalty-audit/royalty-audit-v4-output/summary.json',
-  'r3tards-validator-stake-audit/validator-stake-output/summary.json',
-  'r3tards-validator-stake-audit/validator-stake-output/validator_state.json',
-  'r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.json',
-  'r3tards-validator-stake-audit/validator-stake-output/specific_delegator_delegation_events.csv',
-  'r3tards-validator-stake-audit/validator-stake-output/specific_delegator_undelegation_events.csv',
-  'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
-  'r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol',
-  'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
-  'r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv',
-  'r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv',
-  'r3tards-locked-supply-audit/locked-supply-output/locked_supply_summary.json',
-  'r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json',
-  'r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json',
-  'r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json'
-];
+// REPORT_HASHES.txt and data/checksums.json are excluded from this manifest to
+// avoid circular hashing. REPORT_HASHES.txt separately pins data/checksums.json.
+const EXCLUDED_DIRS = new Set(['.git', 'node_modules']);
+const EXCLUDED_FILES = new Set(['data/checksums.json', 'REPORT_HASHES.txt']);
+
+function toPosix(p) {
+  return p.split(path.sep).join('/');
+}
+
+function listAuditedFiles(dir = ROOT) {
+  const out = [];
+  for (const dirent of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, dirent.name);
+    const rel = toPosix(path.relative(ROOT, full));
+    if (dirent.isDirectory()) {
+      if (EXCLUDED_DIRS.has(dirent.name)) continue;
+      out.push(...listAuditedFiles(full));
+    } else if (dirent.isFile()) {
+      if (EXCLUDED_FILES.has(rel)) continue;
+      out.push(rel);
+    }
+  }
+  return out.sort((a, b) => a.localeCompare(b));
+}
 
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
@@ -86,20 +55,22 @@ function rowCount(file, text) {
 }
 
 const entries = [];
-for (const file of files) {
+for (const file of listAuditedFiles()) {
   const full = path.join(ROOT, file);
-  if (!fs.existsSync(full)) continue;
   const buf = fs.readFileSync(full);
   const text = buf.toString('utf8');
   entries.push({ file, sha256: sha256(buf), bytes: buf.length, rowCount: rowCount(file, text) });
 }
-entries.sort((a, b) => a.file.localeCompare(b.file));
 
 const manifest = {
   generatedAt: deterministicGeneratedAt,
   generator: 'scripts/generate-checksums.mjs',
   deterministic: true,
-  note: 'Hashes are recomputed from committed files. REPORT_HASHES.txt is excluded to avoid circular hashing.',
+  excluded: {
+    directories: Array.from(EXCLUDED_DIRS).sort(),
+    files: Array.from(EXCLUDED_FILES).sort()
+  },
+  note: 'Hashes are recomputed from every committed file except excluded directories/files. REPORT_HASHES.txt is excluded to avoid circular hashing and separately pins data/checksums.json.',
   entries
 };
 fs.writeFileSync(path.join(OUT, 'checksums.json'), JSON.stringify(manifest, null, 2) + '\n');

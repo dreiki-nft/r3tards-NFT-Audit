@@ -5,7 +5,7 @@
   "description": "Public read-only transparency audit package for r3tards NFT on Monad.",
   "type": "module",
   "scripts": {
-    "rebuild": "npm run mint:rebuild && npm run royalty:rebuild && npm run lock:rebuild && npm run checksums",
+    "rebuild": "npm run mint:rebuild && npm run royalty:rebuild && npm run validator:rebuild && npm run lock:rebuild && npm run checksums",
     "validate": "node scripts/validate-audit.mjs",
     "checksums": "node scripts/generate-checksums.mjs && node scripts/generate-report-hashes.mjs",
     "mint:rebuild": "cd r3tards-mint-proceeds-audit && npm run rebuild",
@@ -13,7 +13,9 @@
     "royalty:rebuild": "cd r3tards-royalty-audit && npm run rebuild",
     "lock:rebuild": "cd r3tards-locked-supply-audit && npm run rebuild",
     "lock:fetch-state": "cd r3tards-locked-supply-audit && npm run fetch:state",
-    "report-hashes": "node scripts/generate-report-hashes.mjs"
+    "report-hashes": "node scripts/generate-report-hashes.mjs",
+    "validator:rebuild": "cd r3tards-validator-stake-audit && npm run rebuild",
+    "validator:fetch": "cd r3tards-validator-stake-audit && npm run stake"
   },
   "engines": {
     "node": ">=18"

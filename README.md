@@ -60,7 +60,7 @@ Install with lifecycle scripts disabled:
 npm install --ignore-scripts
 ```
 
-Rebuild committed derived outputs from committed snapshots:
+Rebuild committed derived outputs from committed snapshots, including the offline validator-summary normalization:
 
 ```bash
 npm run rebuild
@@ -87,6 +87,7 @@ Subfolder rebuilds:
 ```bash
 cd r3tards-mint-proceeds-audit && npm run rebuild
 cd r3tards-royalty-audit && npm run rebuild
+cd r3tards-validator-stake-audit && npm run rebuild
 cd r3tards-locked-supply-audit && npm run rebuild
 ```
 
@@ -98,7 +99,7 @@ npm install --ignore-scripts
 RPC_URL="https://rpc.monad.xyz" SNAPSHOT_BLOCK=77822541 npm run fetch:state
 ```
 
-Network fetches, when needed, require read-only environment variables. See `.env.example` files.
+Network fetches, when needed, require read-only environment variables. See `.env.example` files. The validator `rebuild` script is offline and recomputes `validator-stake-output/summary.json` from committed validator evidence; use `npm run validator:fetch` only when intentionally refreshing read-only network data.
 
 ## Required environment variables for network fetches
 
@@ -136,7 +137,7 @@ Network fetches, when needed, require read-only environment variables. See `.env
 
 | File | Meaning |
 |---|---|
-| `r3tards-validator-stake-audit/validator-stake-output/summary.json` | Validator and deployer-specific stake summary. |
+| `r3tards-validator-stake-audit/validator-stake-output/summary.json` | Offline-rebuilt validator and deployer-specific stake summary from committed validator evidence. |
 | `r3tards-validator-stake-audit/validator-stake-output/specific_delegator_delegation_events.csv` | Deployer-specific delegate events. |
 | `r3tards-validator-stake-audit/validator-stake-output/specific_delegator_undelegation_events.csv` | Deployer-specific undelegate events. |
 | `r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.json` | Deployer-specific current staking state. |
@@ -215,7 +216,7 @@ Formula from committed event outputs:
 = 281,946.1742440292 MON net delegated
 ```
 
-Validator stake is not creator revenue. It is MON committed to validator operations.
+Validator stake is not creator revenue. It is MON committed to validator operations. Event-history totals are bounded to the canonical snapshot block; validator/delegator state reads should be described using the `validatorStateBlockTag` recorded in `summary.json`.
 
 ## Official wallets
 
@@ -308,9 +309,9 @@ Additional reproducibility files:
 
 The canonical public snapshot for this audit is:
 
-- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v4
+- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v5
 - Snapshot block: 77,822,541
-- Release tag: `snapshot-77822541-v4`
+- Release tag: `snapshot-77822541-v5`
 
 This release contains the frozen PDF/DOCX report, checksum files, and reproducibility artifacts for the public r3tards NFT transparency audit.
 

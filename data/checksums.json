@@ -2,7 +2,17 @@
   "generatedAt": "2026-05-31T00:00:00.000Z",
   "generator": "scripts/generate-checksums.mjs",
   "deterministic": true,
-  "note": "Hashes are recomputed from committed files. REPORT_HASHES.txt is excluded to avoid circular hashing.",
+  "excluded": {
+    "directories": [
+      ".git",
+      "node_modules"
+    ],
+    "files": [
+      "REPORT_HASHES.txt",
+      "data/checksums.json"
+    ]
+  },
+  "note": "Hashes are recomputed from every committed file except excluded directories/files. REPORT_HASHES.txt is excluded to avoid circular hashing and separately pins data/checksums.json.",
   "entries": [
     {
       "file": ".env.example",
@@ -20,6 +30,12 @@
       "file": ".github/workflows/audit.yml",
       "sha256": "7a2de189c46312b391a54d7279551fae68d753d1b8f00ec000a94e7e92e7c0f4",
       "bytes": 1034,
+      "rowCount": null
+    },
+    {
+      "file": ".gitignore",
+      "sha256": "751bec1c7d578cf84db6d535cf2e117f46ea78e013b5603fa65c593b17c72962",
+      "bytes": 132,
       "rowCount": null
     },
     {
@@ -60,14 +76,20 @@
     },
     {
       "file": "config.json",
-      "sha256": "bfc74fe5abd36e9e1fa1a4e63798e34d9ba6c7fb43f0cfedc5c9f135e1d02bb2",
-      "bytes": 1431,
+      "sha256": "b2758e2eb495ac66f5a4bcf7c70921c978b5aa80b6d5cf6427025fb0bf5b4220",
+      "bytes": 1685,
       "rowCount": null
     },
     {
       "file": "DATA_DICTIONARY.md",
       "sha256": "3802f4fb61fbd7fd3d939e3c1ceb32a03d1740c0787ea8cd87a030d8b19262ee",
       "bytes": 2923,
+      "rowCount": null
+    },
+    {
+      "file": "fix-validator-rebuild-script.patch",
+      "sha256": "34bdb0738d2319444707202f1b9da175493c4ffb4037581b23c2afb2758f3973",
+      "bytes": 7105,
       "rowCount": null
     },
     {
@@ -78,8 +100,8 @@
     },
     {
       "file": "package.json",
-      "sha256": "d513ff23c04e9f57455ecee3cd5c5c69a559e479121702f7ccf5d37b8cf86592",
-      "bytes": 956,
+      "sha256": "c2c5306e3f44d0ef588360c738faa06a252e087af14758e27e8b785208f4ec3e",
+      "bytes": 1141,
       "rowCount": null
     },
     {
@@ -125,9 +147,27 @@
       "rowCount": 35
     },
     {
+      "file": "r3tards-locked-supply-audit/package-lock.json",
+      "sha256": "2094cf267afe0f85ae26d218d7c59b260dacabb8ee973a23c3eed1c286ea61bc",
+      "bytes": 4152,
+      "rowCount": null
+    },
+    {
       "file": "r3tards-locked-supply-audit/package.json",
       "sha256": "cc4fa43695c1f8d54f99325a806f8d416b13ecd12efd9edc18ae02342a9b695b",
       "bytes": 603,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-locked-supply-audit/README.md",
+      "sha256": "1d9dfb0862c85e174916f8aaa0728bfa0ddaf5d69c7b0e3b4b926430686439cc",
+      "bytes": 2625,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-locked-supply-audit/test-results/foundry-test-output.png",
+      "sha256": "d51b44638a275dfd02e9846223ead542a1a0221199aa948b7d8e689a220bbeed",
+      "bytes": 47294,
       "rowCount": null
     },
     {
@@ -140,6 +180,42 @@
       "file": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
       "sha256": "ed04ad90b458e1be9cad5d1ce633630a7cf6ff41ef8a53b379fa710c8f7de0c6",
       "bytes": 14268,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-locked-supply-audit/verify-lock-bytecode.mjs",
+      "sha256": "61f3d6a413ecf0f6f7213c54bcbf43f579cfe9251c18da97503917194c2e679d",
+      "bytes": 2733,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-locked-supply-audit/verify-lock-contract-state.mjs",
+      "sha256": "4deb1d4ca5b7c7033cf91183aa304bd0d2cd39593c0bffdce5484b1934fea819",
+      "bytes": 2918,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-locked-supply-audit/verify-locked-supply.mjs",
+      "sha256": "e021541ec1a3b702f3525167afd45dafee5f30b8d1652a4c1ed37a80bb8b28a7",
+      "bytes": 8826,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/.env.example",
+      "sha256": "b0ecb20633d0b39a45018b4c365c9ebb2ed129e3da8a4d3bb55a994c838de500",
+      "bytes": 109,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/audit-mint-proceeds.mjs",
+      "sha256": "6ac198147ccb9a892122d8cb9724edb98a97d40c63d2dc0a5aff235f13cf3aa9",
+      "bytes": 19034,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/classify-mints.mjs",
+      "sha256": "79d7cf2ad5289e1a40e1b0cbfbe3145e6ecc80834b67c15ffe8899c45726ebf9",
+      "bytes": 11159,
       "rowCount": null
     },
     {
@@ -159,6 +235,12 @@
       "sha256": "da5ab0d140bfc15c90dd8aa14b465c318952e71385799ae05fa9941269597c05",
       "bytes": 199360,
       "rowCount": 1033
+    },
+    {
+      "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_tx_details.jsonl",
+      "sha256": "feda31962a2be6a8db86284d690d9a73bc7971a7ed22b75ced4ce9b9e204afe2",
+      "bytes": 330400,
+      "rowCount": 673
     },
     {
       "file": "r3tards-mint-proceeds-audit/mint-proceeds-output/mint_txs_with_native_value.csv",
@@ -191,15 +273,51 @@
       "rowCount": 2
     },
     {
+      "file": "r3tards-mint-proceeds-audit/package-lock.json",
+      "sha256": "7fce7a100e726cb4618fd949f6eba274c4f5ac2f10ee53a33c4a0c3e28669935",
+      "bytes": 270,
+      "rowCount": null
+    },
+    {
       "file": "r3tards-mint-proceeds-audit/package.json",
       "sha256": "4d03c936d16239ef62691235676d5aad0bbacf0ddc160d55a3c9e5afe31262aa",
       "bytes": 584,
       "rowCount": null
     },
     {
+      "file": "r3tards-mint-proceeds-audit/README.md",
+      "sha256": "96b27d4d14c41393cb24c566199b88219f736de84019b53fc611dc0e46feb072",
+      "bytes": 2333,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-royalty-audit/.env.example",
+      "sha256": "b0ecb20633d0b39a45018b4c365c9ebb2ed129e3da8a4d3bb55a994c838de500",
+      "bytes": 109,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-royalty-audit/audit-monad-royalties-indexed-api.mjs",
+      "sha256": "9b0ec2359314f01a596178776bec62111f9214403c863455b518fe003e9f6ed3",
+      "bytes": 23793,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-royalty-audit/build-royalty-evidence.mjs",
+      "sha256": "12e01ed91ec14aa9cf8227472c5243b600d17bfd8dad6eb0a8210805e33d81b7",
+      "bytes": 5221,
+      "rowCount": null
+    },
+    {
       "file": "r3tards-royalty-audit/package.json",
       "sha256": "f4c24464e31c5a248ed9a6bd5c09f19bc7aad2fde45fc1f8975ca5741334dbf8",
       "bytes": 549,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-royalty-audit/README.md",
+      "sha256": "ca617a27f91835e8b0b5af91cf7465815ec9f07084d483275ba619917e9581db",
+      "bytes": 1424,
       "rowCount": null
     },
     {
@@ -215,6 +333,12 @@
       "rowCount": 272
     },
     {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/ignored_inbound_payments_no_matching_nft_transfer.csv",
+      "sha256": "962d24056197708d0e1cac4ce0d3afd1da5358bd1627ceb6b6cbff417ec4a815",
+      "bytes": 6847,
+      "rowCount": 31
+    },
+    {
       "file": "r3tards-royalty-audit/royalty-audit-v4-output/likely_royalties_evidence.csv",
       "sha256": "d2c76f9b35a8c6b64b64504dfbb86db9d3b31d95cf7107cbba038415fd4dd48e",
       "bytes": 129071,
@@ -225,6 +349,30 @@
       "sha256": "1df0c43cd5254acf7c21ba0d30b833ee0b0a715c8113c962c80f58b6d53a4f93",
       "bytes": 41712,
       "rowCount": 241
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/raw_native_direct_inbound.json",
+      "sha256": "b980fc6b52cc83d81051fd44d7f021ef2eb44b0cb2f807116d3e040391f07212",
+      "bytes": 575840,
+      "rowCount": 141
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/raw_native_internal_inbound.json",
+      "sha256": "8083a9676211491fd0a41d38c0855206a6dcedbaf4da7f5d627ccb62ff5bc7d9",
+      "bytes": 93017,
+      "rowCount": 197
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/raw_wmon_inbound.json",
+      "sha256": "13db126943e97243df1961073a7bddb0f4373810686660fe3f7a5ac32f6c9c29",
+      "bytes": 71446,
+      "rowCount": 86
+    },
+    {
+      "file": "r3tards-royalty-audit/royalty-audit-v4-output/state.json",
+      "sha256": "cf9c2181aa058a30d97cd72633379a1c955efabd9f89c0e853a908409af78bc4",
+      "bytes": 101,
+      "rowCount": null
     },
     {
       "file": "r3tards-royalty-audit/royalty-audit-v4-output/summary.json",
@@ -245,16 +393,70 @@
       "rowCount": null
     },
     {
-      "file": "r3tards-validator-stake-audit/package.json",
-      "sha256": "dbc44a0035f4b92489403ad79e045e72fb048c6afbb6dfc5d54ca2b3bae808f5",
-      "bytes": 303,
+      "file": "r3tards-validator-stake-audit/.env.example",
+      "sha256": "2eb654ce6ef4be53e45a07915d62948dec7080ffca2d081b165b5840a09b295e",
+      "bytes": 187,
       "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/audit-validator-stake.mjs",
+      "sha256": "a6f90d19b7597f28c98a37e34110daabcb7638cca3e20451f550822f6fbd61c4",
+      "bytes": 21317,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/package-lock.json",
+      "sha256": "e77ddf433239a3327682f58864da43202dfab576b15977c2d62b1c9e4175e151",
+      "bytes": 4115,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/package.json",
+      "sha256": "29fac84fb54277cfddf4ac30cec89f3ce9f0f4d37ce5cc8f19be94e5b70d4d59",
+      "bytes": 401,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/README.md",
+      "sha256": "d0324b263ed604ab4a635f967a91b2d70d38637822f770cf746cebd669da95e6",
+      "bytes": 3669,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/rebuild-validator-summary.mjs",
+      "sha256": "74d31672aa67376191768b7d5be1edfb679d57b791e9833f23956c8f3fb58488",
+      "bytes": 6695,
+      "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/delegation_events.csv",
+      "sha256": "6abd8edb704fa61b3903f2614d9d61a1fe4075154da28299f9eb8139fb31d253",
+      "bytes": 60701,
+      "rowCount": 383
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/raw_delegate_logs.json",
+      "sha256": "a58de55ca2055a7082ff6c0952d263d2887a5ed9af877258d0c8c95266b7a8df",
+      "bytes": 314439,
+      "rowCount": 383
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/raw_undelegate_logs.json",
+      "sha256": "8abeb507de0618de17dfd6ce719998cfcb1092da9b00cee62f34f51c9fdd34f7",
+      "bytes": 101871,
+      "rowCount": 115
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_delegation_events.csv",
       "sha256": "301b6dce32eaf41f26ddcbf3e056a49d87434da4e5073961a2d0e4176db4b296",
       "bytes": 867,
       "rowCount": 5
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.csv",
+      "sha256": "d1fc841791959b2b21e93e9d433f3dc740d5a7e913427aa427704bf55031bb54",
+      "bytes": 382,
+      "rowCount": 1
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.json",
@@ -270,9 +472,15 @@
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/summary.json",
-      "sha256": "2b5b8b6c97a29c08599d8f0cedb3495a33f4d0a6c3de729ae12471d11387cd86",
-      "bytes": 2270,
+      "sha256": "ce255a8f7aad909a5a389032ee0a6105cf6e68c4f813bad88877a0c5f79ab9f1",
+      "bytes": 2910,
       "rowCount": null
+    },
+    {
+      "file": "r3tards-validator-stake-audit/validator-stake-output/undelegation_events.csv",
+      "sha256": "04e6cf4d990dd66138fffd9323be50094329306323fc63296e767d193dfeda82",
+      "bytes": 19334,
+      "rowCount": 115
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/validator_state.json",
@@ -282,14 +490,14 @@
     },
     {
       "file": "README.md",
-      "sha256": "7fc7fc259a8ad475b6e825ec4a3d0d527c6aff799eb010e180b31fa6efe56dfa",
-      "bytes": 15450,
+      "sha256": "f8c37560274acbd033bbc0d9770b75f9950140cde7d733a5b386911cbf9c3d2d",
+      "bytes": 16007,
       "rowCount": null
     },
     {
       "file": "scripts/generate-checksums.mjs",
-      "sha256": "8aee531c95982db00d620d62f5c65985c74eb2f5f1c7b89b9cd9ee7733b7c2e7",
-      "bytes": 4848,
+      "sha256": "f174e7fca2f570d73fcb1376f644177bda46390be0adb7a3bc0346ded2577aca",
+      "bytes": 2751,
       "rowCount": null
     },
     {
@@ -300,8 +508,8 @@
     },
     {
       "file": "scripts/validate-audit.mjs",
-      "sha256": "c3888b11d63c16eef2fc475f954592bc1e857bf1cfbbe1983396e30454067576",
-      "bytes": 12015,
+      "sha256": "293e6debb5626c6279a9b82fac54c54af6a0c4cc35ec539dc70c3b7139900cfe",
+      "bytes": 14496,
       "rowCount": null
     },
     {

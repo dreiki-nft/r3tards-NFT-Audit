@@ -4,7 +4,9 @@
   "type": "module",
   "description": "Fast Monad validator stake audit for a named validator such as forthenads.",
   "scripts": {
-    "stake": "node audit-validator-stake.mjs"
+    "stake": "node audit-validator-stake.mjs",
+    "rebuild": "node rebuild-validator-summary.mjs",
+    "validate": "cd .. && npm run validate"
   },
   "dependencies": {
     "ethers": "^6.13.5"
