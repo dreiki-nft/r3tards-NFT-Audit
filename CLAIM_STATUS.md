@@ -21,9 +21,9 @@ This file separates verified claims, high-confidence heuristic claims, source/te
 
 | Wallet-control claim | Status | Evidence |
 |---|---|---|
-| Owner-wallet key control | 0/4 cryptographically attested by owner signature; 4/4 pending attestation templates | `collection-info/wallet-attestations/*.json`, `collection-info/wallet_attestation_evidence.json` |
+| Owner-wallet key control | 4/4 cryptographically attested by owner signature; 0/4 pending | `collection-info/wallet-attestations/*.json`, `collection-info/wallet_attestation_evidence.json` |
 
-Pending attestation templates are not verified proof. A wallet-control claim becomes cryptographically attested only when the claimed owner address signs the canonical release-bound EIP-191 message from `config.json` and the verifier recovers the same address. This proves key control for that message only; it does not prove personal identity or beneficial ownership.
+Each wallet-control claim is counted as cryptographically attested only when the claimed owner address signs the canonical release-bound EIP-191 message from `config.json` and the verifier recovers the same address. This proves key control for that message only; it does not prove personal identity or beneficial ownership.
 
 ## High-Confidence Heuristic Claims
 

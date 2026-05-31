@@ -46,8 +46,8 @@
     },
     {
       "file": "CLAIM_STATUS.md",
-      "sha256": "cd54ade3d5e1e88cfe1e76350105d1adeb0277f469b2c4c701a0099f30233877",
-      "bytes": 3711,
+      "sha256": "bcf3ef2d56eb48ae0cb4caab7831ff2fbb7ff1f3067e8adc10ed2290a5ab2315",
+      "bytes": 3644,
       "rowCount": null
     },
     {
@@ -88,26 +88,26 @@
     },
     {
       "file": "collection-info/wallet-attestations/activations.json",
-      "sha256": "82b33fd5d18a2c6467978fa19a8f822566fee53cf3179f15d7d4fbadb10852ab",
-      "bytes": 738,
+      "sha256": "225910c8e9791ad4ff55d12f51f562609ed57b497fcc783414bd721f9f59f3ef",
+      "bytes": 750,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/community-treasury.json",
-      "sha256": "8e8ab5a10ea0124bd49a29a34247e25bb6e72b58f3e7439bd4db02b5050b22eb",
-      "bytes": 738,
+      "sha256": "8d6a9432c811a3d285c69e8d4a0803a9f981eed97866971e6ac463b5e13a8d5d",
+      "bytes": 750,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/future-collabs-partners.json",
-      "sha256": "12e1ee161167eccf772181a3825b2a04a9926dd9b00f79e1620ba3834f870d0f",
-      "bytes": 738,
+      "sha256": "aa19a2e1897bb9bb71a7d16fe5039a03259e04d163755bd8c0081466272a9f9d",
+      "bytes": 750,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/team-deployer-royalty.json",
-      "sha256": "cc57487c4cb56d785e3bdef7d43815a850d1ce67c461b5709405744675be8a86",
-      "bytes": 738,
+      "sha256": "834befbaa6524486c5296a1d090918df0bb04c61dfc1d6062ebf2f2f00effff8",
+      "bytes": 750,
       "rowCount": null
     },
     {
@@ -118,8 +118,8 @@
     },
     {
       "file": "DATA_DICTIONARY.md",
-      "sha256": "600ca705896257df63ff375c3613a7bd9548b9416d41a97df378606f4b76686f",
-      "bytes": 4497,
+      "sha256": "194e4bdc613e85e483eaebeecb8de658595675ea6a061e99226a5f1b46a02b9a",
+      "bytes": 4545,
       "rowCount": null
     },
     {
@@ -538,20 +538,20 @@
     },
     {
       "file": "README.md",
-      "sha256": "943840e1c32cba849924d79665b75c217af79dca417042413b66f522fbdac855",
-      "bytes": 18663,
+      "sha256": "643333dee334f7047a2c90df9c5ac9d9668391e0b5f2e3f6057b7331c7d9f313",
+      "bytes": 18915,
       "rowCount": null
     },
     {
       "file": "RELEASE_INTEGRITY.md",
-      "sha256": "4ba0bcdf6b49bf23fba0837e94425f84282e942738b04e6ee8b110b8ce4096d0",
-      "bytes": 2355,
+      "sha256": "b9ce0ebcec4048ea8801b44d4d40b6d71d9fca979a2c74722ef00c3d34e0b784",
+      "bytes": 2479,
       "rowCount": null
     },
     {
       "file": "REVIEW.md",
-      "sha256": "c92581974e7aaffff2e576c59339052dd193cebb60e7f43b5ed2e95af68844e6",
-      "bytes": 3578,
+      "sha256": "3a87970fc4b1b06e012ff1635460651c767cb1c1dda53df9a23cdb4b0a367623",
+      "bytes": 4676,
       "rowCount": null
     },
     {
@@ -586,8 +586,8 @@
     },
     {
       "file": "scripts/validate-audit.mjs",
-      "sha256": "ae91465cc72c27dd18c95b5b17a211730d4cec21228684d7a93a87567adbc5ce",
-      "bytes": 26327,
+      "sha256": "75093293f96a15bbe0bd85b512b77615880cf6058d6cd7b24fd7e68d3bd908a6",
+      "bytes": 29287,
       "rowCount": null
     },
     {
