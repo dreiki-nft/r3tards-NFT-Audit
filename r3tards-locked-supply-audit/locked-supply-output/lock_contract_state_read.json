@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T23:38:38.831Z",
+  "generatedAt": "2026-05-31T14:13:09.343Z",
   "script": "verify-lock-contract-state.mjs",
   "rpcUrl": "https://rpc.monad.xyz",
   "blockTag": "77822541",

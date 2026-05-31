@@ -1,0 +1,36 @@
+name: Audit validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies safely
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Rebuild committed audit outputs
+        run: npm run rebuild
+
+      - name: Validate audit outputs
+        run: npm run validate
+
+      - name: Regenerate checksums
+        run: npm run checksums
+
+      - name: Ensure generated outputs are committed
+        run: git diff --exit-code
