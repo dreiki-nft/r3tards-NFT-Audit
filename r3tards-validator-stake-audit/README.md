@@ -86,3 +86,13 @@ RPC_URL="https://rpc.monad.xyz" VALIDATOR_ID=154 DELEGATOR_ADDRESS="0x40Ea55E0b8
 ```
 
 Outputs include `specific_delegator_state.json`, `specific_delegator_state.csv`, and, when API history is enabled, `specific_delegator_delegation_events.csv` / `specific_delegator_undelegation_events.csv`.
+
+## Offline deterministic rebuild
+
+After network outputs have been committed, rebuild the public summary offline from the committed evidence:
+
+```bash
+npm run rebuild
+```
+
+This rewrites `validator-stake-output/summary.json` using the deterministic `generatedAt` value in the root `config.json`, recomputes delegate/undelegate event totals from committed CSV files, and records whether the validator state read was taken at the canonical snapshot block or at another block tag such as `latest`.

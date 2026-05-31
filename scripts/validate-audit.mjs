@@ -19,6 +19,24 @@ function sum(rows, key){return rows.reduce((a,r)=>a+Number(r[key]||0),0)}
 function validAddr(a){return /^0x[a-fA-F0-9]{40}$/.test(String(a||''));}
 function sha256(buf){return crypto.createHash('sha256').update(buf).digest('hex');}
 function relPath(p){return path.join(ROOT,p);}
+function toPosix(p){return p.split(path.sep).join('/');}
+const EXCLUDED_CHECKSUM_DIRS = new Set(['.git','node_modules']);
+const EXCLUDED_CHECKSUM_FILES = new Set(['data/checksums.json','REPORT_HASHES.txt']);
+function listAuditedFiles(dir = ROOT){
+  const out=[];
+  for (const dirent of fs.readdirSync(dir,{withFileTypes:true})) {
+    const full=path.join(dir,dirent.name);
+    const rel=toPosix(path.relative(ROOT,full));
+    if (dirent.isDirectory()) {
+      if (EXCLUDED_CHECKSUM_DIRS.has(dirent.name)) continue;
+      out.push(...listAuditedFiles(full));
+    } else if (dirent.isFile()) {
+      if (EXCLUDED_CHECKSUM_FILES.has(rel)) continue;
+      out.push(rel);
+    }
+  }
+  return out.sort((a,b)=>a.localeCompare(b));
+}
 
 const required = [
   'README.md','SECURITY.md','AUDIT_FIXES.md','config.json',
@@ -30,6 +48,15 @@ const required = [
   'r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json',
   'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
   'r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol',
+  'r3tards-mint-proceeds-audit/audit-mint-proceeds.mjs',
+  'r3tards-mint-proceeds-audit/classify-mints.mjs',
+  'r3tards-royalty-audit/audit-monad-royalties-indexed-api.mjs',
+  'r3tards-royalty-audit/build-royalty-evidence.mjs',
+  'r3tards-validator-stake-audit/audit-validator-stake.mjs',
+  'r3tards-validator-stake-audit/rebuild-validator-summary.mjs',
+  'r3tards-locked-supply-audit/verify-locked-supply.mjs',
+  'r3tards-locked-supply-audit/verify-lock-contract-state.mjs',
+  'r3tards-locked-supply-audit/verify-lock-bytecode.mjs',
   'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
   'collection-info/official_wallets.csv','collection-info/burn_proofs.csv','data/checksums.json','CLAIM_STATUS.md','DATA_DICTIONARY.md','REPORT_HASHES.txt'
 ];
@@ -54,6 +81,10 @@ else {
   for (const must of ['README.md','CLAIM_STATUS.md','DATA_DICTIONARY.md','r3tards-transparency.pdf','r3tards-transparency.docx']) {
     if (!seen.has(must)) fail(`important file missing from checksum manifest: ${must}`);
   }
+  const auditedFiles = listAuditedFiles();
+  for (const file of auditedFiles) if (!seen.has(file)) fail(`working-tree file missing from checksum manifest: ${file}`);
+  for (const file of seen) if (!auditedFiles.includes(file)) fail(`checksum manifest contains non-audited or excluded file: ${file}`);
+  ok('checksum manifest covers every non-excluded committed file');
   ok('checksum manifest matches current files');
 }
 
@@ -97,6 +128,10 @@ if (Math.abs(royaltyTotal - Number(royaltySummary.totals.likelyTotalMONEquivalen
 for (const r of royaltyEvidence) if (Number(r.block) > SNAP) fail(`royalty evidence row exceeds snapshot block: ${r.tx_hash}`);
 
 const validator = readJson('r3tards-validator-stake-audit/validator-stake-output/summary.json');
+if (validator.generatedAt !== EXPECTED_GENERATED_AT) fail('validator summary generatedAt is not deterministic'); else ok('validator summary generatedAt is deterministic');
+if (String(validator.eventEndBlock) !== String(SNAP)) fail(`validator eventEndBlock ${validator.eventEndBlock} != canonical snapshot block ${SNAP}`); else ok('validator eventEndBlock matches canonical snapshot block');
+if (validator.eventWindowCanonicalToSnapshot !== true) fail('validator event window is not marked canonical to snapshot'); else ok('validator event window marked canonical to snapshot');
+if (String(validator.validatorStateBlockTag || validator.blockTag) !== String(SNAP)) warn(`validator state read blockTag=${validator.validatorStateBlockTag || validator.blockTag}; state values should be described as recorded/current unless refetched at canonical snapshot`);
 const gross = Number(validator.specificDelegatorGrossDelegatedMONByEvents);
 const undelegated = Number(validator.specificDelegatorGrossUndelegatedMONByEvents);
 const net = Number(validator.specificDelegatorNetDelegatedMONByEvents);
