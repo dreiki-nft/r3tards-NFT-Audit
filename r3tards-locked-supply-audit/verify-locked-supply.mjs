@@ -10,6 +10,7 @@ const OUT = path.resolve('locked-supply-output');
 const CONTRACT_SOURCE = path.resolve('contracts/NFTTimeLock.sol');
 const TEST_SOURCE = path.resolve('test/NFTTimeLockTest.t.sol');
 const TEST_OUTPUT = path.resolve('test-results/foundry-test-output.txt');
+const FOUNDRY_CONFIG = path.resolve('foundry.toml');
 fs.mkdirSync(OUT, { recursive: true });
 
 const lock = CFG.wallets.lockedTeamSupplyContract.toLowerCase();
@@ -22,6 +23,11 @@ function readIfExists(file){ return fs.existsSync(file) ? fs.readFileSync(file, 
 const source = readIfExists(CONTRACT_SOURCE);
 const tests = readIfExists(TEST_SOURCE);
 const testOutput = readIfExists(TEST_OUTPUT);
+const foundryConfig = readIfExists(FOUNDRY_CONFIG);
+const compilerVersionMatch = testOutput.match(/Solc\s+(0\.8\.\d+)/i);
+const configuredCompilerVersionMatch = foundryConfig.match(/solc_version\s*=\s*["']([^"']+)["']/i);
+const foundryCompilerVersion = compilerVersionMatch?.[1] || null;
+const configuredCompilerVersion = configuredCompilerVersionMatch?.[1] || null;
 const expectedOwners = [
   '0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA',
   '0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954',
@@ -36,6 +42,7 @@ const sourceAnalysis = {
   sourceFile: 'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
   testFile: 'r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol',
   foundryTestOutput: 'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
+  foundryConfig: 'r3tards-locked-supply-audit/foundry.toml',
   sourcePresent: Boolean(source),
   testsPresent: Boolean(tests),
   sourceLevelFindings: {
@@ -53,6 +60,9 @@ const sourceAnalysis = {
   },
   foundryTests: {
     claimedCommand: 'forge test -v',
+    compilerVersion: foundryCompilerVersion,
+    configuredCompilerVersion,
+    compilerVersionAlignedWithDeployedBytecodeCompiler: foundryCompilerVersion === '0.8.28' && configuredCompilerVersion === '0.8.28',
     passed: /31\s+tests\s+passed|31\s+passed;\s+0\s+failed/i.test(testOutput),
     passedCount: 31,
     failedCount: 0,
@@ -129,7 +139,8 @@ const summary = {
     rawErc721Transfers: 'r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json',
     lockContractSource: 'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
     lockContractTests: 'r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol',
-    foundryTestOutput: 'r3tards-locked-supply-audit/test-results/foundry-test-output.txt'
+    foundryTestOutput: 'r3tards-locked-supply-audit/test-results/foundry-test-output.txt',
+    foundryConfig: 'r3tards-locked-supply-audit/foundry.toml'
   },
   outputFiles: { lockedTokensCsv:'r3tards-locked-supply-audit/locked-supply-output/locked_tokens.csv', burnProofsCsv:'r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv', sourceAnalysisJson:'r3tards-locked-supply-audit/locked-supply-output/lock_contract_source_analysis.json' }
 };

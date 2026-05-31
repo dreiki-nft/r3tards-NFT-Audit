@@ -17,6 +17,14 @@ This file separates verified claims, high-confidence heuristic claims, source/te
 | Validator/delegator state reads are at canonical snapshot block 77,822,541 | Verified | `validator-stake-output/summary.json`, `validator_state.json`, `specific_delegator_state.json` |
 | Lock deployed bytecode/source equivalence | Verified match for executable runtime logic after Solidity metadata stripping | `lock_bytecode_verification.json`, `lock_bytecode_match_evidence.json` |
 
+## Wallet-Control Attestation Claims
+
+| Wallet-control claim | Status | Evidence |
+|---|---|---|
+| Owner-wallet key control | 0/4 cryptographically attested by owner signature; 4/4 pending attestation templates | `collection-info/wallet-attestations/*.json`, `collection-info/wallet_attestation_evidence.json` |
+
+Pending attestation templates are not verified proof. A wallet-control claim becomes cryptographically attested only when the claimed owner address signs the canonical release-bound EIP-191 message from `config.json` and the verifier recovers the same address. This proves key control for that message only; it does not prove personal identity or beneficial ownership.
+
 ## High-Confidence Heuristic Claims
 
 | Claim | Status | Evidence |
@@ -37,3 +45,4 @@ This file separates verified claims, high-confidence heuristic claims, source/te
 | Total royalties owed but unpaid | Not measured | Unpaid royalties never reached the wallet and cannot be counted from inbound transfer data alone |
 | Exact marketplace royalty enforcement behavior for every sale | Not measured | Requires marketplace execution-level attribution beyond current scope |
 | Profit | Not measured | Mint proceeds are gross value and do not subtract costs |
+| Independent third-party review | Not present | No signed non-owner reviewer attestation is committed in `reviews/reviewer-attestations/` |

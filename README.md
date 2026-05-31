@@ -11,7 +11,7 @@ This package covers:
 - mint proceeds and mint classification
 - matched likely royalties received by the royalty/deployer wallet
 - deployer-specific validator stake with `forthenads`
-- official/project wallet attribution
+- official/project wallet attribution and optional wallet-control attestations
 - locked/team supply ownership proof
 - community burn proofs
 - reproducibility, validation, checksums, and safety notes
@@ -156,6 +156,9 @@ Network fetches, when needed, require read-only environment variables. See `.env
 | `r3tards-locked-supply-audit/test-results/foundry-test-output.txt` | Recorded local `forge test -v` output: 31 passed, 0 failed. |
 | `r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv` | Burn/dead-address token transfer proof. |
 | `collection-info/official_wallets.csv` | Wallet labels, attribution, evidence source, and confidence. |
+| `collection-info/wallet-attestations/*.json` | Per-owner wallet-control attestation templates or signed attestations. Pending templates are not counted as verified. |
+| `collection-info/wallet_attestation_evidence.json` | Offline EIP-191 signature-verification result for wallet-control attestations. |
+| `reviews/reviewer_attestation_evidence.json` | Offline EIP-191 signature-verification result for optional independent reviewer attestations. |
 | `collection-info/burn_proofs.csv` | Community-facing burn proof file with txs and links. |
 
 ## Mint proceeds methodology
@@ -218,7 +221,7 @@ Formula from committed event outputs:
 
 Validator stake is not creator revenue. It is MON committed to validator operations. Event-history totals are bounded to the canonical snapshot block; validator/delegator state reads should be described using the `validatorStateBlockTag` recorded in `summary.json`.
 
-## Official wallets
+## Official wallets and wallet-control attestations
 
 Official/project wallet labels are listed in [`collection-info/official_wallets.csv`](./collection-info/official_wallets.csv). Each row includes:
 
@@ -228,7 +231,37 @@ Official/project wallet labels are listed in [`collection-info/official_wallets.
 - confidence
 - notes
 
-The repo avoids implying custody/ownership beyond the documented attribution.
+The repo avoids implying personal identity, beneficial ownership, or custody beyond documented attribution. Wallet-control attestations are a separate optional proof layer.
+
+For release `snapshot-77822541-v8`, `config.json` defines this canonical EIP-191 message:
+
+```text
+r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8
+```
+
+The current committed attestation files are templates with `status: pending_signature`. They are **not** counted as verified wallet-control proof until the listed owner address signs the exact canonical message offline and `collection-info/verify-wallet-attestations.mjs` recovers that same address with `ethers.verifyMessage`.
+
+Current wallet-control status: `0/4` owner wallets cryptographically attested by owner signature; `4/4` pending attestation templates.
+
+Run the verifier with:
+
+```bash
+npm run attestations:verify
+```
+
+## Independent review status
+
+This repository includes an external-reviewer attestation scaffold, but it does not claim independent review unless a real signed reviewer attestation verifies to a non-owner address.
+
+Current independent-review status: no signed external reviewer attestation is committed. This remains a self-contained reproducible transparency/proof package, not a third-party security audit.
+
+Reviewer reproduction instructions live in [`REVIEW.md`](./REVIEW.md). The optional reviewer signature template lives in [`reviews/REVIEWER_ATTESTATION_TEMPLATE.md`](./reviews/REVIEWER_ATTESTATION_TEMPLATE.md).
+
+Run the reviewer-attestation verifier with:
+
+```bash
+npm run review:verify
+```
 
 ## Locked/team supply
 
@@ -313,9 +346,9 @@ Additional reproducibility files:
 
 The canonical public snapshot for this audit is:
 
-- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v7
+- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v8
 - Snapshot block: 77,822,541
-- Release tag: `snapshot-77822541-v7`
+- Release tag: `snapshot-77822541-v8`
 
 This release contains the frozen PDF/DOCX report, checksum files, and reproducibility artifacts for the public r3tards NFT transparency audit.
 

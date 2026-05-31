@@ -5,6 +5,7 @@
   "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
   "testFile": "r3tards-locked-supply-audit/test/NFTTimeLockTest.t.sol",
   "foundryTestOutput": "r3tards-locked-supply-audit/test-results/foundry-test-output.txt",
+  "foundryConfig": "r3tards-locked-supply-audit/foundry.toml",
   "sourcePresent": true,
   "testsPresent": true,
   "sourceLevelFindings": {
@@ -27,6 +28,9 @@
   },
   "foundryTests": {
     "claimedCommand": "forge test -v",
+    "compilerVersion": "0.8.28",
+    "configuredCompilerVersion": "0.8.28",
+    "compilerVersionAlignedWithDeployedBytecodeCompiler": true,
     "passed": true,
     "passedCount": 31,
     "failedCount": 0,

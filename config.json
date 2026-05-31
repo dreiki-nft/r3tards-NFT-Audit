@@ -28,7 +28,32 @@
     "generatedAt": "2026-05-31T00:00:00.000Z",
     "snapshotTag": "snapshot-77822541",
     "notes": "Deterministic rebuild metadata; scripts use this timestamp so offline rebuilds do not rewrite outputs with wall-clock time. The immutable public release is pinned by canonicalReleaseTag/canonicalReleaseUrl instead of a self-referential commit hash.",
-    "canonicalReleaseTag": "snapshot-77822541-v7",
-    "canonicalReleaseUrl": "https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v7"
+    "canonicalReleaseTag": "snapshot-77822541-v8",
+    "canonicalReleaseUrl": "https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v8"
+  },
+  "ownersFromProvidedSource": [
+    "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+    "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+    "0x18D5346216315667C51D69F346E3C768136F8018",
+    "0xf10eD040f182511ef2179AdeA749920881A4eef9"
+  ],
+  "walletControlAttestations": {
+    "canonicalMessage": "r3tards NFT audit wallet attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
+    "expectedOwnerAddresses": [
+      "0x40Ea55E0b8f02f8eBc9D91e082e202ed988647fA",
+      "0xdfC19DD5f80048dF12D7a71cB01226F8ce24a954",
+      "0x18D5346216315667C51D69F346E3C768136F8018",
+      "0xf10eD040f182511ef2179AdeA749920881A4eef9"
+    ],
+    "attestationDirectory": "collection-info/wallet-attestations",
+    "evidenceFile": "collection-info/wallet_attestation_evidence.json",
+    "statusNotes": "Signatures are verified offline with EIP-191 personal_sign recovery. Pending templates are not counted as verified."
+  },
+  "reviewerAttestations": {
+    "canonicalMessage": "r3tards NFT audit independent reproduction attestation | chainId 143 | NFT 0x200723A706de0013316E5cd8EBa2b3f53DD90c29 | lock 0xec823eaffa4584f482a0d9c3e634840d14066242 | snapshot 77822541 | release snapshot-77822541-v8",
+    "attestationDirectory": "reviews/reviewer-attestations",
+    "evidenceFile": "reviews/reviewer_attestation_evidence.json",
+    "templateFile": "reviews/REVIEWER_ATTESTATION_TEMPLATE.md",
+    "statusNotes": "No independent-review claim is made unless a committed reviewer signature verifies to a non-owner address and references the canonical release and snapshot."
   }
 }
