@@ -8,12 +8,14 @@
     "audit": "node verify-locked-supply.mjs",
     "fetch:state": "node verify-lock-contract-state.mjs",
     "validate": "cd .. && npm run validate",
-    "verify:bytecode": "node verify-lock-bytecode.mjs"
+    "verify:bytecode": "node verify-lock-bytecode.mjs",
+    "fetch:bytecode": "node fetch-and-match-lock-bytecode.mjs"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "ethers": "^6.13.5"
+    "ethers": "^6.13.5",
+    "solc": "0.8.28"
   }
 }

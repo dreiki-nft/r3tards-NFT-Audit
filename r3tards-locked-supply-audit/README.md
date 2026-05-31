@@ -72,3 +72,21 @@ Recorded result from the provided test run:
 ```txt
 31 tests passed, 0 failed, 0 skipped
 ```
+
+## Optional 96+ bytecode/source equivalence proof
+
+The committed audit can prove token custody and source/test behavior offline. To additionally prove that the deployed timelock runtime bytecode matches the committed `NFTTimeLock.sol` source, run the online bytecode match step:
+
+```bash
+cd r3tards-locked-supply-audit
+npm install
+RPC_URL="https://rpc.monad.xyz" BLOCK_TAG=77822541 npm run fetch:bytecode
+npm run rebuild
+cd ..
+npm run checksums
+npm run validate
+```
+
+A successful match writes `locked-supply-output/lock_bytecode_match_evidence.json` and changes `lock_bytecode_verification.json` to `sourceEquivalenceStatus: "verified_match"`. The comparison allows Solidity metadata to differ but requires metadata-stripped deployed runtime bytecode to match the locally compiled runtime bytecode.
+
+If the script does not find a match, do not claim deployed bytecode/source equivalence. Try again only with the exact compiler and optimizer settings used at deployment.

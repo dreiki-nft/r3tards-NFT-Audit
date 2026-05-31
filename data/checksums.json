@@ -94,8 +94,8 @@
     },
     {
       "file": "package.json",
-      "sha256": "c2c5306e3f44d0ef588360c738faa06a252e087af14758e27e8b785208f4ec3e",
-      "bytes": 1141,
+      "sha256": "7385d459801da8e30a1f45433565d4058cd83388892dd14d6343da7870581bad",
+      "bytes": 1228,
       "rowCount": null
     },
     {
@@ -105,15 +105,27 @@
       "rowCount": null
     },
     {
+      "file": "r3tards-locked-supply-audit/fetch-and-match-lock-bytecode.mjs",
+      "sha256": "66d2a9df3941c7e4aca849b6e82623b770d63f51dc7d13c7977d8715f957bd23",
+      "bytes": 7273,
+      "rowCount": null
+    },
+    {
       "file": "r3tards-locked-supply-audit/locked-supply-output/burn_proofs.csv",
       "sha256": "1adaf789c0b36bfe031c03175af8f79aa1f2ec792efec978a49f1b676ea992e1",
       "bytes": 775,
       "rowCount": 2
     },
     {
+      "file": "r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_match_evidence.json",
+      "sha256": "2db22c436e8cec5f4c1c985b17c47700395b5159540dcdfe105889bc13bc9f72",
+      "bytes": 21355,
+      "rowCount": null
+    },
+    {
       "file": "r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json",
-      "sha256": "a9bdd188bffec7c0c88dd20d8e5f44a470e6616e1cd42dee21000095c1606efe",
-      "bytes": 1514,
+      "sha256": "8ec116a0defd445c392cea615703683d35466c292812ce19369ef9ce6fe74da8",
+      "bytes": 2901,
       "rowCount": null
     },
     {
@@ -142,20 +154,20 @@
     },
     {
       "file": "r3tards-locked-supply-audit/package-lock.json",
-      "sha256": "2094cf267afe0f85ae26d218d7c59b260dacabb8ee973a23c3eed1c286ea61bc",
-      "bytes": 4152,
+      "sha256": "8d66ea23f817f3a84c4a8317b8867b6545db1823f309927f374a69d4cc9993de",
+      "bytes": 7716,
       "rowCount": null
     },
     {
       "file": "r3tards-locked-supply-audit/package.json",
-      "sha256": "cc4fa43695c1f8d54f99325a806f8d416b13ecd12efd9edc18ae02342a9b695b",
-      "bytes": 603,
+      "sha256": "25307a24763dcf3a8853bc4d1d20b76ea43c76307853b496b3e50d3ae8e961f3",
+      "bytes": 689,
       "rowCount": null
     },
     {
       "file": "r3tards-locked-supply-audit/README.md",
-      "sha256": "1d9dfb0862c85e174916f8aaa0728bfa0ddaf5d69c7b0e3b4b926430686439cc",
-      "bytes": 2625,
+      "sha256": "8ac2870a122206d9334c4bc018e9777e7a527a9ff48d447a2172ea0a35454adb",
+      "bytes": 3596,
       "rowCount": null
     },
     {
@@ -178,8 +190,8 @@
     },
     {
       "file": "r3tards-locked-supply-audit/verify-lock-bytecode.mjs",
-      "sha256": "61f3d6a413ecf0f6f7213c54bcbf43f579cfe9251c18da97503917194c2e679d",
-      "bytes": 2733,
+      "sha256": "51912cb3d54887f8909c67d16d0208273059774f28fc209ab94cf9e967790ce2",
+      "bytes": 5509,
       "rowCount": null
     },
     {
@@ -448,14 +460,14 @@
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.csv",
-      "sha256": "d1fc841791959b2b21e93e9d433f3dc740d5a7e913427aa427704bf55031bb54",
-      "bytes": 382,
+      "sha256": "02bab6dc5705043d443ee4dc47722d258ae7661cb7ac0ccf1cf957b4e279b4b2",
+      "bytes": 422,
       "rowCount": 1
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/specific_delegator_state.json",
-      "sha256": "7dfe957c3e50a5a85f29c7c52625f26aa7c5cc6e37211b232458dde33b23f96b",
-      "bytes": 487,
+      "sha256": "06c2c8f38b7f2c2e65261be6ca9b9810d41713095eb6ca4b97916b062c7129b2",
+      "bytes": 527,
       "rowCount": null
     },
     {
@@ -466,8 +478,8 @@
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/summary.json",
-      "sha256": "ce255a8f7aad909a5a389032ee0a6105cf6e68c4f813bad88877a0c5f79ab9f1",
-      "bytes": 2910,
+      "sha256": "289d7e5611e1b455da0e99bdeeee43f7cc3f560be07744879c5df97da6f9377d",
+      "bytes": 2933,
       "rowCount": null
     },
     {
@@ -478,8 +490,8 @@
     },
     {
       "file": "r3tards-validator-stake-audit/validator-stake-output/validator_state.json",
-      "sha256": "61768253208fcf5735b5f4eb147dfa03bce766720ab826aa243fa772c9e3867f",
-      "bytes": 1213,
+      "sha256": "b54b1379f4e49c95f106cafb2f9fec61307461917ef03d6a2e1f4413e3b15c4f",
+      "bytes": 1217,
       "rowCount": null
     },
     {
@@ -502,8 +514,8 @@
     },
     {
       "file": "scripts/validate-audit.mjs",
-      "sha256": "293e6debb5626c6279a9b82fac54c54af6a0c4cc35ec539dc70c3b7139900cfe",
-      "bytes": 14496,
+      "sha256": "8c8e0b094c0186256f8feb1facd3a00948c3ab59bd11b9e22ce8ccc8679ff0e7",
+      "bytes": 16049,
       "rowCount": null
     },
     {

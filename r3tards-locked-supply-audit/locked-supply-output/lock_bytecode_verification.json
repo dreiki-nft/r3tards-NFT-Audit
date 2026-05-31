@@ -8,10 +8,43 @@
   "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
   "sourcePresent": true,
   "sourceSha256": "4d759728537f2fe4803fadf17c6fb4bdc556659458ca110bb55b797c290bff36",
-  "sourceEquivalenceStatus": "not_verified_by_repo",
-  "deployedBytecodeCompared": false,
-  "deployedBytecodeHash": null,
-  "compiledRuntimeBytecodeHash": null,
+  "sourceEquivalenceStatus": "verified_match",
+  "deployedBytecodeCompared": true,
+  "deployedBytecodeHash": "e7141e867f709cf57da47851f9658bea12bc18d2adae22647e882b396940df21",
+  "compiledRuntimeBytecodeHash": "b3260a121a8289a4539b3b888780b6820191ed06c0d2dc59d4b9d19447097717",
+  "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+  "selectedCompilerSettings": {
+    "sourceKey": "contracts/NFTTimeLock.sol",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "evmVersion": null
+  },
+  "matchEvidencePresent": true,
+  "matchEvidenceSummary": {
+    "file": "r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_match_evidence.json",
+    "generatedAt": "2026-05-31T00:00:00.000Z",
+    "blockTag": "77822541",
+    "solcVersion": "0.8.28+commit.7893614a.Emscripten.clang",
+    "contractMatches": true,
+    "sourceMatches": true,
+    "chainMatches": true,
+    "exactRuntimeMatch": false,
+    "metadataStrippedRuntimeMatch": true,
+    "selectedCompilerSettings": {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": null
+    },
+    "deployedRuntimeBytecodeHash": "e7141e867f709cf57da47851f9658bea12bc18d2adae22647e882b396940df21",
+    "deployedRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+    "compiledRuntimeBytecodeHash": "b3260a121a8289a4539b3b888780b6820191ed06c0d2dc59d4b9d19447097717",
+    "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08"
+  },
   "stateReadPresent": true,
   "stateReadSummary": {
     "file": "r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json",
@@ -20,10 +53,9 @@
     "unlockDateUTC": "2029-04-13T02:29:29.000Z",
     "blockTag": "77822541"
   },
-  "proofBoundary": "The repo includes source, tests, token custody proof, and optional deployed state reads. It does not currently prove exact deployed bytecode/source equivalence. Treat lock behavior as source/test-supported plus deployed-state-read-supported, not bytecode-equivalence-proven.",
+  "proofBoundary": "Deployed runtime bytecode has been compared against locally compiled runtime bytecode from the committed NFTTimeLock.sol source. Solidity metadata may differ, but metadata-stripped runtime bytecode matches, supporting deployed source equivalence for executable runtime logic.",
   "howToStrengthen": [
-    "Verify source on a Monad explorer if source verification is supported.",
-    "Compile NFTTimeLock.sol with the exact deployed compiler/settings and compare runtime bytecode after handling Solidity metadata/constructor args.",
-    "Commit the comparison output only if sourceEquivalenceStatus becomes verified_match."
+    "Keep lock_bytecode_match_evidence.json committed and checksummed.",
+    "Have an external reviewer independently rerun npm run lock:fetch-bytecode and confirm the same selected compiler settings and metadata-stripped hash match."
   ]
 }
