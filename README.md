@@ -33,7 +33,7 @@ Canonical config is stored in [`config.json`](./config.json).
 
 ## Community report
 
-- [Read the report online on Google Docs](https://docs.google.com/document/d/1nqBaOA14-YWtNQMZqCFD-XXTeD7ffm05dpVuT2Z2G0w/edit?usp=sharing)
+- [Read the report online on Google Docs](https://docs.google.com/document/d/1YThsq_uFOJSFsfGnHQsTJdJDZ7MaucK_ouZW56igelA/edit?usp=sharing)
 - [Download the report as DOCX](./r3tards-transparency.docx)
 - [Download the report as PDF](./r3tards-transparency.pdf)
 
