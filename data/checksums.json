@@ -87,12 +87,6 @@
       "rowCount": null
     },
     {
-      "file": "fix-validator-rebuild-script.patch",
-      "sha256": "34bdb0738d2319444707202f1b9da175493c4ffb4037581b23c2afb2758f3973",
-      "bytes": 7105,
-      "rowCount": null
-    },
-    {
       "file": "package-lock.json",
       "sha256": "ea2b67703fd3575d990f0d131936bab7a30b20aa4dedb23308ddde8271d4c13d",
       "bytes": 248,
