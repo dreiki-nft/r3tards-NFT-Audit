@@ -1,0 +1,592 @@
+{
+  "generatedAt": "2026-05-31T00:00:00.000Z",
+  "script": "fetch-and-match-lock-bytecode.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "blockTag": "77822541",
+  "lockContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+  "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
+  "sourceSha256": "4d759728537f2fe4803fadf17c6fb4bdc556659458ca110bb55b797c290bff36",
+  "solcVersion": "0.8.28+commit.7893614a.Emscripten.clang",
+  "deployedRuntimeBytecodeHash": "e7141e867f709cf57da47851f9658bea12bc18d2adae22647e882b396940df21",
+  "deployedRuntimeBytecodeLengthBytes": 2919,
+  "deployedRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+  "deployedRuntimeBytecodeStrippedLengthBytes": 2866,
+  "exactRuntimeMatch": false,
+  "metadataStrippedRuntimeMatch": true,
+  "selectedCompilerSettings": {
+    "sourceKey": "contracts/NFTTimeLock.sol",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "evmVersion": null
+  },
+  "compiledRuntimeBytecodeHash": "b3260a121a8289a4539b3b888780b6820191ed06c0d2dc59d4b9d19447097717",
+  "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+  "candidateCount": 40,
+  "candidates": [
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "b3260a121a8289a4539b3b888780b6820191ed06c0d2dc59d4b9d19447097717",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "b3260a121a8289a4539b3b888780b6820191ed06c0d2dc59d4b9d19447097717",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "1c5293f98d98da61e3ab16bb32ea38185ee07f8fff792856ad5589573e432ad9",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "6bcb91c7cc37d5be41cdfcbf341fad9634c64a1bef5c5d4809a8f67b9c399a28",
+      "compiledRuntimeBytecodeStrippedHash": "377b854793c8027fdc7922edacbb48137a52e68b840f85c11995cc4d95d518d2",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "df11e91cf3da3be52a9d06eeb0ac22652d8efb16ccad9dd9317582dc95132a13",
+      "compiledRuntimeBytecodeStrippedHash": "377b854793c8027fdc7922edacbb48137a52e68b840f85c11995cc4d95d518d2",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "5fef0344d906e0fb6e42ac918a7b6071eadb1a899cefd968f4f70b91e30bab55",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "5fef0344d906e0fb6e42ac918a7b6071eadb1a899cefd968f4f70b91e30bab55",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "0b188aff24eb2333ef2e9a49fd8bba2f782d0d628badf1c9752083e9d8c7979b",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "7d0a351edc241ecf1a7d97e294b9084c51b3f3a34eb2fdf93c134f8d7a5fe4a7",
+      "compiledRuntimeBytecodeStrippedHash": "a29f52d8051dd46340709310a64e2d435ba1373d0438683ecee0874b67fe3d1c",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "d664e81b19778b503ba97193696d6475df2980d665c0d5a9b38784d90b4bc0c1",
+      "compiledRuntimeBytecodeStrippedHash": "a29f52d8051dd46340709310a64e2d435ba1373d0438683ecee0874b67fe3d1c",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "6605fe754e45b9f9cfcd49cb9d1c4e116c5f577bb7091bf26eff05eff0215d14",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "6605fe754e45b9f9cfcd49cb9d1c4e116c5f577bb7091bf26eff05eff0215d14",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "9105fd61181362c38543334a7a9ed0e60e71497ce04ced5297305e29ab0d4494",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "8992e1d02e3c51b015a180e84a971876fd906f4da51f4b1beb5113bd0098ec73",
+      "compiledRuntimeBytecodeStrippedHash": "de7998696265e3a8b62538f983fdb709db39afdcf6b6deeae58e8e0b0f312353",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "bca4b35bed2ae9c6d0a4a37c6d0bfb8fbb1f721fe831cd0bf806ca0ccb33efaa",
+      "compiledRuntimeBytecodeStrippedHash": "de7998696265e3a8b62538f983fdb709db39afdcf6b6deeae58e8e0b0f312353",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "42d32d71ef0ecc94ede363713246b5debb76c4b4988187e5c19d16cad9fe2f3a",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "42d32d71ef0ecc94ede363713246b5debb76c4b4988187e5c19d16cad9fe2f3a",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "a233771680c4d89b0e515220c9a39f67d49224eff17f8dcb50c13be7e4499786",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "f9461f3b319a6d02c50a33dcd888a7f4c77a237639d0b9c1b19a44e42899c1b2",
+      "compiledRuntimeBytecodeStrippedHash": "dc685ff2a252ce9ae2434e5f22b24d16249ee743248f8273e43a732535f43d52",
+      "errors": []
+    },
+    {
+      "sourceKey": "contracts/NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "86d64df1704218959bed3d7fb0cee5b5ad4b94e0350b460ec47c939c640119da",
+      "compiledRuntimeBytecodeStrippedHash": "dc685ff2a252ce9ae2434e5f22b24d16249ee743248f8273e43a732535f43d52",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "a58b72716c235f5ee9a6faa990361149406a51e64dc6b996db15565407aa95ba",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "a58b72716c235f5ee9a6faa990361149406a51e64dc6b996db15565407aa95ba",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": true,
+      "compiledRuntimeBytecodeHash": "bdfaf3186742fa44b48145110f9a9c2701199e0c760880a8fb99a90b87fff5d9",
+      "compiledRuntimeBytecodeStrippedHash": "f2496527dc61a18cb8cfa0e0f14598908e9741cfd8940fa7bc4ead9d87429c08",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "8bddc01cd03f5bb942cc4d7fbd667acf145d099462808d07311cf72e28a7d44c",
+      "compiledRuntimeBytecodeStrippedHash": "377b854793c8027fdc7922edacbb48137a52e68b840f85c11995cc4d95d518d2",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "6e13260d8093dfb4ece0fb13e4e6cb2e5fc7b44137d759f10698cf3ca5d45d69",
+      "compiledRuntimeBytecodeStrippedHash": "377b854793c8027fdc7922edacbb48137a52e68b840f85c11995cc4d95d518d2",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "f54368aa29ee2181fd3924fccbdca0261aa46c00831ba059087597683a6be7d9",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "f54368aa29ee2181fd3924fccbdca0261aa46c00831ba059087597683a6be7d9",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "3473c4bb08b82da1b4222f8b6d135332b21be791a80beeb55639b9d8f8d2b5d5",
+      "compiledRuntimeBytecodeStrippedHash": "b215e8bbeb64919df8234097d047a770d1f5c8d01ce82f7024b2a9f009bc3f9d",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "8f6ac54dd56103af43c7bf4f19ec5b0d0e07fae184416889cba565ab91ff8795",
+      "compiledRuntimeBytecodeStrippedHash": "a29f52d8051dd46340709310a64e2d435ba1373d0438683ecee0874b67fe3d1c",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "b2c59d87261afac03e03b51a549f28c1a209a0037175f2aa7bdf1b48128180af",
+      "compiledRuntimeBytecodeStrippedHash": "a29f52d8051dd46340709310a64e2d435ba1373d0438683ecee0874b67fe3d1c",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "7abfeeea8277ce8ae0643fc049be8ee4da203b0c81178141e63a384d9475e912",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "7abfeeea8277ce8ae0643fc049be8ee4da203b0c81178141e63a384d9475e912",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "57118cbbe0395508f134464742dbe8b748e50378642c105a0c47b1ca12472c1f",
+      "compiledRuntimeBytecodeStrippedHash": "c04ae0b1f31268b0fa1a7f1b17028d95702f2c2547976a936fc82c03091b526f",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "682305dc3ffa2fd9c403811f11f841dd55c689efad666980b408972969fc11cb",
+      "compiledRuntimeBytecodeStrippedHash": "de7998696265e3a8b62538f983fdb709db39afdcf6b6deeae58e8e0b0f312353",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "4574c5f718142e3f86e19337dc0f35b2ad3684e528f960810654f416d4f1c552",
+      "compiledRuntimeBytecodeStrippedHash": "de7998696265e3a8b62538f983fdb709db39afdcf6b6deeae58e8e0b0f312353",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": null,
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "541c712df585519785dfd925a68c5a76f5be4161a1fa9016585d1b2aa9eaec2f",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "cancun",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "541c712df585519785dfd925a68c5a76f5be4161a1fa9016585d1b2aa9eaec2f",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "shanghai",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "8a70d0aefe2d88ed7aac3fb52447da86c4a33df90cf242458717d4b5896de60d",
+      "compiledRuntimeBytecodeStrippedHash": "d571596de05a01254efb795d6ada9e42a306ed3c8747b56b71ec8758a1124d12",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "paris",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "9385d5295aae5b27fcc0a173fb7ae34109acb1b25ea0d0e1b9b0b30dcf17983a",
+      "compiledRuntimeBytecodeStrippedHash": "dc685ff2a252ce9ae2434e5f22b24d16249ee743248f8273e43a732535f43d52",
+      "errors": []
+    },
+    {
+      "sourceKey": "NFTTimeLock.sol",
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "evmVersion": "london",
+      "ok": true,
+      "exactRuntimeMatch": false,
+      "metadataStrippedRuntimeMatch": false,
+      "compiledRuntimeBytecodeHash": "8f774204af3e1f646fab3d4337d173552aa637014bd32c3f7806ae4c2f188899",
+      "compiledRuntimeBytecodeStrippedHash": "dc685ff2a252ce9ae2434e5f22b24d16249ee743248f8273e43a732535f43d52",
+      "errors": []
+    }
+  ],
+  "proofBoundary": "Verified by comparing deployed runtime bytecode against locally compiled runtime bytecode from the committed NFTTimeLock.sol source. Solidity metadata is allowed to differ; metadata-stripped runtime bytecode must match."
+}

@@ -144,7 +144,23 @@ const lockSource = readJson('r3tards-locked-supply-audit/locked-supply-output/lo
 if (lockSource.generatedAt !== EXPECTED_GENERATED_AT) fail('lock source analysis generatedAt is not deterministic'); else ok('lock source analysis generatedAt is deterministic');
 const lockBytecode = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_verification.json');
 if (lockBytecode.generatedAt !== EXPECTED_GENERATED_AT) fail('lock bytecode verification generatedAt is not deterministic'); else ok('lock bytecode verification generatedAt is deterministic');
-if (lockBytecode.sourceEquivalenceStatus === 'verified_match') ok('lock deployed bytecode/source equivalence is verified'); else ok('lock bytecode/source equivalence is explicitly not claimed as verified');
+if (lockBytecode.sourceEquivalenceStatus === 'verified_match') {
+  ok('lock deployed bytecode/source equivalence is verified');
+  if (lockBytecode.deployedBytecodeCompared !== true) fail('lock bytecode verified_match but deployedBytecodeCompared is not true');
+  const evFile = 'r3tards-locked-supply-audit/locked-supply-output/lock_bytecode_match_evidence.json';
+  if (!fs.existsSync(relPath(evFile))) fail('lock bytecode verified_match but match evidence file is missing');
+  else {
+    const ev = readJson(evFile);
+    if (ev.generatedAt !== EXPECTED_GENERATED_AT) fail('lock bytecode match evidence generatedAt is not deterministic'); else ok('lock bytecode match evidence generatedAt is deterministic');
+    if (String(ev.lockContract || '').toLowerCase() !== CFG.wallets.lockedTeamSupplyContract.toLowerCase()) fail('lock bytecode match evidence contract mismatch'); else ok('lock bytecode match evidence contract matches config');
+    if (ev.sourceSha256 !== lockBytecode.sourceSha256) fail('lock bytecode match evidence source hash mismatch'); else ok('lock bytecode match evidence source hash matches');
+    if (Number(ev.chainId) !== Number(CFG.chainId)) fail('lock bytecode match evidence chainId mismatch'); else ok('lock bytecode match evidence chainId matches');
+    if (ev.metadataStrippedRuntimeMatch !== true) fail('lock bytecode verified_match requires metadataStrippedRuntimeMatch=true'); else ok('lock bytecode metadata-stripped runtime matches');
+    if (!ev.deployedRuntimeBytecodeHash || !ev.compiledRuntimeBytecodeHash) fail('lock bytecode match evidence missing runtime hashes'); else ok('lock bytecode match evidence has runtime hashes');
+  }
+} else {
+  ok('lock bytecode/source equivalence is explicitly not claimed as verified');
+}
 if (fs.existsSync(relPath('r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json'))) {
   const lockStateRead = readJson('r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json');
   if (lockStateRead.generatedAt !== EXPECTED_GENERATED_AT) fail('lock contract state read generatedAt is not deterministic'); else ok('lock contract state read generatedAt is deterministic');
