@@ -82,32 +82,32 @@
     },
     {
       "file": "collection-info/wallet_attestation_evidence.json",
-      "sha256": "a7068cbcd2905f8a06a3d91bd965826e3e4d760fbd90b4ab53d4fea160dc853a",
-      "bytes": 2569,
+      "sha256": "adfa4cdf462a08120c5367f2b80f56dc675d27233bc01ca82f40d3a5c4e05d52",
+      "bytes": 2679,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/activations.json",
-      "sha256": "e568fd14c72ae96d3aef8e0069cf8f2dbaad4e3d9b6d88d782ef19e3486f81b6",
-      "bytes": 615,
+      "sha256": "82b33fd5d18a2c6467978fa19a8f822566fee53cf3179f15d7d4fbadb10852ab",
+      "bytes": 738,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/community-treasury.json",
-      "sha256": "5246de06586c5f17b6522e1cb20403caa5aa17ce706a32007b05895b4912f993",
-      "bytes": 615,
+      "sha256": "8e8ab5a10ea0124bd49a29a34247e25bb6e72b58f3e7439bd4db02b5050b22eb",
+      "bytes": 738,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/future-collabs-partners.json",
-      "sha256": "d9eeba655c34b6a3dfddb99acd11bcdd66dbc06e6c7a302dbd90a942098a87ce",
-      "bytes": 615,
+      "sha256": "12e1ee161167eccf772181a3825b2a04a9926dd9b00f79e1620ba3834f870d0f",
+      "bytes": 738,
       "rowCount": null
     },
     {
       "file": "collection-info/wallet-attestations/team-deployer-royalty.json",
-      "sha256": "09b7c5c58c8d800e3f4875ea3c0c083b5d68bc092809d5724934935d14d04713",
-      "bytes": 615,
+      "sha256": "cc57487c4cb56d785e3bdef7d43815a850d1ce67c461b5709405744675be8a86",
+      "bytes": 738,
       "rowCount": null
     },
     {
