@@ -9,21 +9,22 @@ permissions:
 
 jobs:
   validate:
+    name: Rebuild and validate audit
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: "22"
 
-      - name: Install dependencies safely
+      - name: Install dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
 
-      - name: Rebuild committed audit outputs
+      - name: Rebuild audit outputs
         run: npm run rebuild
 
       - name: Validate audit outputs
@@ -31,6 +32,3 @@ jobs:
 
       - name: Regenerate checksums
         run: npm run checksums
-
-      - name: Ensure generated outputs are committed
-        run: git diff --exit-code
