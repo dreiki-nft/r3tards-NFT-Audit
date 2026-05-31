@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T14:46:20.130Z",
+  "generatedAt": "2026-05-31T14:51:07.682Z",
   "script": "verify-locked-supply.mjs",
   "chain": "Monad",
   "chainId": 143,
