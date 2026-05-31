@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-05-31T00:00:00.000Z",
+  "script": "verify-lock-bytecode.mjs",
+  "chain": "Monad",
+  "chainId": 143,
+  "snapshotBlock": 77822541,
+  "lockContract": "0xec823eaffa4584f482a0d9c3e634840d14066242",
+  "sourceFile": "r3tards-locked-supply-audit/contracts/NFTTimeLock.sol",
+  "sourcePresent": true,
+  "sourceSha256": "ae90a28a7fa3c0cce994ae05c18b0b71ee9ed50f74fe62b1339d6f02a1faded3",
+  "sourceEquivalenceStatus": "not_verified_by_repo",
+  "deployedBytecodeCompared": false,
+  "deployedBytecodeHash": null,
+  "compiledRuntimeBytecodeHash": null,
+  "stateReadPresent": true,
+  "stateReadSummary": {
+    "file": "r3tards-locked-supply-audit/locked-supply-output/lock_contract_state_read.json",
+    "nftContractMatchesExpected": true,
+    "ownersMatchExpectedSet": true,
+    "unlockDateUTC": "2029-04-13T02:29:29.000Z",
+    "blockTag": "77822541"
+  },
+  "proofBoundary": "The repo includes source, tests, token custody proof, and optional deployed state reads. It does not currently prove exact deployed bytecode/source equivalence. Treat lock behavior as source/test-supported plus deployed-state-read-supported, not bytecode-equivalence-proven.",
+  "howToStrengthen": [
+    "Verify source on a Monad explorer if source verification is supported.",
+    "Compile NFTTimeLock.sol with the exact deployed compiler/settings and compare runtime bytecode after handling Solidity metadata/constructor args.",
+    "Commit the comparison output only if sourceEquivalenceStatus becomes verified_match."
+  ]
+}

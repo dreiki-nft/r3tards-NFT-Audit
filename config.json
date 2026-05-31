@@ -23,5 +23,11 @@
     "communityTreasury": "0xdfc19dd5f80048df12d7a71cb01226f8ce24a954",
     "mintInfrastructurePayoutContract": "0xaAfdfA4a935d8511bF285af11A0544ce7e4a1199",
     "burnAddress": "0x000000000000000000000000000000000000dEaD"
+  },
+  "reproducibleBuild": {
+    "generatedAt": "2026-05-31T00:00:00.000Z",
+    "snapshotTag": "snapshot-77822541",
+    "canonicalCommit": "0d64950",
+    "notes": "Deterministic rebuild metadata; scripts use this timestamp so offline rebuilds do not rewrite outputs with wall-clock time."
   }
 }

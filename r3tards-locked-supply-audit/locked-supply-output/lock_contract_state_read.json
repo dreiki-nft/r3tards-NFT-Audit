@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T14:13:09.343Z",
+  "generatedAt": "2026-05-31T00:00:00.000Z",
   "script": "verify-lock-contract-state.mjs",
   "rpcUrl": "https://rpc.monad.xyz",
   "blockTag": "77822541",
@@ -32,5 +32,7 @@
     "0x18d5346216315667c51d69f346e3c768136f8018": true,
     "0xf10ed040f182511ef2179adea749920881a4eef9": true
   },
-  "note": "Read-only eth_call evidence from deployed timelock contract. Add this file to the repo only if you want committed on-chain read proof for exact unlockTime and owner set."
+  "note": "Read-only eth_call evidence from deployed timelock contract. Add this file to the repo only if you want committed on-chain read proof for exact unlockTime and owner set.",
+  "originalReadGeneratedAt": "2026-05-31T14:13:09.343Z",
+  "deterministicBuildNote": "generatedAt is pinned for reproducible committed outputs; original read time, if known, is preserved in originalReadGeneratedAt."
 }

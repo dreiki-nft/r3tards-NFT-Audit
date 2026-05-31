@@ -4,12 +4,15 @@
   "description": "Read-only locked supply, burn proof, and NFTTimeLock source/test verification for r3tards NFT on Monad.",
   "type": "module",
   "scripts": {
-    "rebuild": "node verify-locked-supply.mjs",
+    "rebuild": "node verify-locked-supply.mjs && node verify-lock-bytecode.mjs",
     "audit": "node verify-locked-supply.mjs",
     "fetch:state": "node verify-lock-contract-state.mjs",
-    "validate": "cd .. && npm run validate"
+    "validate": "cd .. && npm run validate",
+    "verify:bytecode": "node verify-lock-bytecode.mjs"
   },
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "ethers": "^6.13.5"
   }

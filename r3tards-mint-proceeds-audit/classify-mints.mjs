@@ -7,6 +7,7 @@ const OUT = path.resolve('mint-proceeds-output');
 const COLLECTION = CFG.nftContract.toLowerCase();
 const SNAPSHOT_BLOCK = Number(process.env.SNAPSHOT_BLOCK || CFG.snapshotBlock);
 const MINT_PRICE_MON = Number(CFG.mintPriceMON);
+const DETERMINISTIC_GENERATED_AT = process.env.AUDIT_GENERATED_AT || CFG.reproducibleBuild?.generatedAt || 'snapshot-77822541';
 
 const files = {
   mintEvents: path.join(OUT, 'mint_events_from_zero.csv'),
@@ -191,7 +192,7 @@ for (const v of Object.values(routerContracts)) v.amountMON = Number(v.amountMON
 
 const withdrawalTotal = withdrawals.reduce((a, r) => a + Number(r.valueMON || r.amountMON || 0), 0);
 const summary = {
-  generatedAt: new Date().toISOString(),
+  generatedAt: DETERMINISTIC_GENERATED_AT,
   script: 'classify-mints.mjs',
   chain: CFG.chain,
   chainId: CFG.chainId,
@@ -229,7 +230,7 @@ fs.writeFileSync(files.classificationSummary, JSON.stringify(summary, null, 2));
 
 // Also merge the classification summary into the compact mint summary used by the report.
 let publicSummary = fs.existsSync(files.summary) ? JSON.parse(fs.readFileSync(files.summary, 'utf8')) : {};
-publicSummary.generatedAt = new Date().toISOString();
+publicSummary.generatedAt = DETERMINISTIC_GENERATED_AT;
 publicSummary.chain = CFG.chain;
 publicSummary.chainId = CFG.chainId;
 publicSummary.startBlock = CFG.startBlock;

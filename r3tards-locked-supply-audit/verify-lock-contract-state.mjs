@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 
 const ROOT = path.resolve('..');
 const CFG = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
+const DETERMINISTIC_GENERATED_AT = process.env.AUDIT_GENERATED_AT || CFG.reproducibleBuild?.generatedAt || 'snapshot-77822541';
 const OUT = path.resolve('locked-supply-output');
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -34,7 +35,7 @@ const isOwnerResults = {};
 for (const owner of expectedOwners) isOwnerResults[owner] = await lock.isOwner(owner, overrides);
 const unlockDate = new Date(Number(unlockTime) * 1000).toISOString();
 const output = {
-  generatedAt: new Date().toISOString(),
+  generatedAt: DETERMINISTIC_GENERATED_AT,
   script: 'verify-lock-contract-state.mjs',
   rpcUrl: RPC_URL.replace(/\/[^/]*@/, '//***@'),
   blockTag: BLOCK_TAG,

@@ -133,3 +133,14 @@ Evidence added:
 - Optional deployed-state reader: `r3tards-locked-supply-audit/verify-lock-contract-state.mjs`
 
 The source-level lock behavior is now documented: four owners, `unlockTime = block.timestamp + (3 * 365 days + 1 days)`, and owner-only withdrawals after unlock. The included Foundry test output records 31 passed / 0 failed. The repo still distinguishes this source/test evidence from deployed bytecode/source equivalence and exact deployed `unlockTime`, which can be checked with the optional read-only RPC script.
+
+## Final hardening pass: deterministic builds, checksum validation, and proof boundaries
+
+This pass fixes five post-review issues:
+
+1. `data/checksums.json` is now deterministic and includes the README, claim status, data dictionary, report files, lock proof artifacts, and key raw/derived outputs.
+2. `npm run validate` now recomputes SHA256 hashes for every checksum entry and verifies `REPORT_HASHES.txt`. Stale README/report/checksum files now fail validation.
+3. Rebuild-generated files now use the canonical deterministic `generatedAt` value from `config.json` instead of wall-clock timestamps. Re-running `npm run rebuild` should not change files.
+4. `lock_bytecode_verification.json` explicitly records that deployed bytecode/source equivalence is `not_verified_by_repo`. The repo no longer leaves this as an implicit ambiguity.
+5. Report wording keeps royalties as matched likely royalties and lock proof as source/test/state-read supported, not bytecode-equivalence-proven.
+

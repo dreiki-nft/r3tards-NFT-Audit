@@ -72,7 +72,11 @@ Summarizes source-level lock behavior from `NFTTimeLock.sol`.
 
 ### `lock_contract_state_read.json`
 
-Optional deployed state read. When present, it records deployed lock contract readable state at the snapshot or requested block.
+Read-only deployed state read. When present, it records deployed lock contract readable state at the snapshot or requested block. It supports deployed-state claims but does not prove source/bytecode equivalence.
+
+### `lock_bytecode_verification.json`
+
+Explicit proof-boundary file for deployed bytecode/source equivalence. Current committed status is `not_verified_by_repo`, so the repo must not claim exact bytecode/source matching.
 
 ## Burns
 
@@ -84,4 +88,4 @@ Documents community burn transactions and proof links.
 
 ### `data/checksums.json`
 
-Contains SHA256 hashes and row counts for important committed files.
+Contains SHA256 hashes and row counts for important committed files. `npm run validate` recomputes and verifies these hashes against the current working tree.

@@ -38,3 +38,6 @@ jobs:
 
       - name: Regenerate checksums
         run: npm run checksums
+
+      - name: Ensure rebuild is deterministic and committed
+        run: git diff --exit-code

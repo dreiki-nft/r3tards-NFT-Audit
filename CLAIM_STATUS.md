@@ -27,11 +27,13 @@ This file separates verified claims, high-confidence heuristic claims, source/te
 |---|---|---|
 | Lock contract behavior requires owner-only withdrawal after unlock | Source/test-supported | `NFTTimeLock.sol`, `NFTTimeLockTest.t.sol`, Foundry test output |
 | Lock duration is 3 years + 1 day from deployment timestamp | Source/test-supported; deployed state read strengthens this when present | `NFTTimeLock.sol`, `lock_contract_state_read.json` if present |
+| Lock deployed bytecode/source equivalence | Not verified by repo | `lock_bytecode_verification.json` records `sourceEquivalenceStatus: not_verified_by_repo` |
 
-## Not Measured
+## Not Verified / Not Measured
 
 | Claim | Status | Reason |
 |---|---|---|
 | Total royalties owed but unpaid | Not measured | Unpaid royalties never reached the wallet and cannot be counted from inbound transfer data alone |
 | Exact marketplace royalty enforcement behavior for every sale | Not measured | Requires marketplace execution-level attribution beyond current scope |
+| Exact deployed bytecode/source equivalence for the lock contract | Not verified | Source/tests/state reads are included, but no runtime-bytecode comparison is committed |
 | Profit | Not measured | Mint proceeds are gross value and do not subtract costs |

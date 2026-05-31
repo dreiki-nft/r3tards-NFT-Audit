@@ -4,6 +4,7 @@ import path from 'path';
 const ROOT = path.resolve('..');
 const CFG = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 const SNAP = Number(process.env.SNAPSHOT_BLOCK || CFG.snapshotBlock);
+const DETERMINISTIC_GENERATED_AT = process.env.AUDIT_GENERATED_AT || CFG.reproducibleBuild?.generatedAt || 'snapshot-77822541';
 const RAW = path.join(ROOT, 'r3tards-mint-proceeds-audit/mint-proceeds-output/raw_erc721_transfers_for_collection.json');
 const OUT = path.resolve('locked-supply-output');
 const CONTRACT_SOURCE = path.resolve('contracts/NFTTimeLock.sol');
@@ -29,7 +30,7 @@ const expectedOwners = [
 ];
 const lockDurationSeconds = 3 * 365 * 24 * 60 * 60 + 1 * 24 * 60 * 60;
 const sourceAnalysis = {
-  generatedAt: new Date().toISOString(),
+  generatedAt: DETERMINISTIC_GENERATED_AT,
   script: 'verify-locked-supply.mjs',
   contractAddress: CFG.wallets.lockedTeamSupplyContract,
   sourceFile: 'r3tards-locked-supply-audit/contracts/NFTTimeLock.sol',
@@ -90,7 +91,7 @@ const lockedRows = lockedTokens.map(t=> {
 writeCsv(path.join(OUT,'locked_tokens.csv'), lockedRows, ['token_id','current_owner','last_transfer_tx','last_transfer_block','evidence']);
 writeCsv(path.join(OUT,'burn_proofs.csv'), burnRows.map(r=>({ token_id:r.tokenID, burn_tx_hash:r.hash, burn_block:r.blockNumber, from:r.from, to:r.to, functionName:r.functionName, burn_mechanism: r.to.toLowerCase()===burn ? 'transferred_to_dead_address' : 'unknown', evidence:'ERC721 Transfer to burn/dead address in committed raw transfer snapshot' })), ['token_id','burn_tx_hash','burn_block','from','to','functionName','burn_mechanism','evidence']);
 const summary = {
-  generatedAt: new Date().toISOString(),
+  generatedAt: DETERMINISTIC_GENERATED_AT,
   script: 'verify-locked-supply.mjs',
   chain: CFG.chain,
   chainId: CFG.chainId,
