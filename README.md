@@ -308,9 +308,9 @@ Additional reproducibility files:
 
 The canonical public snapshot for this audit is:
 
-- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v3
+- Release: https://github.com/dreiki-nft/r3tards-NFT-Audit/releases/tag/snapshot-77822541-v4
 - Snapshot block: 77,822,541
-- Release tag: `snapshot-77822541-v3`
+- Release tag: `snapshot-77822541-v4`
 
 This release contains the frozen PDF/DOCX report, checksum files, and reproducibility artifacts for the public r3tards NFT transparency audit.
 
